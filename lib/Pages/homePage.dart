@@ -4,100 +4,178 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/Lists.dart';
 
 class homePage extends StatefulWidget {
-  const homePage({super.key});
+  String id = "home";
+  homePage({super.key});
 
   @override
   State<homePage> createState() => _homePageState();
 }
 
 class _homePageState extends State<homePage> {
+  List autoList = [
+    "a",
+    "s",
+    "soa",
+    "www",
+    "qwqweqweqwe",
+    "qqwe",
+    "epr",
+    "eporto",
+    "bobo",
+    "weer",
+    "eertt",
+    'e',
+    'ee',
+    'eee',
+    'eeee',
+    'eeeee',
+    'eeeeee',
+    'eeeeeeee',
+    'eeeeee',
+    'eeeeeee',
+    'ea',
+    'eaa',
+    'eaaa',
+    'eaaaa',
+    'eaaaaa',
+    'eaaaaaa',
+    'eaaaaaaaaaa'
+  ];
+  List filteredList = [];
+  bool searched = false;
+  TextEditingController editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
+        child: Stack(
           children: [
-            // Row(
-            //   children: [],
-            // ),
-            SizedBox(
-              height: 25,
+            Column(
+              children: [
+                SizedBox(
+                  height: 25,
+                ),
+                TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      // searched = !searched;
+                      filteredList = autoList.where((element) {
+                        return element.toString().startsWith(value.toString());
+                      }).toList();
+                      filteredList = value.isEmpty ? [] : filteredList;
+                      print(filteredList);
+                    });
+                  },
+                  controller: editingController,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Search",
+                    prefixIcon: Icon(Icons.search),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        width: 10,
+                      );
+                    },
+                    scrollDirection: Axis.horizontal,
+                    itemCount: mainPostersList.length,
+                    itemBuilder: (context, index) {
+                      return MainPosters(
+                        index: index,
+                        filtered: filteredList,
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: [
+                      filteredList.isEmpty
+                          ? Text(
+                              "Popular Chefs",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
+                          : Text("")
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 90,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        width: 10,
+                      );
+                    },
+                    itemCount: popularChefsList.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return popularChefsIcons(
+                        index: index,
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Popular Recipes",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        width: 10,
+                      );
+                    },
+                    itemCount: popularRecipesList.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return popularRecipes(
+                        index: index,
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
             Container(
-              height: 50,
-            ),
-            Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    width: 10,
-                  );
-                },
-                scrollDirection: Axis.horizontal,
-                itemCount: mainPostersList.length,
-                itemBuilder: (context, index) {
-                  return MainPosters(
-                    index: index,
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Row(
+              margin: EdgeInsets.only(top: 40),
+              child: Column(
                 children: [
-                  Text(
-                    "Popular Chefs",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount:
+                        filteredList.length < 7 ? filteredList.length : 6,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          print("asd");
+                        },
+                        child: Container(
+                            padding: EdgeInsets.only(top: 20, left: 10),
+                            color: Colors.green,
+                            child: Text(
+                              filteredList[index],
+                              style: TextStyle(fontSize: 16),
+                            )),
+                      );
+                    },
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 70,
-              child: ListView.separated(
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    width: 10,
-                  );
-                },
-                itemCount: popularChefsList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return popularChefsIcons(
-                    index: index,
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                children: [
-                  Text(
-                    "Popular Recipes",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    width: 10,
-                  );
-                },
-                itemCount: popularRecipesList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return popularRecipes(
-                    index: index,
-                  );
-                },
-              ),
-            ),
+            )
           ],
         ),
       ),
@@ -107,7 +185,8 @@ class _homePageState extends State<homePage> {
 
 class MainPosters extends StatelessWidget {
   int? index;
-  MainPosters({this.index});
+  List? filtered;
+  MainPosters({this.index, this.filtered});
 
   @override
   Widget build(BuildContext context) {
@@ -128,18 +207,19 @@ class MainPosters extends StatelessWidget {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1),
                 child: Container(
-                  alignment: Alignment.center,
-                  color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-                  child: Text(
-                    mainPostersList[index!]['title'],
-                    style: TextStyle(
-                        fontSize: 26,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(offset: Offset(3, 3), blurRadius: 20)
-                        ]),
-                  ),
-                ),
+                    alignment: Alignment.center,
+                    color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
+                    child: filtered!.isEmpty
+                        ? Text(
+                            mainPostersList[index!]['title'],
+                            style: TextStyle(
+                                fontSize: 26,
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(offset: Offset(3, 3), blurRadius: 20)
+                                ]),
+                          )
+                        : Text("")),
               ),
             ),
           ),
@@ -156,8 +236,15 @@ class popularChefsIcons extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        CircleAvatar(
-          backgroundImage: AssetImage(popularChefsList[index!]['image']),
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+                image: AssetImage(popularChefsList[index!]['image']),
+                fit: BoxFit.fill),
+          ),
         ),
         SizedBox(
           height: 5,
@@ -210,12 +297,12 @@ class popularRecipes extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "5.5k",
+                            "${popularRecipesList[index!]['likes']}k",
                             style: TextStyle(color: Colors.white),
                           ),
                           Spacer(),
                           Text(
-                            "5.min",
+                            "${popularRecipesList[index!]['min']}.min",
                             style: TextStyle(color: Colors.white),
                           ),
                           SizedBox(

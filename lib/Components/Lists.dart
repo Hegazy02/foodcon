@@ -23,46 +23,64 @@ List popularRecipesList = [
   {
     "image": "${popularRecipesPath}recipe1.jpg",
     "name": "Omer",
-    "avatar": "${popularChefsPath}chef1.jpg"
+    "avatar": "${popularChefsPath}chef1.jpg",
+    "likes": "5.6",
+    "min": "5"
   },
   {
     "image": "${popularRecipesPath}recipe2.jpg",
     "name": "Omer",
-    "avatar": "${popularChefsPath}chef1.jpg"
+    "avatar": "${popularChefsPath}chef1.jpg",
+    "likes": "5.2",
+    "min": "4"
   },
   {
     "image": "${popularRecipesPath}recipe3.jpg",
     "name": "Mark",
-    "avatar": "${popularChefsPath}chef8.jpg"
+    "avatar": "${popularChefsPath}chef8.jpg",
+    "likes": "5",
+    "min": "5"
   },
   {
     "image": "${popularRecipesPath}recipe4.jpg",
     "name": "May",
-    "avatar": "${popularChefsPath}chef7.jpg"
+    "avatar": "${popularChefsPath}chef7.jpg",
+    "likes": "4.8",
+    "min": "3"
   },
   {
     "image": "${popularRecipesPath}recipe5.jpg",
     "name": "Saleh",
-    "avatar": "${popularChefsPath}chef2.jpg"
+    "avatar": "${popularChefsPath}chef2.jpg",
+    "likes": "4.7",
+    "min": "5"
   },
   {
     "image": "${popularRecipesPath}recipe6.jpg",
     "name": "Hegazy",
-    "avatar": "${popularChefsPath}chef3.jpg"
+    "avatar": "${popularChefsPath}chef3.jpg",
+    "likes": "4.2",
+    "min": "3"
   },
   {
     "image": "${popularRecipesPath}recipe7.jpg",
     "name": "Kareem",
-    "avatar": "${popularChefsPath}chef6.jpg"
+    "avatar": "${popularChefsPath}chef6.jpg",
+    "likes": "4",
+    "min": "6"
   },
   {
     "image": "${popularRecipesPath}recipe8.jpg",
     "name": "Feky",
-    "avatar": "${popularChefsPath}chef5.jpg"
+    "avatar": "${popularChefsPath}chef5.jpg",
+    "likes": "3.6",
+    "min": "4"
   },
   {
     "image": "${popularRecipesPath}recipe9.jpg",
     "name": "Amr",
-    "avatar": "${popularChefsPath}chef4.jpg"
+    "avatar": "${popularChefsPath}chef4.jpg",
+    "likes": "2.1",
+    "min": "5"
   },
 ];

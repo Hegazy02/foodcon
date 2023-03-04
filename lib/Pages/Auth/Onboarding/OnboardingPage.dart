@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomButton.dart';
+import 'package:foodcon/Pages/homePage.dart';
 import 'package:foodcon/constants.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -52,6 +53,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ),
               InkWell(
                 onTap: () {
+                  Navigator.of(context).pushReplacementNamed(homePage().id);
                   print("asd");
                 },
                 child: SizedBox(

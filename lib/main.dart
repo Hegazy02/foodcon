@@ -20,8 +20,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: mainC,
           primaryColor: KprimaryColor,
           cardColor: KprimaryColor),
-      home: homePage(),
+      home: SignUpPage(),
       routes: {
+        homePage().id: (context) => homePage(),
         SignUpPage().id: (context) => SignUpPage(),
         LoginPage().id: (context) => LoginPage(),
         OnBoardingPage().id: (context) => OnBoardingPage(),
