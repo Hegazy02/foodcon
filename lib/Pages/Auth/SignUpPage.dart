@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
-import 'package:foodcon/Pages/Auth/Onboarding/OnboardingPage.dart';
+import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/constants.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        shrinkWrap: true,
+        // shrinkWrap: true,
         children: [
           Container(
             margin: EdgeInsets.symmetric(horizontal: 25),
@@ -62,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 CostumTextField(
                     label: "Confirm Password",
                     secured: isConfirmSecured,
-                    icon: isSecured == false
+                    icon: isConfirmSecured == false
                         ? Icon(Icons.visibility)
                         : Icon(Icons.visibility_off),
                     onPressed: () {
@@ -71,7 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       });
                     }),
                 SizedBox(
-                  height: 100,
+                  height: 60,
                 ),
                 Row(
                   children: [
@@ -87,7 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 60,
                 )
               ],
             ),

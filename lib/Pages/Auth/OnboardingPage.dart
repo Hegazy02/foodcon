@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Components/CustomButton.dart';
-import 'package:foodcon/Pages/homePage.dart';
 import 'package:foodcon/constants.dart';
+import 'package:foodcon/Pages/mainPage.dart';
 
 class OnBoardingPage extends StatefulWidget {
   String id = "OnBoaring";
