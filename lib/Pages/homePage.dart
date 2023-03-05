@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/Lists.dart';
+import 'package:foodcon/constants.dart';
 
 class homePage extends StatefulWidget {
   String id = "home";
@@ -42,7 +43,8 @@ class _homePageState extends State<homePage> {
     'eaaaaaaaaaa'
   ];
   List filteredList = [];
-  bool searched = false;
+
+  String searchVal = "";
   TextEditingController editingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -51,30 +53,67 @@ class _homePageState extends State<homePage> {
         margin: EdgeInsets.symmetric(horizontal: 10),
         child: Stack(
           children: [
-            Column(
-              children: [
+            SingleChildScrollView(
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
                 SizedBox(
-                  height: 25,
+                  height: 30,
                 ),
-                TextField(
-                  onChanged: (value) {
-                    setState(() {
-                      // searched = !searched;
-                      filteredList = autoList.where((element) {
-                        return element.toString().startsWith(value.toString());
-                      }).toList();
-                      filteredList = value.isEmpty ? [] : filteredList;
-                      print(filteredList);
-                    });
-                  },
-                  controller: editingController,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Search",
-                    prefixIcon: Icon(Icons.search),
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        onTapOutside: (event) {
+                          setState(() {
+                            if (event.position.dy > 280) {
+                              filteredList = [];
+                            }
+
+                            print(event.position.dy);
+                          });
+                        },
+                        onChanged: (value) {
+                          searchVal = value;
+                          setState(() {
+                            filteredList = autoList.where((element) {
+                              return element
+                                  .toString()
+                                  .startsWith(searchVal.toString());
+                            }).toList();
+                            filteredList =
+                                searchVal.isEmpty ? [] : filteredList;
+                            print(filteredList);
+                          });
+                        },
+                        controller: editingController,
+                        cursorColor: Colors.grey,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.grey)),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.grey)),
+                          hintText: "Search",
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundImage: AssetImage(Klogo),
+                      backgroundColor: Colors.white,
+                    )
+                  ],
                 ),
-                Expanded(
+                SizedBox(
+                  height: 5,
+                ),
+                SizedBox(
+                  height: 200,
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
                       return SizedBox(
@@ -92,7 +131,7 @@ class _homePageState extends State<homePage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Row(
                     children: [
                       filteredList.isEmpty
@@ -122,7 +161,7 @@ class _homePageState extends State<homePage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Row(
                     children: [
                       Text(
@@ -132,15 +171,19 @@ class _homePageState extends State<homePage> {
                     ],
                   ),
                 ),
-                Expanded(
+                SizedBox(
+                  height: 300,
                   child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
                     separatorBuilder: (context, index) {
                       return SizedBox(
                         width: 10,
+                        height: 10,
                       );
                     },
                     itemCount: popularRecipesList.length,
-                    scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return popularRecipes(
                         index: index,
@@ -148,32 +191,27 @@ class _homePageState extends State<homePage> {
                     },
                   ),
                 ),
-              ],
+              ]),
             ),
             Container(
-              margin: EdgeInsets.only(top: 40),
-              child: Column(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount:
-                        filteredList.length < 7 ? filteredList.length : 6,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          print("asd");
-                        },
-                        child: Container(
-                            padding: EdgeInsets.only(top: 20, left: 10),
-                            color: Colors.green,
-                            child: Text(
-                              filteredList[index],
-                              style: TextStyle(fontSize: 16),
-                            )),
-                      );
-                    },
-                  ),
-                ],
+              margin: EdgeInsets.only(top: 65),
+              child: SizedBox(
+                height: filteredList.isEmpty ? 0 : 300,
+                child: ListView.builder(
+                  itemCount: filteredList.length < 7 ? filteredList.length : 6,
+                  itemBuilder: (context, index) {
+                    return MaterialButton(
+                        onPressed: () {},
+                        color: Color.fromARGB(255, 226, 225, 225),
+                        padding: EdgeInsets.only(left: 10),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        child: Row(
+                          children: [
+                            Expanded(child: Text(filteredList[index])),
+                          ],
+                        ));
+                  },
+                ),
               ),
             )
           ],
@@ -261,80 +299,84 @@ class popularRecipes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-            width: 120,
-            height: 200,
-            child: InkWell(
-              onTap: () {},
-              splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-              child: Ink(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: ExactAssetImage(popularRecipesList[index!]['image']),
-                    fit: BoxFit.cover,
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+              width: 120,
+              height: 250,
+              child: InkWell(
+                onTap: () {},
+                splashColor:
+                    Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                child: Ink(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image:
+                          ExactAssetImage(popularRecipesList[index!]['image']),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                child: ClipRRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1),
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.favorite_border,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "${popularRecipesList[index!]['likes']}k",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Spacer(),
-                          Text(
-                            "${popularRecipesList[index!]['min']}.min",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                        ],
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1),
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(
+                              Icons.favorite_border,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "${popularRecipesList[index!]['likes']}k",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              "${popularRecipesList[index!]['min']}.min",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
+              )),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: 30,
+                child: CircleAvatar(
+                  backgroundImage:
+                      AssetImage(popularRecipesList[index!]['avatar']),
+                  child: Text(""),
+                ),
               ),
-            )),
-        SizedBox(
-          height: 5,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              width: 30,
-              child: CircleAvatar(
-                backgroundImage:
-                    AssetImage(popularRecipesList[index!]['avatar']),
+              SizedBox(
+                width: 5,
               ),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text(popularRecipesList[index!]['name']),
-          ],
-        ),
-      ],
+              Text(popularRecipesList[index!]['name']),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
