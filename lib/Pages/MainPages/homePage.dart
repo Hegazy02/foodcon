@@ -1,27 +1,24 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:foodcon/Components/Lists.dart';
+
 import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
 
-class page1 extends StatefulWidget {
-  List filteredList = [];
-  double height;
-  double width;
-  List autoList;
-  String searchVal;
-  page1(
-      {required this.height,
+class HomePage extends StatelessWidget {
+  List? filteredList = [];
+  final double height;
+  final double width;
+  List? autoList;
+  String? searchVal;
+  HomePage(
+      {this.autoList,
+      this.filteredList,
+      required this.height,
       required this.width,
-      required this.autoList,
-      required this.searchVal});
+      this.searchVal});
 
-  @override
-  State<page1> createState() => _page1State();
-}
-
-class _page1State extends State<page1> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +28,7 @@ class _page1State extends State<page1> {
           SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
               SizedBox(
-                height: widget.height * 0.04,
+                height: height * 0.04,
               ),
               Row(
                 children: [
@@ -40,41 +37,41 @@ class _page1State extends State<page1> {
                       builder: (context, valprov, child) {
                         return TextField(
                           onTapOutside: (event) {
-                            if (valprov.fil.length == 1 &&
-                                event.position.dy > widget.height * 0.15) {
-                              valprov.fil = [];
-                            } else if (valprov.fil.length == 2 &&
-                                event.position.dy > widget.height * 0.2) {
-                              valprov.fil = [];
+                            if (valprov.fil1.length == 1 &&
+                                event.position.dy > height * 0.15) {
+                              valprov.fil1 = [];
+                            } else if (valprov.fil1.length == 2 &&
+                                event.position.dy > height * 0.2) {
+                              valprov.fil1 = [];
                             }
-                            if (valprov.fil.length == 3 &&
-                                event.position.dy > widget.height * 0.243) {
-                              valprov.fil = [];
-                            } else if (valprov.fil.length == 4 &&
-                                event.position.dy > widget.height * 0.29) {
-                              valprov.fil = [];
-                            } else if (valprov.fil.length == 5 &&
-                                event.position.dy > widget.height * 0.34) {
-                              valprov.fil = [];
-                            } else if (valprov.fil.length > 5 &&
-                                event.position.dy > widget.height * 0.3902) {
-                              valprov.fil = [];
+                            if (valprov.fil1.length == 3 &&
+                                event.position.dy > height * 0.243) {
+                              valprov.fil1 = [];
+                            } else if (valprov.fil1.length == 4 &&
+                                event.position.dy > height * 0.29) {
+                              valprov.fil1 = [];
+                            } else if (valprov.fil1.length == 5 &&
+                                event.position.dy > height * 0.34) {
+                              valprov.fil1 = [];
+                            } else if (valprov.fil1.length > 5 &&
+                                event.position.dy > height * 0.3902) {
+                              valprov.fil1 = [];
                               //asd
                             }
 
                             print(event.position.dy);
                           },
                           onChanged: (value) {
-                            widget.searchVal = value;
+                            searchVal = value;
 
-                            valprov.fil = widget.autoList.where((element) {
-                              return element
+                            valprov.fil1 = autoList?.where((element) {
+                              return element['title']
                                   .toString()
-                                  .startsWith(widget.searchVal.toString());
+                                  .startsWith(searchVal.toString());
                             }).toList();
-                            valprov.fil =
-                                widget.searchVal.isEmpty ? [] : valprov.fil;
-                            print("********${valprov.fil}");
+                            valprov.fil1 =
+                                searchVal!.isEmpty ? [] : valprov.fil1;
+                            print("********${valprov.fil1}");
                           },
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
@@ -110,7 +107,7 @@ class _page1State extends State<page1> {
                 height: 5,
               ),
               SizedBox(
-                height: widget.height * 0.25,
+                height: height * 0.25,
                 child: ListView.separated(
                   separatorBuilder: (context, index) {
                     return SizedBox(
@@ -122,7 +119,7 @@ class _page1State extends State<page1> {
                   itemBuilder: (context, index) {
                     return MainPosters(
                       index: index,
-                      filtered: widget.filteredList,
+                      filtered: filteredList,
                     );
                   },
                 ),
@@ -139,7 +136,7 @@ class _page1State extends State<page1> {
                 ),
               ),
               SizedBox(
-                height: widget.height * 0.12,
+                height: height * 0.12,
                 child: ListView.separated(
                   separatorBuilder: (context, index) {
                     return SizedBox(
@@ -167,7 +164,7 @@ class _page1State extends State<page1> {
                 ),
               ),
               SizedBox(
-                height: widget.height * 0.359,
+                height: height * 0.359,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
@@ -182,7 +179,7 @@ class _page1State extends State<page1> {
                   itemBuilder: (context, index) {
                     return popularRecipes(
                       index: index,
-                      h: widget.height,
+                      h: height,
                     );
                   },
                 ),
@@ -191,9 +188,9 @@ class _page1State extends State<page1> {
           ),
           ///////////////////
           Container(
-            margin: EdgeInsets.only(top: widget.height * 0.07),
+            margin: EdgeInsets.only(top: height * 0.07),
             child: Selector<FilterProv, List>(
-              selector: (context, aa) => aa.filteredList,
+              selector: (context, aa) => aa.fil1,
               builder: (context, value, child) {
                 print("qweeeeeee");
                 return SizedBox(
@@ -209,7 +206,7 @@ class _page1State extends State<page1> {
                               MaterialTapTargetSize.shrinkWrap,
                           child: Row(
                             children: [
-                              Expanded(child: Text(value[index])),
+                              Expanded(child: Text(value[index]['title'])),
                             ],
                           ));
                     },
@@ -340,14 +337,14 @@ class popularRecipes extends StatelessWidget {
                             width: 5,
                           ),
                           Icon(
-                            Icons.favorite_border,
+                            Icons.star_border,
                             color: Colors.white,
                           ),
                           SizedBox(
                             width: 5,
                           ),
                           Text(
-                            "${popularRecipesList[index!]['likes']}k",
+                            "${popularRecipesList[index!]['star']}",
                             style: TextStyle(color: Colors.white),
                           ),
                           Spacer(),
@@ -383,7 +380,7 @@ class popularRecipes extends StatelessWidget {
           ],
         ),
         // SizedBox(
-        //   widget.height: h! * 0.05,
+        //   height: h! * 0.05,
         // ),
       ],
     );
