@@ -59,6 +59,7 @@ class _page1State extends State<page1> {
                             } else if (valprov.fil.length > 5 &&
                                 event.position.dy > widget.height * 0.3902) {
                               valprov.fil = [];
+                              //asd
                             }
 
                             print(event.position.dy);
