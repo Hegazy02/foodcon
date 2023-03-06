@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
-import 'package:foodcon/Pages/mainPage.dart';
+import 'package:foodcon/Pages/masterPage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
-
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
             cardColor: KprimaryColor),
         home: SignUpPage(),
         routes: {
-          homePage().id: (context) => homePage(),
+          masterPage().id: (context) => masterPage(),
           SignUpPage().id: (context) => SignUpPage(),
           LoginPage().id: (context) => LoginPage(),
           OnBoardingPage().id: (context) => OnBoardingPage(),
