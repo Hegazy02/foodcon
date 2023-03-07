@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   String? txt;
   Function()? onPressed;
-  CustomButton({this.txt, this.onPressed});
+  EdgeInsetsGeometry? padding;
+  Color? color;
+  CustomButton({this.txt, this.onPressed, this.padding, this.color});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ButtonStyle(
-          padding:
-              MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 15))),
+      style: ElevatedButton.styleFrom(padding: padding, backgroundColor: color),
       onPressed: onPressed,
       child: Text(txt!),
     );

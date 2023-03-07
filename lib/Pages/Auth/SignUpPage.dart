@@ -82,6 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           Navigator.of(context)
                               .pushReplacementNamed(OnBoardingPage().id);
                         },
+                        padding: EdgeInsets.symmetric(vertical: 15),
                       ),
                     ),
                   ],

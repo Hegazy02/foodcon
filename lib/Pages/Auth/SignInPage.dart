@@ -23,7 +23,9 @@ class _LoginPageState extends State<LoginPage> {
             margin: EdgeInsets.symmetric(horizontal: 25),
             child: Column(
               children: [
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Image.asset(
                   Klogo,
                   height: 150,
@@ -59,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: CustomButton(
                         txt: "Login",
                         onPressed: () {},
+                        padding: EdgeInsets.symmetric(vertical: 15),
                       ),
                     ),
                   ],
