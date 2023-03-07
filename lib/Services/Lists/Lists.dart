@@ -1,5 +1,67 @@
 import 'package:flutter/material.dart';
 
+List autoList = [
+  {
+    "title": "مكرونة بالصوص الاحمر",
+    "category": "Pasta",
+    "image": "assets/images/home/recipes/recipe1.jpg",
+    "chefName": "Mano",
+    "chefAvatar": "",
+    "star": "4.6",
+    "min": "20",
+    "isLiked": true
+  },
+  {
+    "title": "فراخ",
+    "category": "Chickens",
+    "image": "assets/images/home/recipes/recipe2.jpg",
+    "chefName": "omer",
+    "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
+    "star": "4.5",
+    "min": "30",
+    "isLiked": false
+  },
+  {
+    "title": "فراخ مقلية",
+    "category": "Chickens",
+    "image": "assets/images/home/recipes/recipe3.jpg",
+    "chefName": "Hegazy",
+    "chefAvatar": "",
+    "star": "4.3",
+    "min": "15",
+    "isLiked": true
+  },
+  {
+    "title": "فطيرة توت",
+    "category": "Desserts",
+    "image": "assets/images/home/recipes/recipe4.jpg",
+    "chefName": "Sakr",
+    "chefAvatar": "",
+    "star": "4.1",
+    "min": "17",
+    "isLiked": true
+  },
+  {
+    "title": "برجر",
+    "category": "Burger",
+    "image": "assets/images/home/recipes/recipe5.jpg",
+    "chefName": "Dude",
+    "chefAvatar": "",
+    "star": "3.7",
+    "min": "5",
+    "isLiked": false
+  },
+  {
+    "title": "beef",
+    "category": "Burger",
+    "image": "assets/images/home/recipes/recipe6.jpg",
+    "chefName": "Dude",
+    "chefAvatar": "",
+    "star": "2.6",
+    "min": "10",
+    "isLiked": true
+  },
+];
 String mainPAth = "assets/images/home/main/";
 List mainPostersList = [
   {"image": "${mainPAth}Grilled Chickens.jpg", "title": "Grilled Chickens"},
@@ -87,12 +149,52 @@ List popularRecipesList = [
   },
 ];
 List categoriesList = [
-  {"category": "Chickens", "color": Colors.orange},
-  {"category": "Pizza", "color": Colors.yellow},
-  {"category": "Burger", "color": Colors.red},
-  {"category": "Grilled", "color": Colors.redAccent},
-  {"category": "Pasta", "color": Colors.green},
-  {"category": "Desserts", "color": Colors.deepPurple},
-  {"category": "Shawrma", "color": Colors.grey},
-  {"category": "Others", "color": Colors.grey},
+  {
+    "category": "Chickens",
+    "color1": Color.fromARGB(255, 250, 221, 176),
+    "color2": Color.fromARGB(255, 206, 165, 104),
+    "color4": Colors.orange
+  },
+  {
+    "category": "Pizza",
+    "color1": Color.fromARGB(255, 235, 233, 153),
+    "color2": Color.fromARGB(255, 214, 216, 113),
+    "color4": Colors.yellow
+  },
+  {
+    "category": "Burger",
+    "color1": Color.fromARGB(255, 236, 154, 154),
+    "color2": Color.fromARGB(255, 216, 130, 115),
+    "color4": Colors.red
+  },
+  {
+    "category": "Grilled",
+    "color1": Color.fromARGB(255, 235, 153, 153),
+    "color2": Color.fromARGB(255, 223, 128, 112),
+    "color4": Colors.redAccent
+  },
+  {
+    "category": "Pasta",
+    "color1": Color.fromARGB(255, 153, 235, 157),
+    "color2": Color.fromARGB(255, 110, 209, 119),
+    "color4": Colors.green
+  },
+  {
+    "category": "Desserts",
+    "color1": Color.fromARGB(255, 165, 129, 224),
+    "color2": Color.fromARGB(255, 146, 119, 221),
+    "color4": Colors.deepPurple
+  },
+  {
+    "category": "Shawrma",
+    "color1": Color.fromARGB(255, 216, 218, 216),
+    "color2": Color.fromARGB(255, 174, 175, 174),
+    "color4": Colors.grey
+  },
+  {
+    "category": "Others",
+    "color1": Color.fromARGB(255, 159, 175, 159),
+    "color2": Color.fromARGB(255, 138, 146, 138),
+    "color4": Color.fromARGB(255, 122, 121, 121)
+  },
 ];

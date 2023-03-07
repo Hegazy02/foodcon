@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/Pages/MainPages/homePage.dart';
 import 'package:foodcon/Pages/MainPages/searchPage.dart';
+import 'package:foodcon/Pages/MainPages/explorePage.dart';
 import 'package:foodcon/constants.dart';
 
 class masterPage extends StatefulWidget {
@@ -15,63 +16,6 @@ class masterPage extends StatefulWidget {
 }
 
 class _masterPageState extends State<masterPage> {
-  List autoList = [
-    {
-      "title": "مكرونة بالصوص الاحمر",
-      "category": "Chickens",
-      "image": "assets/images/home/recipes/recipe1.jpg",
-      "chefName": "Mano",
-      "chefAvatar": "",
-      "star": "4.6",
-      "isLiked": true
-    },
-    {
-      "title": "فراخ",
-      "category": "Chickens",
-      "image": "assets/images/home/recipes/recipe2.jpg",
-      "chefName": "omer",
-      "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
-      "star": "4.5",
-      "isLiked": false
-    },
-    {
-      "title": "فراخ مقلية",
-      "category": "Chickens",
-      "image": "assets/images/home/recipes/recipe3.jpg",
-      "chefName": "Hegazy",
-      "chefAvatar": "",
-      "star": "4.3",
-      "isLiked": true
-    },
-    {
-      "title": "فطيرة توت",
-      "category": "Desserts",
-      "image": "assets/images/home/recipes/recipe4.jpg",
-      "chefName": "Sakr",
-      "chefAvatar": "",
-      "star": "4.1",
-      "isLiked": true
-    },
-    {
-      "title": "برحر",
-      "category": "Burger",
-      "image": "assets/images/home/recipes/recipe5.jpg",
-      "chefName": "Dude",
-      "chefAvatar": "",
-      "star": "3.7",
-      "isLiked": false
-    },
-    {
-      "title": "beef",
-      "category": "Burger",
-      "image": "assets/images/home/recipes/recipe6.jpg",
-      "chefName": "Dude",
-      "chefAvatar": "",
-      "star": "2.6",
-      "isLiked": true
-    },
-  ];
-
   String searchVal = "";
   TextEditingController editingController = TextEditingController();
   @override
@@ -90,11 +34,10 @@ class _masterPageState extends State<masterPage> {
           width: width,
           autoList: autoList,
           searchVal: searchVal),
-      HomePage(
-          height: height,
-          width: width,
-          autoList: autoList,
-          searchVal: searchVal),
+      ExplorePage(
+        height: height,
+        width: width,
+      ),
       HomePage(
           height: height,
           width: width,
