@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 List autoList = [
   {
-    "title": "مكرونة بالصوص الاحمر",
+    "title": "شمكرونة بالصوص الاحمر",
     "category": "Pasta",
     "image": "assets/images/home/recipes/recipe1.jpg",
     "chefName": "Mano",
