@@ -119,7 +119,23 @@ class HomePage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return MainPosters(
                       index: index,
-                      filtered: filteredList,
+                      width: 320,
+                      image: mainPostersList[index]['image'],
+                      sigmaX: 1.5,
+                      sigmaY: 1,
+                      child: Container(
+                          alignment: Alignment.center,
+                          color:
+                              Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
+                          child: Text(
+                            mainPostersList[index]['title'],
+                            style: TextStyle(
+                                fontSize: 26,
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(offset: Offset(3, 3), blurRadius: 20)
+                                ]),
+                          )),
                     );
                   },
                 ),
@@ -223,13 +239,24 @@ class HomePage extends StatelessWidget {
 
 class MainPosters extends StatelessWidget {
   int? index;
-  List? filtered;
-  MainPosters({this.index, this.filtered});
+  double? width;
+  String? image;
+  double? sigmaX;
+  double? sigmaY;
+
+  Widget? child;
+  MainPosters(
+      {this.index,
+      this.width,
+      this.image,
+      this.sigmaX,
+      this.sigmaY,
+      this.child});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 320,
+        width: width,
         child: InkWell(
           onTap: () {},
           splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
@@ -237,25 +264,14 @@ class MainPosters extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                image: ExactAssetImage(mainPostersList[index!]['image']),
+                image: AssetImage(image!),
                 fit: BoxFit.cover,
               ),
             ),
             child: ClipRRect(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1),
-                child: Container(
-                    alignment: Alignment.center,
-                    color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-                    child: Text(
-                      mainPostersList[index!]['title'],
-                      style: TextStyle(
-                          fontSize: 26,
-                          color: Colors.white,
-                          shadows: [
-                            Shadow(offset: Offset(3, 3), blurRadius: 20)
-                          ]),
-                    )),
+                filter: ImageFilter.blur(sigmaX: sigmaX!, sigmaY: sigmaY!),
+                child: child!,
               ),
             ),
           ),
@@ -321,7 +337,7 @@ class popularRecipes extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: ExactAssetImage(popularRecipesList[index!]['image']),
+                    image: AssetImage(popularRecipesList[index!]['image']),
                     fit: BoxFit.cover,
                   ),
                 ),
