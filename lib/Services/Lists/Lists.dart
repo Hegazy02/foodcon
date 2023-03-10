@@ -198,3 +198,34 @@ List categoriesList = [
     "color4": Color.fromARGB(255, 122, 121, 121)
   },
 ];
+List foodList = [
+  {
+    "category": "All",
+    "icon": "assets/images/home/icons/all.png",
+  },
+  {
+    "category": "Pasta",
+    "icon": "assets/images/home/icons/spaguetti.png",
+  },
+  {
+    "category": "Burger",
+    "icon": "assets/images/home/icons/burger.png",
+  },
+  {
+    "category": "Chickens",
+    "icon": "assets/images/home/icons/chicken.png",
+  },
+  {
+    "category": "Pizza",
+    "icon": "assets/images/home/icons/pizza.png",
+  },
+  {
+    "category": "Fried",
+    "icon": "assets/images/home/icons/fried chicken.png",
+  },
+  {
+    "category": "Shawrma",
+    "icon": "assets/images/home/icons/shawarma.png",
+  }
+];
+List girdListOption = [Icons.grid_view, Icons.list];

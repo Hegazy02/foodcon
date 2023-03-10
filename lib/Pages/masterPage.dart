@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/Pages/MainPages/homePage.dart';
 import 'package:foodcon/Pages/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/MainPages/explorePage.dart';
 import 'package:foodcon/constants.dart';
+import 'package:provider/provider.dart';
 
 class masterPage extends StatefulWidget {
   String id = "home";
@@ -30,10 +32,13 @@ class _masterPageState extends State<masterPage> {
           autoList: autoList,
           searchVal: searchVal),
       SearchPage(
-          height: height,
-          width: width,
-          autoList: autoList,
-          searchVal: searchVal),
+        height: height,
+        width: width,
+        autoList: autoList,
+        searchVal: searchVal,
+        isCatePressed: 0,
+        isGridPressed: 1,
+      ),
       ExplorePage(
         height: height,
         width: width,
@@ -51,25 +56,33 @@ class _masterPageState extends State<masterPage> {
     ];
 
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Colors.grey,
-            currentIndex: selectedpage,
-            onTap: (value) {
-              setState(() {
-                selectedpage = value;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-              BottomNavigationBarItem(
-                  label: "search", icon: Icon(Icons.search)),
-              BottomNavigationBarItem(
-                  label: "Explore", icon: Icon(Icons.explore)),
-              BottomNavigationBarItem(
-                  label: "Favorite", icon: Icon(Icons.favorite)),
-              BottomNavigationBarItem(
-                  label: "Profile", icon: Icon(Icons.person)),
-            ]),
+        bottomNavigationBar: Consumer<FilterProv>(
+          builder: (context, val, child) {
+            return BottomNavigationBar(
+                unselectedItemColor: Colors.grey,
+                currentIndex: selectedpage,
+                onTap: (value) {
+                  setState(() {
+                    selectedpage = value;
+                  });
+                  val.fil2 = [];
+                  val.isGird = 1;
+                  val.isCate = 0;
+                },
+                items: [
+                  BottomNavigationBarItem(
+                      label: "Home", icon: Icon(Icons.home)),
+                  BottomNavigationBarItem(
+                      label: "search", icon: Icon(Icons.search)),
+                  BottomNavigationBarItem(
+                      label: "Explore", icon: Icon(Icons.explore)),
+                  BottomNavigationBarItem(
+                      label: "Favorite", icon: Icon(Icons.favorite)),
+                  BottomNavigationBarItem(
+                      label: "Profile", icon: Icon(Icons.person)),
+                ]);
+          },
+        ),
         body: body[selectedpage]);
   }
 }

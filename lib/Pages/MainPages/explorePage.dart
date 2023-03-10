@@ -63,6 +63,7 @@ class ExplorePage extends StatelessWidget {
                   height: height! * 0.2,
                   width: width! * 0.6,
                   isGrid: false,
+                  myList: autoList,
                 );
               },
             ),
@@ -107,7 +108,6 @@ class ExplorePage extends StatelessWidget {
         SizedBox(
           height: height! * 0.47,
           child: GridView.builder(
-            shrinkWrap: true,
             itemCount: autoList.length,
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 300,
@@ -119,6 +119,7 @@ class ExplorePage extends StatelessWidget {
                 height: height! * 0.15,
                 width: width! * 0.45,
                 isGrid: true,
+                myList: autoList,
               );
             },
           ),
@@ -135,8 +136,10 @@ class CustomExplore extends StatelessWidget {
   int index;
   String? title;
   bool? isGrid = false;
+  List myList = [];
   CustomExplore(
       {super.key,
+      required this.myList,
       required this.height,
       this.width,
       required this.index,
@@ -145,14 +148,14 @@ class CustomExplore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map item = categoriesList.firstWhere(
-        (element) => element['category'] == autoList[index]['category']);
-    if (isGrid == true && autoList[index]['title'].toString().length > 14) {
-      title = "..${autoList[index]['title'].toString().substring(0, 15)}";
+        (element) => element['category'] == myList[index]['category']);
+    if (isGrid == true && myList[index]['title'].toString().length > 14) {
+      title = "..${myList[index]['title'].toString().substring(0, 15)}";
     } else if (isGrid == false &&
-        autoList[index]['title'].toString().length > 19) {
-      title = "..${autoList[index]['title'].toString().substring(0, 19)}";
+        myList[index]['title'].toString().length > 19) {
+      title = "..${myList[index]['title'].toString().substring(0, 19)}";
     } else {
-      title = autoList[index]['title'];
+      title = myList[index]['title'];
     }
 
     return Row(
@@ -167,7 +170,7 @@ class CustomExplore extends StatelessWidget {
               child: MainPosters(
                 index: index,
                 width: width,
-                image: autoList[index]['image'],
+                image: myList[index]['image'],
                 sigmaX: 0.5,
                 sigmaY: 0.5,
                 child: Container(
@@ -219,10 +222,10 @@ class CustomExplore extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.timer_outlined,
-                        color: Colors.grey[500],
+                        color: Colors.grey,
                       ),
                       Text(
-                        "${autoList[index]['min']}",
+                        "${myList[index]['min']}",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
@@ -244,14 +247,14 @@ class CustomExplore extends StatelessWidget {
                         color: Colors.orange,
                       ),
                       Text(
-                        "${autoList[index]['star']}",
+                        "${myList[index]['star']}",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
                       ),
                       Spacer(),
                       Text(
-                        "${autoList[index]['chefName']}",
+                        "${myList[index]['chefName']}",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),

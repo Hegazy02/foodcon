@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class FilterProv extends ChangeNotifier {
   List page1FilteredList = [];
   List page2FilteredList = [];
-  get fil1 => page1FilteredList;
-  get fil2 => page2FilteredList;
+  int isGridPressed = 1;
+  int isCatePressed = 0;
+
+  List<dynamic> get fil1 => page1FilteredList;
+  List<dynamic> get fil2 => page2FilteredList;
+  int get isGird => isGridPressed;
+  int get isCate => isCatePressed;
   set fil1(val) {
     page1FilteredList = val;
     notifyListeners();
@@ -15,8 +20,13 @@ class FilterProv extends ChangeNotifier {
     notifyListeners();
   }
 
-  change(List l) {
-    page1FilteredList = l;
+  set isGird(val) {
+    isGridPressed = val;
+    notifyListeners();
+  }
+
+  set isCate(val) {
+    isCatePressed = val;
     notifyListeners();
   }
 }

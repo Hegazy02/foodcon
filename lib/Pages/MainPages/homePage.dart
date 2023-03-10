@@ -260,7 +260,7 @@ class MainPosters extends StatelessWidget {
         child: InkWell(
           onTap: () {},
           splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-          child: Ink(
+          child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
