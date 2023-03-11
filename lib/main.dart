@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
+import 'package:foodcon/Pages/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/masterPage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/constants.dart';

@@ -56,7 +56,7 @@ class ExplorePage extends StatelessWidget {
                 );
               },
               scrollDirection: Axis.horizontal,
-              itemCount: mainPostersList.length,
+              itemCount: autoList.length,
               itemBuilder: (context, index) {
                 return CustomExplore(
                   index: index,

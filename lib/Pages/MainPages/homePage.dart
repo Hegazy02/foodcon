@@ -1,20 +1,21 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
+import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {
   List? filteredList = [];
   final double height;
   final double width;
-  List? autoList;
+
   String? searchVal;
   HomePage(
-      {this.autoList,
-      this.filteredList,
+      {this.filteredList,
       required this.height,
       required this.width,
       this.searchVal});
@@ -64,7 +65,7 @@ class HomePage extends StatelessWidget {
                           onChanged: (value) {
                             searchVal = value;
 
-                            valprov.fil1 = autoList?.where((element) {
+                            valprov.fil1 = autoList.where((element) {
                               return element['title']
                                   .toString()
                                   .startsWith(searchVal.toString());
@@ -115,27 +116,51 @@ class HomePage extends StatelessWidget {
                     );
                   },
                   scrollDirection: Axis.horizontal,
-                  itemCount: mainPostersList.length,
+                  itemCount: foodList.length,
                   itemBuilder: (context, index) {
-                    return MainPosters(
-                      index: index,
-                      width: 320,
-                      image: mainPostersList[index]['image'],
-                      sigmaX: 1.5,
-                      sigmaY: 1,
-                      child: Container(
-                          alignment: Alignment.center,
-                          color:
-                              Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-                          child: Text(
-                            mainPostersList[index]['title'],
-                            style: TextStyle(
-                                fontSize: 26,
-                                color: Colors.white,
-                                shadows: [
-                                  Shadow(offset: Offset(3, 3), blurRadius: 20)
-                                ]),
-                          )),
+                    return Consumer<FilterProv>(
+                      builder: (context, value, child) {
+                        return MainPosters(
+                          index: index,
+                          width: 320,
+                          image: foodList[index]['image'],
+                          sigmaX: 1.5,
+                          sigmaY: 1,
+                          onTap: () {
+                            value.isCate = index;
+
+                            if (index == 0) {
+                              value.fil2 = autoList;
+                            } else {
+                              value.fil2 = autoList
+                                  .where((element) =>
+                                      element['category'] ==
+                                      foodList[index]['category'])
+                                  .toList();
+                            }
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FullScreenCate(
+                                        isAll: index == 0 ? true : false)));
+                          },
+                          child: Container(
+                              alignment: Alignment.center,
+                              color: Color.fromARGB(255, 75, 75, 75)
+                                  .withOpacity(0.1),
+                              child: Text(
+                                foodList[index]['category'],
+                                style: TextStyle(
+                                    fontSize: 26,
+                                    color: Colors.white,
+                                    shadows: [
+                                      Shadow(
+                                          offset: Offset(3, 3), blurRadius: 20)
+                                    ]),
+                              )),
+                        );
+                      },
                     );
                   },
                 ),
@@ -162,8 +187,19 @@ class HomePage extends StatelessWidget {
                   itemCount: popularChefsList.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return popularChefsIcons(
-                      index: index,
+                    return Column(
+                      children: [
+                        popularChefsIcons(
+                          height: 60,
+                          width: 60,
+                          list: popularChefsList,
+                          index: index,
+                        ),
+                        SizedBox(
+                          height: 1.5.h,
+                        ),
+                        Text(popularChefsList[index]['chefName'])
+                      ],
                     );
                   },
                 ),
@@ -243,6 +279,7 @@ class MainPosters extends StatelessWidget {
   String? image;
   double? sigmaX;
   double? sigmaY;
+  Function()? onTap;
 
   Widget? child;
   MainPosters(
@@ -251,14 +288,15 @@ class MainPosters extends StatelessWidget {
       this.image,
       this.sigmaX,
       this.sigmaY,
-      this.child});
+      this.child,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         width: width,
         child: InkWell(
-          onTap: () {},
+          onTap: onTap,
           splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
           child: Container(
             decoration: BoxDecoration(
@@ -281,37 +319,38 @@ class MainPosters extends StatelessWidget {
 
 /////////////////////////
 class popularChefsIcons extends StatelessWidget {
+  double height;
+  double width;
   int? index;
-  popularChefsIcons({this.index});
+  List list = [];
+  popularChefsIcons(
+      {required this.height,
+      required this.width,
+      this.index,
+      required this.list});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(999),
-          child: InkWell(
-            onTap: () {
-              print("adsasdasd");
-            },
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                // shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: AssetImage(popularChefsList[index!]['image']),
-                    fit: BoxFit.fill),
-              ),
-            ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(999),
+      child: InkWell(
+        onTap: () {
+          print("adsasdasd");
+        },
+        child: Container(
+          width: height,
+          height: width,
+          decoration: BoxDecoration(
+            // shape: BoxShape.circle,
+            color: Colors.white,
+            image: DecorationImage(
+                image: AssetImage(list[index!]['chefAvatar'] != ""
+                    ? list[index!]['chefAvatar']
+                    : Klogo),
+                fit: BoxFit.fill),
           ),
         ),
-        SizedBox(
-          height: 5,
-        ),
-        Text(popularChefsList[index!]['name']),
-      ],
+      ),
     );
   }
 }
