@@ -2,14 +2,28 @@ import 'package:flutter/material.dart';
 
 List autoList = [
   {
-    "title": "شمكرونة بالصوص الاحمر",
+    "title": "مكرونة بالصوص الاحمر",
     "category": "Pasta",
     "image": "assets/images/home/recipes/recipe1.jpg",
     "chefName": "Mano",
-    "chefAvatar": "",
+    "chefAvatar": "${popularChefsPath}chef1.jpg",
     "star": "4.6",
     "min": "20",
-    "isLiked": true
+    "isLiked": true,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+  },
+  {
+    "title": "مكرونة بالصوص الاحمر",
+    "category": "Pizza",
+    "image": "assets/images/home/recipes/recipe1.jpg",
+    "chefName": "Mano",
+    "chefAvatar": "${popularChefsPath}chef1.jpg",
+    "star": "4.6",
+    "min": "20",
+    "isLiked": true,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
   {
     "title": "فراخ",
@@ -19,68 +33,95 @@ List autoList = [
     "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
     "star": "4.5",
     "min": "30",
-    "isLiked": false
+    "isLiked": false,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+  },
+  {
+    "title": "فراخ",
+    "category": "Fried",
+    "image": "assets/images/home/recipes/recipe2.jpg",
+    "chefName": "omer",
+    "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
+    "star": "4.5",
+    "min": "30",
+    "isLiked": false,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
   {
     "title": "فراخ مقلية",
     "category": "Chickens",
     "image": "assets/images/home/recipes/recipe3.jpg",
     "chefName": "Hegazy",
-    "chefAvatar": "",
+    "chefAvatar": "${popularChefsPath}chef2.jpg",
     "star": "4.3",
     "min": "15",
-    "isLiked": true
+    "isLiked": true,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
   {
     "title": "فطيرة توت",
     "category": "Desserts",
     "image": "assets/images/home/recipes/recipe4.jpg",
     "chefName": "Sakr",
-    "chefAvatar": "",
+    "chefAvatar": "${popularChefsPath}chef3.jpg",
     "star": "4.1",
     "min": "17",
-    "isLiked": true
+    "isLiked": true,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
   {
     "title": "برجر",
     "category": "Burger",
     "image": "assets/images/home/recipes/recipe5.jpg",
     "chefName": "Dude",
-    "chefAvatar": "",
+    "chefAvatar": "${popularChefsPath}chef4.jpg",
     "star": "3.7",
     "min": "5",
-    "isLiked": false
+    "isLiked": false,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
   {
     "title": "beef",
     "category": "Burger",
     "image": "assets/images/home/recipes/recipe6.jpg",
     "chefName": "Dude",
-    "chefAvatar": "",
+    "chefAvatar": "${popularChefsPath}chef5.jpg",
     "star": "2.6",
     "min": "10",
-    "isLiked": true
+    "isLiked": true,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+  },
+  {
+    "title": "beef",
+    "category": "Shawrma",
+    "image": "assets/images/home/recipes/recipe6.jpg",
+    "chefName": "Dude",
+    "chefAvatar": "${popularChefsPath}chef5.jpg",
+    "star": "2.6",
+    "min": "10",
+    "isLiked": true,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
 ];
 String mainPAth = "assets/images/home/main/";
-List mainPostersList = [
-  {"image": "${mainPAth}Grilled Chickens.jpg", "title": "Grilled Chickens"},
-  {"image": "${mainPAth}With Rice.jpg", "title": "With Rice"},
-  {"image": "${mainPAth}Pizza.jpg", "title": "Pizza"},
-  {"image": "${mainPAth}Burger.jpg", "title": "Burger"},
-  {"image": "${mainPAth}Fried Chickens.jpg", "title": "Fried Chickens"},
-  {"image": "${mainPAth}Shawrma.jpg", "title": "Shawrma"},
-];
+
 String popularChefsPath = "assets/images/home/Chefs/";
 List popularChefsList = [
-  {"image": "${popularChefsPath}chef1.jpg", "name": "Omer"},
-  {"image": "${popularChefsPath}chef2.jpg", "name": "Saleh"},
-  {"image": "${popularChefsPath}chef3.jpg", "name": "Hegazy"},
-  {"image": "${popularChefsPath}chef4.jpg", "name": "Amr"},
-  {"image": "${popularChefsPath}chef5.jpg", "name": "Feky"},
-  {"image": "${popularChefsPath}chef6.jpg", "name": "Kareem"},
-  {"image": "${popularChefsPath}chef7.jpg", "name": "May"},
-  {"image": "${popularChefsPath}chef8.jpg", "name": "Mark"},
+  {"chefAvatar": "${popularChefsPath}chef1.jpg", "chefName": "Omer"},
+  {"chefAvatar": "${popularChefsPath}chef2.jpg", "chefName": "Saleh"},
+  {"chefAvatar": "${popularChefsPath}chef3.jpg", "chefName": "Hegazy"},
+  {"chefAvatar": "${popularChefsPath}chef4.jpg", "chefName": "Amr"},
+  {"chefAvatar": "${popularChefsPath}chef5.jpg", "chefName": "Feky"},
+  {"chefAvatar": "${popularChefsPath}chef6.jpg", "chefName": "Kareem"},
+  {"chefAvatar": "${popularChefsPath}chef7.jpg", "chefName": "May"},
+  {"chefAvatar": "${popularChefsPath}chef8.jpg", "chefName": "Mark"},
 ];
 String popularRecipesPath = "assets/images/home/recipes/";
 List popularRecipesList = [
@@ -168,7 +209,13 @@ List categoriesList = [
     "color4": Colors.red
   },
   {
-    "category": "Grilled",
+    "category": "Fried",
+    "color1": Color.fromARGB(255, 236, 154, 154),
+    "color2": Color.fromARGB(255, 216, 130, 115),
+    "color4": Colors.red
+  },
+  {
+    "category": "Chickens",
     "color1": Color.fromARGB(255, 235, 153, 153),
     "color2": Color.fromARGB(255, 223, 128, 112),
     "color4": Colors.redAccent
@@ -202,30 +249,37 @@ List foodList = [
   {
     "category": "All",
     "icon": "assets/images/home/icons/all.png",
+    "image": "${mainPAth}Grilled Chickens.jpg",
   },
   {
     "category": "Pasta",
     "icon": "assets/images/home/icons/spaguetti.png",
+    "image": "${mainPAth}With Rice.jpg",
   },
   {
     "category": "Burger",
     "icon": "assets/images/home/icons/burger.png",
+    "image": "${mainPAth}Burger.jpg",
   },
   {
     "category": "Chickens",
     "icon": "assets/images/home/icons/chicken.png",
+    "image": "${mainPAth}Grilled Chickens.jpg",
   },
   {
     "category": "Pizza",
     "icon": "assets/images/home/icons/pizza.png",
+    "image": "${mainPAth}Pizza.jpg",
   },
   {
     "category": "Fried",
     "icon": "assets/images/home/icons/fried chicken.png",
+    "image": "${mainPAth}Fried Chickens.jpg",
   },
   {
     "category": "Shawrma",
     "icon": "assets/images/home/icons/shawarma.png",
+    "image": "${mainPAth}Shawrma.jpg",
   }
 ];
 List girdListOption = [Icons.grid_view, Icons.list];

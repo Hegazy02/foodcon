@@ -26,33 +26,14 @@ class _masterPageState extends State<masterPage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     List body = [
-      HomePage(
-          height: height,
-          width: width,
-          autoList: autoList,
-          searchVal: searchVal),
-      SearchPage(
-        height: height,
-        width: width,
-        autoList: autoList,
-        searchVal: searchVal,
-        isCatePressed: 0,
-        isGridPressed: 1,
-      ),
+      HomePage(height: height, width: width, searchVal: searchVal),
+      SearchPage(),
       ExplorePage(
         height: height,
         width: width,
       ),
-      HomePage(
-          height: height,
-          width: width,
-          autoList: autoList,
-          searchVal: searchVal),
-      HomePage(
-          height: height,
-          width: width,
-          autoList: autoList,
-          searchVal: searchVal),
+      HomePage(height: height, width: width, searchVal: searchVal),
+      HomePage(height: height, width: width, searchVal: searchVal),
     ];
 
     return Scaffold(

@@ -8,26 +8,14 @@ import 'package:sizer/sizer.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class SearchPage extends StatefulWidget {
-  final double height;
-  final double width;
-  List? autoList;
-  String? searchVal;
-  int? isCatePressed;
-  int? isGridPressed = 1;
-
-  SearchPage(
-      {this.autoList,
-      required this.height,
-      required this.width,
-      this.searchVal,
-      this.isCatePressed,
-      this.isGridPressed});
-
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
+  String id = "searchPage";
+
+  String? searchVal;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,13 +30,13 @@ class _SearchPageState extends State<SearchPage> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: TextField(
                 onChanged: (value) {
-                  widget.searchVal = value;
-                  valprov.fil2 = widget.autoList?.where((element) {
+                  searchVal = value;
+                  valprov.fil2 = autoList.where((element) {
                     return element['title']
                         .toString()
-                        .startsWith(widget.searchVal.toString());
+                        .startsWith(searchVal.toString());
                   }).toList();
-                  valprov.fil2 = widget.searchVal!.isEmpty ? [] : valprov.fil2;
+                  valprov.fil2 = searchVal!.isEmpty ? [] : valprov.fil2;
                   print("********${valprov.fil2}");
                 },
                 cursorColor: Colors.grey,
@@ -74,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
           },
         ),
         SizedBox(
-          height: widget.height * 0.02,
+          height: 2.h,
         ),
         SizedBox(
           height: 70,
@@ -194,12 +182,12 @@ class _SearchPageState extends State<SearchPage> {
         ),
         Consumer<FilterProv>(
           builder: (context, value, child) {
-            List? l = value.fil2.isEmpty ? widget.autoList : value.fil2;
+            List? l = value.fil2.isEmpty ? autoList : value.fil2;
             return value.isGird == 1
                 ? Expanded(
                     child: AnimationLimiter(
                       child: ListView.builder(
-                        itemCount: l!.length,
+                        itemCount: l.length,
                         padding: EdgeInsets.all(0),
                         itemBuilder: (context, index) {
                           print(l);
@@ -230,7 +218,7 @@ class _SearchPageState extends State<SearchPage> {
                       child: GridView.count(
                           padding: EdgeInsets.only(top: 5),
                           crossAxisCount: 2,
-                          children: List.generate(l!.length, (index) {
+                          children: List.generate(l.length, (index) {
                             return AnimationConfiguration.staggeredGrid(
                               position: index,
                               duration: const Duration(milliseconds: 375),
