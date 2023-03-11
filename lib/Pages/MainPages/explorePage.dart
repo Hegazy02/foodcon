@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Pages/MainPages/homePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
@@ -104,24 +105,27 @@ class ExplorePage extends StatelessWidget {
         //             ));
         //       }),
         // )
-
-        SizedBox(
-          height: height! * 0.47,
-          child: GridView.builder(
-            itemCount: autoList.length,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 300,
-              childAspectRatio: 2 / 2,
-            ),
-            itemBuilder: (context, index) {
-              return CustomExplore(
-                index: index,
-                height: height! * 0.15,
-                width: width! * 0.45,
-                isGrid: true,
-                myList: autoList,
-              );
-            },
+        Expanded(
+          child: AnimationLimiter(
+            child: GridView.count(
+                padding: EdgeInsets.only(top: 5),
+                crossAxisCount: 2,
+                children: List.generate(autoList.length, (index) {
+                  return AnimationConfiguration.staggeredGrid(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    columnCount: 2,
+                    child: ScaleAnimation(
+                        child: FadeInAnimation(
+                            child: CustomExplore(
+                      index: index,
+                      height: height! * 0.15,
+                      width: width! * 0.45,
+                      isGrid: true,
+                      myList: autoList,
+                    ))),
+                  );
+                })),
           ),
         )
       ],

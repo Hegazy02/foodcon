@@ -127,16 +127,21 @@ class HomePage extends StatelessWidget {
                           sigmaX: 1.5,
                           sigmaY: 1,
                           onTap: () {
+                            value.ScreenIndex = 0;
                             value.isCate = index;
+                            print(value.isCate);
+                            print("**isCate ${value.isCate}");
 
                             if (index == 0) {
                               value.fil2 = autoList;
+                              print("**fil2 ${value.fil2}");
                             } else {
                               value.fil2 = autoList
                                   .where((element) =>
                                       element['category'] ==
                                       foodList[index]['category'])
                                   .toList();
+                              print("**fil2 ${value.fil2}");
                             }
 
                             Navigator.push(
