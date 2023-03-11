@@ -13,12 +13,17 @@ class FullScreenCate extends StatelessWidget {
   PageController? controller = PageController();
   @override
   Widget build(BuildContext context) {
+    print("**isAll ${isAll}");
     return Scaffold(body: Consumer<FilterProv>(
       builder: (context, value, child) {
         if (isAll == false) {
           cateType = value.fil2[0]['category'];
+
+          print("**cateType ${cateType}*");
         } else {
           cateType = "All";
+
+          print("**cateType ${cateType}");
         }
 
         return Stack(
@@ -29,9 +34,7 @@ class FullScreenCate extends StatelessWidget {
               controller: controller,
               onPageChanged: (v) {
                 value.ScreenIndex = controller?.page!.round();
-
-                print(controller?.page!.round());
-                print(controller?.page!.round());
+                print("**ScreenIndex ${value.ScreenIndex}");
               },
               itemBuilder: (context, index) {
                 return Stack(
@@ -52,10 +55,6 @@ class FullScreenCate extends StatelessWidget {
                               Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
                               Colors.black.withOpacity(0.3)
                             ]),
-                        // image: DecorationImage(
-                        //   fit: BoxFit.fill,
-                        //   image: AssetImage(value.fil2[index]['image']),
-                        // ),
                       ),
                     ),
                   ],
