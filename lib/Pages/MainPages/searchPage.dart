@@ -158,7 +158,7 @@ class _SearchPageState extends State<SearchPage> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: value.isGird == index
-                                  ? Colors.orange
+                                  ? Colors.black
                                   : Colors.white,
                             ),
                             child: Icon(
@@ -203,8 +203,19 @@ class _SearchPageState extends State<SearchPage> {
                                   category: l[index]['category'],
                                   chefAvatar: l[index]['chefAvatar'],
                                   chefName: l[index]['chefName'],
-                                  star: l[index]['star'],
                                   isLiked: l[index]['isLiked'],
+                                  trailing: SizedBox(
+                                    width: 60,
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.star,
+                                          color: Colors.orange,
+                                        ),
+                                        Text("${l[index]['star']}")
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -249,8 +260,9 @@ class CustomTile extends StatelessWidget {
   String category;
   String? chefName;
   String? chefAvatar;
-  String? star;
+
   bool? isLiked;
+  Widget? trailing;
 
   CustomTile(
       {required this.title,
@@ -258,8 +270,8 @@ class CustomTile extends StatelessWidget {
       required this.category,
       this.chefAvatar,
       this.chefName,
-      this.star,
-      this.isLiked});
+      this.isLiked,
+      this.trailing});
 
   @override
   Widget build(BuildContext context) {
@@ -279,30 +291,7 @@ class CustomTile extends StatelessWidget {
       ),
       subtitle:
           Text(title, style: TextStyle(fontSize: 16, color: Colors.black)),
-      trailing: SizedBox(
-        width: 60,
-        child: Row(
-          children: [
-            // Container(
-            //   height: 30,
-            //   width: 30,
-            //   decoration: BoxDecoration(
-            //     shape: BoxShape.circle,
-            //     image: DecorationImage(
-            //         image: AssetImage(
-            //       chefAvatar != "" ? chefAvatar! : Klogo,
-            //     )),
-            //   ),
-            // ),
-            // Text(chefName!),
-            Icon(
-              Icons.star,
-              color: Colors.orange,
-            ),
-            Text("${star}")
-          ],
-        ),
-      ),
+      trailing: trailing,
       onTap: () {},
     );
   }
