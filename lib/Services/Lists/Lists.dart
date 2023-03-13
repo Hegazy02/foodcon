@@ -9,7 +9,7 @@ List autoList = [
     "chefAvatar": "${popularChefsPath}chef1.jpg",
     "star": "4.6",
     "min": "20",
-    "isLiked": true,
+    "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
@@ -21,7 +21,7 @@ List autoList = [
     "chefAvatar": "${popularChefsPath}chef1.jpg",
     "star": "4.6",
     "min": "20",
-    "isLiked": true,
+    "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
@@ -57,7 +57,7 @@ List autoList = [
     "chefAvatar": "${popularChefsPath}chef2.jpg",
     "star": "4.3",
     "min": "15",
-    "isLiked": true,
+    "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
@@ -69,7 +69,7 @@ List autoList = [
     "chefAvatar": "${popularChefsPath}chef3.jpg",
     "star": "4.1",
     "min": "17",
-    "isLiked": true,
+    "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
   },
@@ -247,7 +247,7 @@ List categoriesList = [
 ];
 List foodList = [
   {
-    "category": "All",
+    "category": "Explore",
     "icon": "assets/images/home/icons/all.png",
     "image": "${mainPAth}Grilled Chickens.jpg",
   },

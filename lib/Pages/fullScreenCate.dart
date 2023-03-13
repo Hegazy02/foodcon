@@ -21,7 +21,7 @@ class FullScreenCate extends StatelessWidget {
 
           print("**cateType ${cateType}*");
         } else {
-          cateType = "All";
+          cateType = "Explore";
 
           print("**cateType ${cateType}");
         }
@@ -95,18 +95,37 @@ class FullScreenCate extends StatelessWidget {
                             list: value.fil2,
                           ),
                           SizedBox(
-                            width: 5.w,
+                            width: 2.5.w,
                           ),
                           Text(
                             value.fil2[value.ScreenIndex]['chefName'],
-                            style: TextStyle(color: Colors.white),
+                            style:
+                                TextStyle(fontSize: 14.sp, color: Colors.white),
                           ),
                           Spacer(),
-                          CiruledButton(
-                            icon: Icons.favorite_outline,
-                            color: Colors.white,
-                            onTap: () => Navigator.of(context).pop(),
-                            padding: 5,
+                          Consumer<FilterProv>(
+                            builder: (context, value, child) {
+                              print(value.fil2[value.ScreenIndex]);
+                              return CiruledButton(
+                                iconColor: value.fil2[value.ScreenIndex]
+                                            ['isLiked'] ==
+                                        true
+                                    ? Colors.red
+                                    : Colors.black,
+                                icon: value.fil2[value.ScreenIndex]
+                                            ['isLiked'] ==
+                                        true
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: Colors.white,
+                                onTap: () {
+                                  value.fil2[value.ScreenIndex]['isLiked'] =
+                                      true;
+                                  value.addFav = value.fil2[value.ScreenIndex];
+                                },
+                                padding: 5,
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -147,12 +166,14 @@ class CiruledButton extends StatelessWidget {
   Color? iconColor;
   Function()? onTap;
   double padding;
-  CiruledButton(
-      {required this.icon,
-      this.color,
-      this.iconColor,
-      required this.onTap,
-      required this.padding});
+
+  CiruledButton({
+    required this.icon,
+    this.color,
+    this.iconColor,
+    required this.onTap,
+    required this.padding,
+  });
 
   @override
   Widget build(BuildContext context) {
