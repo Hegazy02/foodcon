@@ -1,53 +1,66 @@
 import 'package:flutter/material.dart';
 
 class FilterProv extends ChangeNotifier {
-  List page1FilteredList = [];
-  List page2FilteredList = [];
-  List favoritesList = [];
-  int isGridPressed = 1;
-  int isCatePressed = 0;
-  int fullScreenIndex = 0;
+  List _page1FilteredList = [];
+  List _page2FilteredList = [];
+  List _favoritesList = [];
+  List _SearchFavoritesList = [];
+  int _isGridPressed = 1;
+  int _isCatePressed = 0;
+  int _fullScreenIndex = 0;
 
-  List<dynamic> get fil1 => page1FilteredList;
-  List<dynamic> get fil2 => page2FilteredList;
-  List<dynamic> get fav => favoritesList;
-  int get isGird => isGridPressed;
-  int get isCate => isCatePressed;
-  int get ScreenIndex => fullScreenIndex;
+  List<dynamic> get fil1 => _page1FilteredList;
+  List<dynamic> get fil2 => _page2FilteredList;
+  List<dynamic> get fav => _favoritesList;
+  List<dynamic> get searchFav => _SearchFavoritesList;
+  int get isGird => _isGridPressed;
+  int get isCate => _isCatePressed;
+  int get ScreenIndex => _fullScreenIndex;
   set fil1(val) {
-    page1FilteredList = val;
+    _page1FilteredList = val;
     notifyListeners();
   }
 
   set fil2(val) {
-    page2FilteredList = val;
+    _page2FilteredList = val;
     notifyListeners();
   }
 
   set isGird(val) {
-    isGridPressed = val;
+    _isGridPressed = val;
     notifyListeners();
   }
 
   set isCate(val) {
-    isCatePressed = val;
+    _isCatePressed = val;
     notifyListeners();
   }
 
   set ScreenIndex(val) {
-    fullScreenIndex = val;
+    _fullScreenIndex = val;
     notifyListeners();
   }
 
   set addFav(val) {
-    favoritesList.add(val);
-    favoritesList = favoritesList.toSet().toList();
+    _favoritesList.add(val);
+    _favoritesList = _favoritesList.toSet().toList();
     notifyListeners();
   }
 
   set removeFave(val) {
-    favoritesList.remove(val);
-    favoritesList = favoritesList.toSet().toList();
+    _favoritesList.remove(val);
+    _favoritesList = _favoritesList.toSet().toList();
+    notifyListeners();
+  }
+
+  set searchFav(val) {
+    _SearchFavoritesList = val;
+    notifyListeners();
+  }
+
+  set removeSearchFave(val) {
+    _SearchFavoritesList.remove(val);
+    _SearchFavoritesList = _SearchFavoritesList.toSet().toList();
     notifyListeners();
   }
 }
