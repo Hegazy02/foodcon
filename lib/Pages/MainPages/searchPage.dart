@@ -26,38 +26,17 @@ class _SearchPageState extends State<SearchPage> {
         ),
         Consumer<FilterProv>(
           builder: (context, valprov, child) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
-                onChanged: (value) {
-                  searchVal = value;
-                  valprov.fil2 = autoList.where((element) {
-                    return element['title']
-                        .toString()
-                        .startsWith(searchVal.toString());
-                  }).toList();
-                  valprov.fil2 = searchVal!.isEmpty ? [] : valprov.fil2;
-                  print("********${valprov.fil2}");
-                },
-                cursorColor: Colors.grey,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(0),
-                    // border: InputBorder.none,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 1, color: Colors.grey)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 1, color: Colors.grey)),
-                    hintText: "Search",
-                    hintStyle: TextStyle(fontSize: 18),
-                    prefixIcon: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.search,
-                          color: Colors.black,
-                        ))),
-              ),
+            return CustomSearchBar(
+              onChanged: (value) {
+                searchVal = value;
+                valprov.fil2 = autoList.where((element) {
+                  return element['title']
+                      .toString()
+                      .startsWith(searchVal.toString());
+                }).toList();
+                valprov.fil2 = searchVal!.isEmpty ? [] : valprov.fil2;
+                print("********${valprov.fil2}");
+              },
             );
           },
         ),
@@ -293,6 +272,39 @@ class CustomTile extends StatelessWidget {
           Text(title, style: TextStyle(fontSize: 16, color: Colors.black)),
       trailing: trailing,
       onTap: () {},
+    );
+  }
+}
+
+class CustomSearchBar extends StatelessWidget {
+  Function(String)? onChanged;
+  CustomSearchBar({super.key, this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: TextField(
+        onChanged: onChanged,
+        cursorColor: Colors.grey,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(0),
+            // border: InputBorder.none,
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(width: 1, color: Colors.grey)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(width: 1, color: Colors.grey)),
+            hintText: "Search",
+            hintStyle: TextStyle(fontSize: 18),
+            prefixIcon: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ))),
+      ),
     );
   }
 }

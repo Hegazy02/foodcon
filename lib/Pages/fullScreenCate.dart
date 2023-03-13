@@ -120,8 +120,19 @@ class FullScreenCate extends StatelessWidget {
                                 color: Colors.white,
                                 onTap: () {
                                   value.fil2[value.ScreenIndex]['isLiked'] =
-                                      true;
-                                  value.addFav = value.fil2[value.ScreenIndex];
+                                      !value.fil2[value.ScreenIndex]['isLiked'];
+                                  if (value.fil2[value.ScreenIndex]
+                                          ['isLiked'] ==
+                                      true) {
+                                    value.addFav =
+                                        value.fil2[value.ScreenIndex];
+                                  } else {
+                                    value.removeFave =
+                                        value.fil2[value.ScreenIndex];
+                                  }
+
+                                  print(
+                                      "** ${value.fil2[value.ScreenIndex]['isLiked']}");
                                 },
                                 padding: 5,
                               );

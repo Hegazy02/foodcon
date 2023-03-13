@@ -13,56 +13,111 @@ class FavoritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return ListView(
       children: [
         SizedBox(
-          height: 5.h,
+          height: 2.h,
         ),
-        Text(
-          'My Favorites',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Text(
+            'My Favorites',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
         ),
-        Expanded(child: Consumer<FilterProv>(
-          builder: (context, value, child) {
-            return AnimationLimiter(
-              child: ListView.builder(
-                itemCount: value.fav.length,
-                padding: EdgeInsets.all(0),
-                itemBuilder: (context, index) {
-                  return AnimationConfiguration.staggeredList(
-                    position: index,
-                    duration: const Duration(milliseconds: 375),
-                    child: SlideAnimation(
-                      verticalOffset: 50.0,
-                      child: FadeInAnimation(
-                        child: CustomTile(
-                          title: value.fav[index]['title'],
-                          image: value.fav[index]['image'],
-                          category: value.fav[index]['category'],
-                          chefAvatar: value.fav[index]['chefAvatar'],
-                          chefName: value.fav[index]['chefName'],
-                          isLiked: value.fav[index]['isLiked'],
-                          trailing: SizedBox(
-                              width: 60,
-                              child: IconButton(
-                                  onPressed: () {
-                                    value.removeFave = value.fav[index];
-                                    print(value.fil2);
-                                  },
-                                  icon: Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                  ))),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+        SizedBox(
+          height: 2.h,
+        ),
+        Consumer<FilterProv>(
+          builder: (context, valprov, child) {
+            return CustomSearchBar(
+              onChanged: (value) {
+                valprov.searchFav = valprov.fav.where((element) {
+                  return element['title']
+                      .toString()
+                      .startsWith(value.toString());
+                }).toList();
+                valprov.searchFav = value.isEmpty ? [] : valprov.searchFav;
+                print("********${valprov.searchFav}");
+              },
             );
           },
-        ))
+        ),
+        Consumer<FilterProv>(
+          builder: (context, value, child) {
+            List ll = value.searchFav.isEmpty ? value.fav : value.searchFav;
+            return ll.length > 0
+                ? Column(
+                    children: [
+                      SizedBox(
+                        height: 2.h,
+                      ),
+                      AnimationLimiter(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemCount: ll.length,
+                          padding: EdgeInsets.all(0),
+                          itemBuilder: (context, index) {
+                            return AnimationConfiguration.staggeredList(
+                              position: index,
+                              duration: const Duration(milliseconds: 375),
+                              child: SlideAnimation(
+                                verticalOffset: 50.0,
+                                child: FadeInAnimation(
+                                  child: CustomTile(
+                                    title: ll[index]['title'],
+                                    image: ll[index]['image'],
+                                    category: ll[index]['category'],
+                                    chefAvatar: ll[index]['chefAvatar'],
+                                    chefName: ll[index]['chefName'],
+                                    isLiked: ll[index]['isLiked'],
+                                    trailing: SizedBox(
+                                        width: 60,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              value.removeFave = ll[index];
+                                              if (value.searchFav.isNotEmpty) {
+                                                value.removeSearchFave =
+                                                    ll[index];
+                                              }
+
+                                              print("******${value.searchFav}");
+                                              print("******${ll}");
+                                              print("******${value.fav}");
+                                            },
+                                            icon: Icon(
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                            ))),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Image.asset("assets/images/not found2.png"),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        "This Page Contains Nothing but Scraps",
+                        style: TextStyle(
+                            fontSize: 15.sp, color: Color(0xFFB7003A)),
+                      ),
+                      // Spacer(),
+                    ],
+                  );
+          },
+        )
       ],
     );
   }
