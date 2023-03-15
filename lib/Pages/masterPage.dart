@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/MainPages/FavoritePage.dart';
+import 'package:foodcon/Pages/MainPages/ProfilePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/Pages/MainPages/homePage.dart';
@@ -34,7 +35,7 @@ class _masterPageState extends State<masterPage> {
         width: width,
       ),
       FavoritePage(),
-      HomePage(height: height, width: width, searchVal: searchVal),
+      ProfilePage(),
     ];
 
     return Scaffold(

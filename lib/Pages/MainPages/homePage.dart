@@ -327,15 +327,18 @@ class popularChefsIcons extends StatelessWidget {
   double height;
   double width;
   int? index;
-  List list = [];
+  List? list = [];
+  String? image;
   popularChefsIcons(
       {required this.height,
       required this.width,
       this.index,
-      required this.list});
+      this.list,
+      this.image});
 
   @override
   Widget build(BuildContext context) {
+    String avatar = image == null ? list![index!]['chefAvatar'] : image;
     return ClipRRect(
       borderRadius: BorderRadius.circular(999),
       child: InkWell(
@@ -349,9 +352,7 @@ class popularChefsIcons extends StatelessWidget {
             // shape: BoxShape.circle,
             color: Colors.white,
             image: DecorationImage(
-                image: AssetImage(list[index!]['chefAvatar'] != ""
-                    ? list[index!]['chefAvatar']
-                    : Klogo),
+                image: AssetImage(avatar != "" ? avatar : Klogo),
                 fit: BoxFit.fill),
           ),
         ),

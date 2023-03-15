@@ -154,7 +154,7 @@ class FullScreenCate extends StatelessWidget {
                         circular: 10,
                         onPressed: () {},
                         txtColor: Colors.white,
-                        // color: Colors.red,
+                        padding: 20,
                       ),
                       SizedBox(
                         height: 2.h,
@@ -205,13 +205,14 @@ class CiruledButton extends StatelessWidget {
 class BorderdButton extends StatelessWidget {
   String? txt;
   Color? txtColor;
-  Color? color;
+
   Color? borderColor;
   double? circular;
   Function()? onPressed;
+  double? padding;
 
   BorderdButton(
-      {this.color,
+      {required this.padding,
       this.txt,
       this.circular,
       this.borderColor,
@@ -230,7 +231,7 @@ class BorderdButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(circular!),
                   border: Border.all(color: borderColor!)),
               child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: EdgeInsets.symmetric(vertical: padding!),
                   child: Text(
                     txt!,
                     style: TextStyle(color: txtColor ?? Colors.white),
