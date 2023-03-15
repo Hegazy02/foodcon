@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
@@ -340,23 +341,14 @@ class popularChefsIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     String avatar = image == null ? list![index!]['chefAvatar'] : image;
     return ClipRRect(
-      borderRadius: BorderRadius.circular(999),
       child: InkWell(
-        onTap: () {
-          print("adsasdasd");
-        },
-        child: Container(
-          width: height,
-          height: width,
-          decoration: BoxDecoration(
-            // shape: BoxShape.circle,
-            color: Colors.white,
-            image: DecorationImage(
-                image: AssetImage(avatar != "" ? avatar : Klogo),
-                fit: BoxFit.fill),
-          ),
-        ),
-      ),
+          onTap: () {
+            Navigator.of(context).pushNamed(ChefProfile().id);
+          },
+          child: CircleAvatar(
+            backgroundImage: AssetImage(avatar != "" ? avatar : Klogo),
+            radius: 25,
+          )),
     );
   }
 }

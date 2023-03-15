@@ -166,12 +166,10 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                       Spacer(),
-                      IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.more_horiz,
-                            color: Colors.grey[600],
-                          ))
+                      CustomDropDown(),
+                      SizedBox(
+                        width: 10,
+                      )
                     ],
                   ),
                   SizedBox(
@@ -300,6 +298,41 @@ class MyRecipe extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomDropDown extends StatelessWidget {
+  CustomDropDown({super.key});
+  String dropdownValue = 'Dog';
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 8.w,
+      child: DropdownButton<String>(
+        icon: Icon(Icons.more_horiz),
+        isExpanded: true,
+        items: <String>[
+          'Edit',
+          'Delete',
+        ].map<DropdownMenuItem<String>>((e) {
+          return DropdownMenuItem<String>(
+            value: e,
+            child: Text(
+              e,
+              style: TextStyle(fontSize: 12),
+            ),
+          );
+        }).toList(),
+        onChanged: (newValue) {
+          dropdownValue = newValue!;
+          if (newValue == 'Edit') {
+            print("Edit");
+          } else {
+            print("Delete");
+          }
+        },
       ),
     );
   }

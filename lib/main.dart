@@ -3,6 +3,7 @@ import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
 import 'package:foodcon/Pages/MainPages/searchPage.dart';
+import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Pages/masterPage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/constants.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
             SignUpPage().id: (context) => SignUpPage(),
             LoginPage().id: (context) => LoginPage(),
             OnBoardingPage().id: (context) => OnBoardingPage(),
+            ChefProfile().id: (context) => ChefProfile(),
           },
         );
       }),

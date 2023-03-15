@@ -205,6 +205,7 @@ class CiruledButton extends StatelessWidget {
 class BorderdButton extends StatelessWidget {
   String? txt;
   Color? txtColor;
+  Color? color;
 
   Color? borderColor;
   double? circular;
@@ -217,7 +218,8 @@ class BorderdButton extends StatelessWidget {
       this.circular,
       this.borderColor,
       this.txtColor,
-      this.onPressed});
+      this.onPressed,
+      this.color});
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -228,6 +230,7 @@ class BorderdButton extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
+                  color: color,
                   borderRadius: BorderRadius.circular(circular!),
                   border: Border.all(color: borderColor!)),
               child: Padding(
