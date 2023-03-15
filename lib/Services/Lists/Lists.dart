@@ -12,6 +12,8 @@ List autoList = [
     "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "5 Pm",
   },
   {
     "title": "مكرونة بالصوص الاحمر",
@@ -24,6 +26,8 @@ List autoList = [
     "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Medium",
+    "posted": "10 Pm",
   },
   {
     "title": "فراخ",
@@ -36,6 +40,8 @@ List autoList = [
     "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "12 Pm",
   },
   {
     "title": "فراخ",
@@ -48,6 +54,8 @@ List autoList = [
     "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Hard",
+    "posted": "10 pm",
   },
   {
     "title": "فراخ مقلية",
@@ -60,6 +68,8 @@ List autoList = [
     "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "1 Pm",
   },
   {
     "title": "فطيرة توت",
@@ -72,6 +82,8 @@ List autoList = [
     "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "3 Am",
   },
   {
     "title": "برجر",
@@ -84,6 +96,8 @@ List autoList = [
     "isLiked": false,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "10 Pm",
   },
   {
     "title": "beef",
@@ -96,6 +110,8 @@ List autoList = [
     "isLiked": true,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "2 Pm",
   },
   {
     "title": "beef",
@@ -108,6 +124,8 @@ List autoList = [
     "isLiked": true,
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "12 Pm",
   },
 ];
 String mainPAth = "assets/images/home/main/";
