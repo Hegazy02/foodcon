@@ -8,6 +8,7 @@ class FilterProv extends ChangeNotifier {
   int _isGridPressed = 1;
   int _isCatePressed = 0;
   int _fullScreenIndex = 0;
+  String _follow = "Follow";
 
   List<dynamic> get fil1 => _page1FilteredList;
   List<dynamic> get fil2 => _page2FilteredList;
@@ -16,6 +17,7 @@ class FilterProv extends ChangeNotifier {
   int get isGird => _isGridPressed;
   int get isCate => _isCatePressed;
   int get ScreenIndex => _fullScreenIndex;
+  String get follow => _follow;
   set fil1(val) {
     _page1FilteredList = val;
     notifyListeners();
@@ -61,6 +63,16 @@ class FilterProv extends ChangeNotifier {
   set removeSearchFave(val) {
     _SearchFavoritesList.remove(val);
     _SearchFavoritesList = _SearchFavoritesList.toSet().toList();
+    notifyListeners();
+  }
+
+  changeFollow() {
+    if (_follow == "Follow") {
+      _follow = "Followed";
+    } else {
+      _follow = "Follow";
+    }
+
     notifyListeners();
   }
 }
