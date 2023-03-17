@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
-import 'package:foodcon/Pages/MainPages/homePage/stepperPage.dart';
-import 'package:foodcon/Pages/MainPages/searchPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/homePage/stepperPage.dart';
+import 'package:foodcon/Pages/Client/masterPage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
-import 'package:foodcon/Pages/masterPage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +43,9 @@ class MyApp extends StatelessWidget {
             OnBoardingPage().id: (context) => OnBoardingPage(),
             ChefProfile().id: (context) => ChefProfile(),
             StepperPage().id: (context) => StepperPage(),
+            MyOrdersPage().id: (context) => MyOrdersPage(),
+            ReceivedOrdersPage().id: (context) => ReceivedOrdersPage(),
+            FollowingPage().id: (context) => FollowingPage(),
           },
         );
       }),

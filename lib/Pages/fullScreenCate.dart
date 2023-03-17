@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/MainPages/homePage/homePage1.dart';
+import 'package:foodcon/Pages/Client/MainPages/homePage/homePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
-import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 

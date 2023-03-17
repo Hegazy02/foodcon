@@ -1,6 +1,5 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/MainPages/ProfilePage.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage.dart';
 import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
