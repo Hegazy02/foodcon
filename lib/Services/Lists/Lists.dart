@@ -2,6 +2,20 @@ import 'package:flutter/material.dart';
 
 List autoList = [
   {
+    "title": "c",
+    "category": "Pasta",
+    "image": "assets/images/home/recipes/recipe1.jpg",
+    "chefName": "Mano",
+    "chefAvatar": "${popularChefsPath}chef1.jpg",
+    "star": "4.6",
+    "min": "20",
+    "isLiked": false,
+    "desc":
+        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+    "level": "Easy",
+    "posted": "5 Pm",
+  },
+  {
     "title": "مكرونة بالصوص الاحمر",
     "category": "Pasta",
     "image": "assets/images/home/recipes/recipe1.jpg",

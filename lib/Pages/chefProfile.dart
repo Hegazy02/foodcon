@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:foodcon/Pages/MainPages/ProfilePage.dart';
 import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
@@ -181,118 +182,6 @@ class ChefProfile extends StatelessWidget {
                 );
               },
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class MyRecipe extends StatelessWidget {
-  int index;
-  MyRecipe({super.key, required this.index});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Container(
-              height: 180,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(autoList[index]['image']),
-                    fit: BoxFit.fill),
-              ),
-            ),
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-              child: Container(),
-            ),
-            Container(
-                height: 8.h,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                      Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-                      Colors.black.withOpacity(0.5),
-                      Colors.black.withOpacity(0.5)
-                    ])),
-                child: Container(
-                  color: Colors.grey.withOpacity(0.3),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Spacer(),
-                      Row(
-                        textDirection: TextDirection.rtl,
-                        children: [
-                          SizedBox(
-                            width: 3.w,
-                          ),
-                          Text("${autoList[index]['title']}",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Icon(
-                            Icons.alarm,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "${autoList[index]['min']}",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Spacer(),
-                          Text("${autoList[index]['level']}",
-                              style: TextStyle(color: Colors.white)),
-                          SizedBox(
-                            width: 3.w,
-                          )
-                        ],
-                      ),
-                      Spacer()
-                    ],
-                  ),
-                )),
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Container(
-                margin: EdgeInsets.only(left: 10, top: 5),
-                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(30)),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.orange,
-                      size: 14,
-                    ),
-                    Text(
-                      "${autoList[index]['star']}",
-                      style: TextStyle(color: Colors.white),
-                    )
-                  ],
-                ),
-              ),
-            )
           ],
         ),
       ),

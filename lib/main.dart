@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
+import 'package:foodcon/Pages/MainPages/homePage/stepperPage.dart';
 import 'package:foodcon/Pages/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Pages/masterPage.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
             LoginPage().id: (context) => LoginPage(),
             OnBoardingPage().id: (context) => OnBoardingPage(),
             ChefProfile().id: (context) => ChefProfile(),
+            StepperPage().id: (context) => StepperPage(),
           },
         );
       }),

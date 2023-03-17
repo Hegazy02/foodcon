@@ -177,6 +177,7 @@ class _SearchPageState extends State<SearchPage> {
                               verticalOffset: 50.0,
                               child: FadeInAnimation(
                                 child: CustomTile(
+                                  onTap: () {},
                                   title: l[index]['title'],
                                   image: l[index]['image'],
                                   category: l[index]['category'],
@@ -239,9 +240,10 @@ class CustomTile extends StatelessWidget {
   String category;
   String? chefName;
   String? chefAvatar;
-
   bool? isLiked;
   Widget? trailing;
+  double? padding;
+  Function()? onTap;
 
   CustomTile(
       {required this.title,
@@ -250,7 +252,9 @@ class CustomTile extends StatelessWidget {
       this.chefAvatar,
       this.chefName,
       this.isLiked,
-      this.trailing});
+      this.trailing,
+      this.padding,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +262,7 @@ class CustomTile extends StatelessWidget {
         categoriesList.firstWhere((element) => element['category'] == category);
 
     return ListTile(
+      contentPadding: EdgeInsets.all(padding ?? 10),
       leading: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
@@ -271,7 +276,7 @@ class CustomTile extends StatelessWidget {
       subtitle:
           Text(title, style: TextStyle(fontSize: 16, color: Colors.black)),
       trailing: trailing,
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }
