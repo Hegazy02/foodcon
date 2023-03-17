@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/MainPages/homePage.dart';
+import 'package:foodcon/Pages/MainPages/homePage/homePage1.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
@@ -89,8 +89,6 @@ class FullScreenCate extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           popularChefsIcons(
-                            height: 50,
-                            width: 50,
                             index: value.ScreenIndex,
                             list: value.fil2,
                           ),

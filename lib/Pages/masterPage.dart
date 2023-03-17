@@ -3,9 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/MainPages/FavoritePage.dart';
 import 'package:foodcon/Pages/MainPages/ProfilePage.dart';
+import 'package:foodcon/Pages/MainPages/homePage/homePage1.dart';
+import 'package:foodcon/Pages/MainPages/homePage/mainHomePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
-import 'package:foodcon/Pages/MainPages/homePage.dart';
 import 'package:foodcon/Pages/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/MainPages/explorePage.dart';
 import 'package:foodcon/constants.dart';
@@ -28,7 +29,7 @@ class _masterPageState extends State<masterPage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     List body = [
-      HomePage(height: height, width: width, searchVal: searchVal),
+      MainHomePage(),
       SearchPage(),
       ExplorePage(
         height: height,

@@ -9,6 +9,7 @@ class FilterProv extends ChangeNotifier {
   int _isCatePressed = 0;
   int _fullScreenIndex = 0;
   String _follow = "Follow";
+  bool _switchHome = false;
 
   List<dynamic> get fil1 => _page1FilteredList;
   List<dynamic> get fil2 => _page2FilteredList;
@@ -18,6 +19,7 @@ class FilterProv extends ChangeNotifier {
   int get isCate => _isCatePressed;
   int get ScreenIndex => _fullScreenIndex;
   String get follow => _follow;
+  bool get switchHome => _switchHome;
   set fil1(val) {
     _page1FilteredList = val;
     notifyListeners();
@@ -73,6 +75,11 @@ class FilterProv extends ChangeNotifier {
       _follow = "Follow";
     }
 
+    notifyListeners();
+  }
+
+  changeSwitch() {
+    _switchHome = !_switchHome;
     notifyListeners();
   }
 }
