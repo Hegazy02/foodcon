@@ -8,11 +8,11 @@ import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class HomePage1 extends StatelessWidget {
+class HomePage extends StatelessWidget {
   List? filteredList = [];
   bool switchHome = false;
   String? searchVal;
-  HomePage1({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

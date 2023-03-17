@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomButton.dart';
-import 'package:foodcon/Pages/MainPages/homePage/homePage1.dart';
+import 'package:foodcon/Pages/Client/MainPages/homePage/homePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 
