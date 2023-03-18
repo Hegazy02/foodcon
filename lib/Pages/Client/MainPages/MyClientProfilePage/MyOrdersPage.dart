@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/Client/MainPages/homePage/stepperPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
@@ -45,6 +45,7 @@ class MyOrder extends StatelessWidget {
   int index;
   int items;
   int price;
+
   String image;
   String title;
   String chefName;
@@ -67,6 +68,9 @@ class MyOrder extends StatelessWidget {
       children: [
         Row(
           children: [
+            SizedBox(
+              width: 7,
+            ),
             Container(
               height: 100,
               width: 100,

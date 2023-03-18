@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class CostumTextField extends StatelessWidget {
   String? label;
+  TextInputType? keyboardType;
   bool? secured;
   Widget? icon;
   Function()? onPressed;
-  CostumTextField({this.label, this.secured, this.icon, this.onPressed});
+  CostumTextField(
+      {this.label, this.keyboardType, this.secured, this.icon, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +15,12 @@ class CostumTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
         decoration: InputDecoration(
-            border:
-                UnderlineInputBorder(borderRadius: BorderRadius.circular(7)),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
             label: Text(label!),
             suffixIcon: IconButton(
                 onPressed: onPressed ?? () {}, icon: icon ?? Text(""))),
         obscureText: secured ?? false,
+        keyboardType: keyboardType ?? TextInputType.name,
       ),
     );
   }
