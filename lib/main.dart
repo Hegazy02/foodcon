@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
-import 'package:foodcon/Pages/Client/MainPages/homePage/stepperPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
 import 'package:foodcon/Pages/Client/masterPage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
           routes: {
             masterPage().id: (context) => masterPage(),
             SignUpPage().id: (context) => SignUpPage(),
+            BeforeOnboardingPage().id: (context) => BeforeOnboardingPage(),
             LoginPage().id: (context) => LoginPage(),
             OnBoardingPage().id: (context) => OnBoardingPage(),
             ChefProfile().id: (context) => ChefProfile(),

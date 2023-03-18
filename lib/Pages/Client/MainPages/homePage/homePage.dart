@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/Providers/filteredList.dart';
@@ -86,14 +87,11 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                 ),
-                Consumer<FilterProv>(
-                  builder: (context, value, child) => IconButton(
-                      onPressed: () {
-                        value.changeSwitch();
-                        print(value.switchHome);
-                      },
-                      icon: Icon(Icons.change_circle)),
-                )
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(MyOrdersPage().id);
+                    },
+                    icon: Icon(Icons.delivery_dining))
               ],
             ),
             SizedBox(

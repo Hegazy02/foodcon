@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
+import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
+import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/constants.dart';
+import 'package:sizer/sizer.dart';
 
 class SignUpPage extends StatefulWidget {
   String id = "SignUp";
@@ -21,8 +24,8 @@ class _SignUpPageState extends State<SignUpPage> {
       body: ListView(
         // shrinkWrap: true,
         children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 25),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Column(
               children: [
                 SizedBox(
@@ -43,10 +46,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 30,
                 ),
                 CostumTextField(
-                  label: "Username",
+                  label: "Email",
                 ),
                 CostumTextField(
-                  label: "Email",
+                  label: "Phone",
+                  keyboardType: TextInputType.phone,
                 ),
                 CostumTextField(
                     label: "Password",
@@ -73,19 +77,21 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                   height: 60,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomButton(
-                        txt: "Sign UP",
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(OnBoardingPage().id);
-                        },
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                    ),
-                  ],
+                SizedBox(
+                  height: 6.h,
+                  width: 80.w,
+                  child: BorderdButton(
+                    padding: 10,
+                    borderColor: KprimaryColor,
+                    circular: 20,
+                    txt: "Sign up",
+                    txtColor: Colors.white,
+                    color: KprimaryColor,
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(BeforeOnboardingPage().id);
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 60,
