@@ -12,7 +12,7 @@ empty(setFun) {
   setFun(() {});
 }
 
-photofromCamera() async {
+photofromCamera(setFun) async {
   XFile? piked = await piker.pickImage(source: ImageSource.camera);
   if (piked != null) {
     image = File(piked.path);
@@ -26,6 +26,7 @@ photofromCamera() async {
     // CollectionReference users =
     //     FirebaseFirestore.instance.collection(kUsersCollection);
     // updateMyAvatar(users, newuid ?? homeUid, imageurl);
+    empty(setFun);
   }
 }
 
@@ -44,6 +45,6 @@ photofromGallery(setFun) async {
     // CollectionReference users =
     //     FirebaseFirestore.instance.collection(kUsersCollection);
     // updateMyAvatar(users, newuid ?? homeUid, imageurl);
-    // empty(setFun);
+    empty(setFun);
   }
 }
