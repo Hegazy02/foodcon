@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:provider/provider.dart';

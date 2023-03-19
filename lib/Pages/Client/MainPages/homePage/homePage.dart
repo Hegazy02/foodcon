@@ -1,11 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:foodcon/Components/MainPosters.dart';
+import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
-import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -186,6 +188,9 @@ class HomePage extends StatelessWidget {
                       popularChefsIcons(
                         list: popularChefsList,
                         index: index,
+                        onTap: () {
+                          Navigator.of(context).pushNamed(ChefProfile().id);
+                        },
                       ),
                       SizedBox(
                         height: 1.5.h,
@@ -222,8 +227,15 @@ class HomePage extends StatelessWidget {
                 itemCount: popularRecipesList.length,
                 itemBuilder: (context, index) {
                   return popularRecipes(
-                    index: index,
-                  );
+                      index: index,
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipePage(
+                              list: autoList,
+                              index: index,
+                            ),
+                          )));
                 },
               ),
             ),
@@ -262,78 +274,10 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class MainPosters extends StatelessWidget {
-  int? index;
-  double? width;
-  String? image;
-  double? sigmaX;
-  double? sigmaY;
-  Function()? onTap;
-
-  Widget? child;
-  MainPosters(
-      {this.index,
-      this.width,
-      this.image,
-      this.sigmaX,
-      this.sigmaY,
-      this.child,
-      this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: width,
-        child: InkWell(
-          onTap: onTap,
-          splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: AssetImage(image!),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: sigmaX!, sigmaY: sigmaY!),
-                child: child!,
-              ),
-            ),
-          ),
-        ));
-  }
-}
-
-/////////////////////////
-class popularChefsIcons extends StatelessWidget {
-  int? index;
-  List? list = [];
-  String? image;
-  popularChefsIcons({this.index, this.list, this.image});
-
-  @override
-  Widget build(BuildContext context) {
-    String avatar = image == null ? list![index!]['chefAvatar'] : image;
-    return ClipRRect(
-      child: InkWell(
-          onTap: () {
-            Navigator.of(context).pushNamed(ChefProfile().id);
-          },
-          child: CircleAvatar(
-            backgroundImage: AssetImage(avatar != "" ? avatar : Klogo),
-            radius: 25,
-          )),
-    );
-  }
-}
-
-////////////////////////
 class popularRecipes extends StatelessWidget {
   int? index;
-  double? h;
-  popularRecipes({this.index, this.h});
+  Function()? onTap;
+  popularRecipes({this.index, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -344,7 +288,7 @@ class popularRecipes extends StatelessWidget {
             width: 120,
             height: 30.h,
             child: InkWell(
-              onTap: () {},
+              onTap: onTap,
               splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
               child: Ink(
                 decoration: BoxDecoration(

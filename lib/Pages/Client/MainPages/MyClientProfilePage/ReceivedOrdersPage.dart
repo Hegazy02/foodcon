@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
+import 'package:foodcon/Components/MyOrder.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:sizer/sizer.dart';
 
