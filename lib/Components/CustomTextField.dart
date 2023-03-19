@@ -6,8 +6,9 @@ class CostumTextField extends StatelessWidget {
   bool? secured;
   Widget? icon;
   Function()? onPressed;
+ String? Function(String?)? validator;
   CostumTextField(
-      {this.label, this.keyboardType, this.secured, this.icon, this.onPressed});
+      {this.label, this.keyboardType, this.secured, this.icon, this.onPressed,this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class CostumTextField extends StatelessWidget {
                 onPressed: onPressed ?? () {}, icon: icon ?? Text(""))),
         obscureText: secured ?? false,
         keyboardType: keyboardType ?? TextInputType.name,
+        validator:validator ,
       ),
     );
   }

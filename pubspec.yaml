@@ -68,6 +68,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/Onboarding/
+    - assets/images/Auth/
     - assets/images/home/main/
     - assets/images/home/Chefs/
     - assets/images/home/recipes/

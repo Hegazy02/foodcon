@@ -29,7 +29,7 @@ bottomSheet(context, setFun) {
                 ),
                 title: Text("Camera"),
                 onTap: () {
-                  photofromCamera();
+                  photofromCamera(setFun);
                   Navigator.of(context).pop();
                 },
               ),
