@@ -16,6 +16,15 @@ class BeforeOnboardingPage extends StatefulWidget {
 }
 
 class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  Validation() {
+    FormState? form = formKey.currentState;
+    if (form!.validate()) {
+      print("qeqqwe");
+      Navigator.of(context).pushReplacementNamed(OnBoardingPage().id);
+    }
+  }
+
   String userType = "user";
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: [
                 SizedBox(
@@ -31,18 +40,25 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                 ),
                 Stack(
                   children: [
-                    Center(
-                      child: image == null
-                          ? CircleAvatar(
-                              radius: 60,
-                            )
-                          : CircleAvatar(
-                              backgroundImage: FileImage(image!),
-                              radius: 60,
-                            ),
+                    Column(
+                      children: [
+                        Center(
+                          child: image == null
+                              ? CircleAvatar(
+                                  radius: 60,
+                                )
+                              : CircleAvatar(
+                                  backgroundImage: FileImage(image!),
+                                  radius: 60,
+                                ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        )
+                      ],
                     ),
                     Positioned(
-                      bottom: -10,
+                      bottom: 0,
                       right: 32.w,
                       child: GestureDetector(
                         onTap: () async {
@@ -82,8 +98,18 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                 SizedBox(
                   height: 3.h,
                 ),
-                CostumTextField(
-                  label: "Username",
+                Form(
+                  key: formKey,
+                  child: CostumTextField(
+                    label: "Username",
+                    validator: (p0) {
+                      if (p0!.length > 0) {
+                        return null;
+                      } else {
+                        return "Enter your Username";
+                      }
+                    },
+                  ),
                 ),
                 CostumTextField(
                   label: "Address",
@@ -149,8 +175,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                     txt: "Continue",
                     // txtColor: KprimaryColor,
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(OnBoardingPage().id);
+                      Validation();
                     },
                     color: KprimaryColor,
                   ),

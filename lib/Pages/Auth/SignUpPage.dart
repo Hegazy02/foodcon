@@ -3,6 +3,8 @@ import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
 import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
+import 'package:foodcon/Pages/Auth/SignInPage.dart';
+import 'package:foodcon/Pages/Client/masterPage.dart';
 import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
@@ -18,6 +20,15 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool isSecured = true;
   bool isConfirmSecured = true;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  Validation() {
+    FormState? form = formKey.currentState;
+    if (form!.validate()) {
+      print("Signed Up");
+      Navigator.of(context).pushReplacementNamed(BeforeOnboardingPage().id);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
         // shrinkWrap: true,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: [
                 SizedBox(
@@ -45,35 +56,86 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                   height: 30,
                 ),
-                CostumTextField(
-                  label: "Email",
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      CostumTextField(
+                        label: "Email",
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return "Enter your email";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      CostumTextField(
+                        label: "Phone",
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return "Enter your Phone number";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      CostumTextField(
+                        label: "Password",
+                        secured: isSecured,
+                        icon: isSecured == false
+                            ? Icon(Icons.visibility)
+                            : Icon(Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            isSecured = !isSecured;
+                          });
+                        },
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return "Enter your password";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      CostumTextField(
+                        label: "Confirm Password",
+                        secured: isConfirmSecured,
+                        icon: isConfirmSecured == false
+                            ? Icon(Icons.visibility)
+                            : Icon(Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            isConfirmSecured = !isConfirmSecured;
+                          });
+                        },
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return "Confirm your password";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                CostumTextField(
-                  label: "Phone",
-                  keyboardType: TextInputType.phone,
+                Row(
+                  children: [
+                    Text("you already have an aacount? "),
+                    GestureDetector(
+                      child: Text(
+                        "Login",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(LoginPage().id);
+                      },
+                    )
+                  ],
                 ),
-                CostumTextField(
-                    label: "Password",
-                    secured: isSecured,
-                    icon: isSecured == false
-                        ? Icon(Icons.visibility)
-                        : Icon(Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
-                        isSecured = !isSecured;
-                      });
-                    }),
-                CostumTextField(
-                    label: "Confirm Password",
-                    secured: isConfirmSecured,
-                    icon: isConfirmSecured == false
-                        ? Icon(Icons.visibility)
-                        : Icon(Icons.visibility_off),
-                    onPressed: () {
-                      setState(() {
-                        isConfirmSecured = !isConfirmSecured;
-                      });
-                    }),
                 SizedBox(
                   height: 60,
                 ),
@@ -88,8 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     txtColor: Colors.white,
                     color: KprimaryColor,
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(BeforeOnboardingPage().id);
+                      Validation();
                     },
                   ),
                 ),

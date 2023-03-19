@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: mainC,
               primaryColor: KprimaryColor,
               cardColor: KprimaryColor),
-          home: SignUpPage(),
+          home: LoginPage(),
           routes: {
             masterPage().id: (context) => masterPage(),
             SignUpPage().id: (context) => SignUpPage(),
