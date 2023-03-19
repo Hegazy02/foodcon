@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage.dart';
-import 'package:foodcon/Pages/fullScreenCate.dart';
+import 'package:foodcon/Components/BorderdButton.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
@@ -15,9 +15,13 @@ class ChefProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // actions: [],
-          // leading: Icon(Icons.arrow_back),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30.0),
+            bottomRight: Radius.circular(30.0),
           ),
+        ),
+      ),
       body: DefaultTabController(
         length: 2,
         child: ListView(

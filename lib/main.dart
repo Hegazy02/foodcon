@@ -8,6 +8,7 @@ import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
 import 'package:foodcon/Pages/Client/masterPage.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/constants.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
             MyOrdersPage().id: (context) => MyOrdersPage(),
             ReceivedOrdersPage().id: (context) => ReceivedOrdersPage(),
             FollowingPage().id: (context) => FollowingPage(),
+            RecipePage().id: (context) => RecipePage(),
           },
         );
       }),

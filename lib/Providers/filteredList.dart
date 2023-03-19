@@ -10,6 +10,12 @@ class FilterProv extends ChangeNotifier {
   int _fullScreenIndex = 0;
   String _follow = "Follow";
   bool _switchHome = false;
+  bool _favoriteracipe = false;
+  bool get favoriteracipe => _favoriteracipe;
+  set favoriteracipe(s) {
+    _favoriteracipe = s;
+    notifyListeners();
+  }
 
   List<dynamic> get fil1 => _page1FilteredList;
   List<dynamic> get fil2 => _page2FilteredList;

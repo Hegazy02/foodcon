@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
+import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
-import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
-import 'package:foodcon/Pages/Client/masterPage.dart';
-import 'package:foodcon/Pages/fullScreenCate.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
