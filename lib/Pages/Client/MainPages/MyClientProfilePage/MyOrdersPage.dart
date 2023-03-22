@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MyOrder.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:sizer/sizer.dart';
 
@@ -28,7 +29,15 @@ class MyOrdersPage extends StatelessWidget {
                 items: 2,
                 price: 60,
                 ButtonTxt: "Track",
-                onPressed: () {
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecipePage(
+                        list: autoList,
+                        index: index,
+                      ),
+                    )),
+                onButtonPressed: () {
                   Navigator.of(context).pushNamed(StepperPage().id);
                   print("objectaa");
                 },

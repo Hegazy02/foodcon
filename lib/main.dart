@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
             BeforeOnboardingPage().id: (context) => BeforeOnboardingPage(),
             LoginPage().id: (context) => LoginPage(),
             OnBoardingPage().id: (context) => OnBoardingPage(),
-            ChefProfile().id: (context) => ChefProfile(),
+            // ChefProfile().id: (context) => ChefProfile(),
             StepperPage().id: (context) => StepperPage(),
             MyOrdersPage().id: (context) => MyOrdersPage(),
             ReceivedOrdersPage().id: (context) => ReceivedOrdersPage(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomExplore.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -63,6 +64,14 @@ class ExplorePage extends StatelessWidget {
                   width: width! * 0.6,
                   isGrid: false,
                   myList: autoList,
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RecipePage(
+                          list: autoList,
+                          index: index,
+                        ),
+                      )),
                 );
               },
             ),
@@ -121,6 +130,14 @@ class ExplorePage extends StatelessWidget {
                       width: width! * 0.45,
                       isGrid: true,
                       myList: autoList,
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipePage(
+                              list: autoList,
+                              index: index,
+                            ),
+                          )),
                     ))),
                   );
                 })),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MyOrder.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:sizer/sizer.dart';
 
@@ -27,7 +28,15 @@ class ReceivedOrdersPage extends StatelessWidget {
                 items: 1,
                 price: 100,
                 ButtonTxt: "Order again",
-                onPressed: () {},
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RecipePage(
+                        list: autoList,
+                        index: index,
+                      ),
+                    )),
+                onButtonPressed: () {},
               ),
             ),
           ),

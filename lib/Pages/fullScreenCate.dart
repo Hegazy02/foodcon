@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/CiruledButton.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
+import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -92,6 +95,18 @@ class FullScreenCate extends StatelessWidget {
                           popularChefsIcons(
                             index: value.ScreenIndex,
                             list: value.fil2,
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChefProfile(
+                                    chefName: autoList[value.ScreenIndex]
+                                        ['chefName'],
+                                    chefAvatar: autoList[value.ScreenIndex]
+                                        ['chefAvatar'],
+                                    posted: autoList[value.ScreenIndex]
+                                        ['posted'],
+                                  ),
+                                )),
                           ),
                           SizedBox(
                             width: 2.5.w,
@@ -151,7 +166,16 @@ class FullScreenCate extends StatelessWidget {
                         txt: "View Recipe",
                         borderColor: Colors.white,
                         circular: 10,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RecipePage(
+                                  list: autoList,
+                                  index: value.ScreenIndex,
+                                ),
+                              ));
+                        },
                         txtColor: Colors.white,
                         padding: 20,
                       ),

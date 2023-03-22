@@ -3,6 +3,7 @@ import 'package:foodcon/Components/CiruledButton.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -67,7 +68,12 @@ class _RecipePageState extends State<RecipePage> {
                             image: widget.list![widget.index!]['chefAvatar'],
                             radius: 15,
                             onTap: () {
-                              Navigator.of(context).pushNamed(ChefProfile().id);
+                              Navigator.of(context).pushNamed(ChefProfile(
+                                chefName: autoList[widget.index!]['chefName'],
+                                chefAvatar: autoList[widget.index!]
+                                    ['chefAvatar'],
+                                posted: autoList[widget.index!]['posted'],
+                              ).id);
                             },
                           ),
                           SizedBox(
