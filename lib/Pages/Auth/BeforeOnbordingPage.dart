@@ -99,21 +99,24 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                   height: 3.h,
                 ),
                 Form(
-                  key: formKey,
-                  child: CostumTextField(
-                    label: "Username",
-                    validator: (p0) {
-                      if (p0!.length > 0) {
-                        return null;
-                      } else {
-                        return "Enter your Username";
-                      }
-                    },
-                  ),
-                ),
-                CostumTextField(
-                  label: "Address",
-                ),
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        CostumTextField(
+                          label: "Username",
+                          validator: (p0) {
+                            if (p0!.length > 0) {
+                              return null;
+                            } else {
+                              return "Enter your Username";
+                            }
+                          },
+                        ),
+                        CostumTextField(
+                          label: "Address",
+                        ),
+                      ],
+                    )),
                 SizedBox(
                   height: 7.h,
                 ),

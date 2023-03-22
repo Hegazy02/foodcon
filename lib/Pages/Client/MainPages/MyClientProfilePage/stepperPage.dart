@@ -16,7 +16,9 @@ class _StepperPageState extends State<StepperPage> {
   Widget build(BuildContext context) {
     int activeStep = 3;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Track"),
+      ),
       body: EasyStepper(
         direction: Axis.vertical,
         defaultStepBorderType: BorderType.normal,
