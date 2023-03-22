@@ -9,8 +9,18 @@ import 'package:sizer/sizer.dart';
 
 class ChefProfile extends StatelessWidget {
   String id = "chefProfile";
-  ChefProfile({super.key});
+  String chefAvatar;
+  String chefName;
+  String posted;
+
+  ChefProfile({
+    super.key,
+    required this.chefAvatar,
+    required this.chefName,
+    required this.posted,
+  });
   TabController? controller;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +43,7 @@ class ChefProfile extends StatelessWidget {
                   width: 5.w,
                 ),
                 CircleAvatar(
-                  backgroundImage:
-                      AssetImage("assets/images/home/Chefs/chef5.jpg"),
+                  backgroundImage: AssetImage(chefAvatar),
                   radius: 32,
                 ),
                 SizedBox(
@@ -44,7 +53,7 @@ class ChefProfile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Omer",
+                      chefName,
                       style: TextStyle(
                           fontSize: 14.sp, fontWeight: FontWeight.bold),
                     ),
@@ -152,8 +161,7 @@ class ChefProfile extends StatelessWidget {
                           width: 10,
                         ),
                         CircleAvatar(
-                          backgroundImage:
-                              AssetImage("assets/images/home/Chefs/chef5.jpg"),
+                          backgroundImage: AssetImage(chefAvatar),
                           radius: 20,
                         ),
                         SizedBox(
@@ -162,9 +170,9 @@ class ChefProfile extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Omer"),
+                            Text(chefName),
                             Text(
-                              autoList[index]['posted'],
+                              posted,
                               style: TextStyle(
                                   fontSize: 12, color: Colors.grey[600]),
                             )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomExplore.dart';
 import 'package:foodcon/Components/CustomTile.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
@@ -178,7 +179,16 @@ class _SearchPageState extends State<SearchPage> {
                               verticalOffset: 50.0,
                               child: FadeInAnimation(
                                 child: CustomTile(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => RecipePage(
+                                            list: l,
+                                            index: index,
+                                          ),
+                                        ));
+                                  },
                                   title: l[index]['title'],
                                   image: l[index]['image'],
                                   category: l[index]['category'],
@@ -223,6 +233,14 @@ class _SearchPageState extends State<SearchPage> {
                                 height: 15.h,
                                 width: 45.w,
                                 isGrid: true,
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => RecipePage(
+                                        list: l,
+                                        index: index,
+                                      ),
+                                    )),
                               ))),
                             );
                           })),

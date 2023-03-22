@@ -5,7 +5,7 @@ import 'package:foodcon/Services/Lists/Lists.dart';
 class CustomExplore extends StatelessWidget {
   final double? height;
   final double? width;
-
+  Function()? onTap;
   int index;
   String? title;
   bool? isGrid = false;
@@ -16,7 +16,8 @@ class CustomExplore extends StatelessWidget {
       required this.height,
       this.width,
       required this.index,
-      this.isGrid});
+      this.isGrid,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +47,7 @@ class CustomExplore extends StatelessWidget {
                 image: myList[index]['image'],
                 sigmaX: 0.5,
                 sigmaY: 0.5,
+                onTap: onTap,
                 child: Container(
                     alignment: Alignment.bottomCenter,
                     // color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),

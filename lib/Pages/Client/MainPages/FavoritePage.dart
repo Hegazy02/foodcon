@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -70,6 +71,14 @@ class FavoritePage extends StatelessWidget {
                                     chefAvatar: ll[index]['chefAvatar'],
                                     chefName: ll[index]['chefName'],
                                     isLiked: ll[index]['isLiked'],
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => RecipePage(
+                                            list: ll,
+                                            index: index,
+                                          ),
+                                        )),
                                     trailing: SizedBox(
                                         width: 60,
                                         child: IconButton(
