@@ -11,7 +11,9 @@ class FollowingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Following"),
+      ),
       body: ListView.builder(
         itemCount: autoList.length,
         itemBuilder: (context, index) => ListTile(

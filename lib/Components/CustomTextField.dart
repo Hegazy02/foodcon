@@ -6,15 +6,23 @@ class CostumTextField extends StatelessWidget {
   bool? secured;
   Widget? icon;
   Function()? onPressed;
- String? Function(String?)? validator;
+  String? Function(String?)? validator;
+  String? initialValue;
   CostumTextField(
-      {this.label, this.keyboardType, this.secured, this.icon, this.onPressed,this.validator});
+      {this.label,
+      this.keyboardType,
+      this.secured,
+      this.icon,
+      this.onPressed,
+      this.validator,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
+        initialValue: initialValue,
         decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
             label: Text(label!),
@@ -22,7 +30,7 @@ class CostumTextField extends StatelessWidget {
                 onPressed: onPressed ?? () {}, icon: icon ?? Text(""))),
         obscureText: secured ?? false,
         keyboardType: keyboardType ?? TextInputType.name,
-        validator:validator ,
+        validator: validator,
       ),
     );
   }

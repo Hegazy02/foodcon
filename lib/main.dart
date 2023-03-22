@@ -3,6 +3,7 @@ import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/EditProfilePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
             ReceivedOrdersPage().id: (context) => ReceivedOrdersPage(),
             FollowingPage().id: (context) => FollowingPage(),
             RecipePage().id: (context) => RecipePage(),
+            EditprogilePage().id: (context) => EditprogilePage(),
           },
         );
       }),

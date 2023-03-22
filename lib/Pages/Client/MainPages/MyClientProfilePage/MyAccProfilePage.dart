@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
+import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/EditProfilePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
@@ -17,23 +19,22 @@ class MyAccProfilePage extends StatelessWidget {
           height: 3.5.h,
         ),
         ListTile(
-          contentPadding: EdgeInsets.all(7),
-          leading: image == null
-              ? CircleAvatar(
-                  child: Text(
-                    "H",
-                    style: TextStyle(color: Colors.white),
+            contentPadding: EdgeInsets.all(7),
+            leading: image == null
+                ? CircleAvatar(
+                    child: Text(
+                      "H",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    radius: 30,
+                  )
+                : CircleAvatar(
+                    backgroundImage: FileImage(image!),
+                    radius: 30,
                   ),
-                  radius: 30,
-                )
-              : CircleAvatar(
-                  backgroundImage: FileImage(image!),
-                  radius: 30,
-                ),
-          title: Text("Hegazy"),
-          subtitle: Text("Abdelrhmanhegazy02@gmail.com"),
-          onTap: () {},
-        ),
+            title: Text("Hegazy"),
+            subtitle: Text("Abdelrhmanhegazy02@gmail.com"),
+            onTap: () => Navigator.of(context).pushNamed(EditprogilePage().id)),
         ListTile(
           contentPadding: EdgeInsets.all(10),
           leading: Icon(
