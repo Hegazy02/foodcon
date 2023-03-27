@@ -205,17 +205,13 @@ class MyRecipe extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             Container(
-              height: 180,
+              height: 100,
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(autoList[index]['image']),
                     fit: BoxFit.fill),
               ),
-            ),
-            BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-              child: Container(),
             ),
             Container(
                 height: 8.h,

@@ -32,28 +32,34 @@ class _RecipePageState extends State<RecipePage> {
               headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverAppBar(
                   actions: [
-                    CiruledButton(
-                      iconColor: value.favoriteracipe == true
-                          ? Colors.red
-                          : Colors.black,
-                      icon: value.favoriteracipe == true
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: Colors.white,
-                      onTap: () {
-                        value.favoriteracipe = !value.favoriteracipe;
+                    Column(
+                      children: [
+                        Spacer(),
+                        CiruledButton(
+                          iconColor: value.favoriteracipe == true
+                              ? Colors.red
+                              : Colors.black,
+                          icon: value.favoriteracipe == true
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: Colors.white,
+                          onTap: () {
+                            value.favoriteracipe = !value.favoriteracipe;
 
-                        if (value.favoriteracipe == true) {
-                          print("t");
-                          // value.addFav = value.fil2[value.ScreenIndex];
-                        } else {
-                          print("qwe");
-                          // value.removeFave = value.fil2[value.ScreenIndex];
-                        }
+                            if (value.favoriteracipe == true) {
+                              print("t");
+                              // value.addFav = value.fil2[value.ScreenIndex];
+                            } else {
+                              print("qwe");
+                              // value.removeFave = value.fil2[value.ScreenIndex];
+                            }
 
-                        // print("** ${value.fil2[value.ScreenIndex]['isLiked']}");
-                      },
-                      padding: 5,
+                            // print("** ${value.fil2[value.ScreenIndex]['isLiked']}");
+                          },
+                          padding: 5,
+                        ),
+                        Spacer(),
+                      ],
                     ),
                     SizedBox(
                       width: 10,
@@ -68,12 +74,17 @@ class _RecipePageState extends State<RecipePage> {
                             image: widget.list![widget.index!]['chefAvatar'],
                             radius: 15,
                             onTap: () {
-                              Navigator.of(context).pushNamed(ChefProfile(
-                                chefName: autoList[widget.index!]['chefName'],
-                                chefAvatar: autoList[widget.index!]
-                                    ['chefAvatar'],
-                                posted: autoList[widget.index!]['posted'],
-                              ).id);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ChefProfile(
+                                      chefName: autoList[widget.index!]
+                                          ['chefName'],
+                                      chefAvatar: autoList[widget.index!]
+                                          ['chefAvatar'],
+                                      posted: autoList[widget.index!]['posted'],
+                                    ),
+                                  ));
                             },
                           ),
                           SizedBox(
@@ -106,89 +117,48 @@ class _RecipePageState extends State<RecipePage> {
                         ),
                       )),
                   title: Text("Recipe"),
+                  bottom: PreferredSize(
+                      child: Container(
+                        height: 50,
+                        color: Colors.white,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color: Colors.orange,
+                              size: 18,
+                            ),
+                            Text(widget.list![widget.index!]['star']),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(
+                              Icons.alarm,
+                              size: 18,
+                            ),
+                            Text(widget.list![widget.index!]['min'] + "min"),
+                            Spacer(),
+                            Text(
+                              widget.list![widget.index!]['title'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                      preferredSize: Size(double.infinity, 0)),
                   // shape: const RoundedRectangleBorder(
                   //   borderRadius: BorderRadius.only(
                   //     bottomLeft: Radius.circular(30.0),
                   //     bottomRight: Radius.circular(30.0),
                   //   ),
                   // ),
-                  bottom: PreferredSize(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(30))),
-                        height: 50,
-                        child: Row(
-                          textDirection: TextDirection.rtl,
-                          children: [
-                            SizedBox(
-                              width: 6.w,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  widget.list![widget.index!]['title'],
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text("متوسط",
-                                    style: TextStyle(
-                                        fontSize: 11, color: Colors.grey))
-                              ],
-                            ),
-                            Spacer(),
-                            Text("${widget.list![widget.index!]['min']} min",
-                                style: TextStyle(
-                                    color: Colors.grey, fontSize: 12)),
-                            Icon(
-                              Icons.alarm,
-                              color: Colors.grey,
-                            ),
-                            SizedBox(width: 5),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  height: 35,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      color: KprimaryColor,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.orange,
-                                        size: 16,
-                                      ),
-                                      Text(widget.list![widget.index!]['star'],
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12)),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                // Row(
-                                //   children: [
-                              ],
-                            ),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                          ],
-                        ),
-                      ),
-                      preferredSize: Size(0, 0)),
                 ),
                 SliverPersistentHeader(
                     delegate: _SliverAppBarDelegate(
@@ -223,11 +193,23 @@ class _RecipePageState extends State<RecipePage> {
                   itemCount: ll.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      ll[index],
+                    child: Row(
                       textDirection: TextDirection.rtl,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      children: [
+                        Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                              color: KprimaryColor,
+                              borderRadius: BorderRadius.circular(100)),
+                        ),
+                        Text(
+                          ll[index],
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -235,11 +217,23 @@ class _RecipePageState extends State<RecipePage> {
                   itemCount: l.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      l[index],
+                    child: Row(
                       textDirection: TextDirection.rtl,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      children: [
+                        Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                              color: KprimaryColor,
+                              borderRadius: BorderRadius.circular(100)),
+                        ),
+                        Text(
+                          l[index],
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -263,9 +257,12 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return new Container(
-      color: Colors.white, // ADD THE COLOR YOU WANT AS BACKGROUND.
-      child: _tabBar,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30),
+      child: new Container(
+        color: Colors.white, // ADD THE COLOR YOU WANT AS BACKGROUND.
+        child: _tabBar,
+      ),
     );
   }
 
@@ -276,7 +273,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 }
 
 List l = [
-  "• بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً.",
-  "• بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً."
+  " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً",
+  " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً"
 ];
-List ll = ["• لحم مفروم | 1 كوب", "• لحم مفروم | 1 كوب"];
+List ll = [" لحم مفروم | 1 كوب", " لحم مفروم | 1 كوب"];
