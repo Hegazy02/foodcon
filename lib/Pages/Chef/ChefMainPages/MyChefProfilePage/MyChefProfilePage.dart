@@ -205,7 +205,7 @@ class MyRecipe extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             Container(
-              height: 100,
+              height: 180,
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(

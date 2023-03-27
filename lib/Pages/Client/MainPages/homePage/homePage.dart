@@ -165,7 +165,7 @@ class HomePage extends StatelessWidget {
                 height: 5,
               ),
               SizedBox(
-                height: 34.h,
+                height: 28.h,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
@@ -202,6 +202,10 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
+              CustomRows(
+                RightText: "تركات شيفات",
+                onTap: () {},
+              )
             ]),
           ),
           ///////////////////
@@ -243,7 +247,7 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
