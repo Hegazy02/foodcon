@@ -12,6 +12,7 @@ class FilterProv extends ChangeNotifier {
   bool _switchHome = false;
   bool _favoriteracipe = false;
   bool get favoriteracipe => _favoriteracipe;
+  List _favelistprov = [];
   set favoriteracipe(s) {
     _favoriteracipe = s;
     notifyListeners();
@@ -26,6 +27,7 @@ class FilterProv extends ChangeNotifier {
   int get ScreenIndex => _fullScreenIndex;
   String get follow => _follow;
   bool get switchHome => _switchHome;
+  List<dynamic> get favelistprov => _favelistprov;
   set fil1(val) {
     _page1FilteredList = val;
     notifyListeners();
@@ -71,6 +73,11 @@ class FilterProv extends ChangeNotifier {
   set removeSearchFave(val) {
     _SearchFavoritesList.remove(val);
     _SearchFavoritesList = _SearchFavoritesList.toSet().toList();
+    notifyListeners();
+  }
+
+  set favelistprov(val) {
+    _favelistprov = val;
     notifyListeners();
   }
 

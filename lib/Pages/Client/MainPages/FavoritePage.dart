@@ -4,11 +4,32 @@ import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Services/sharedPref.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class FavoritePage extends StatelessWidget {
+class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
+
+  @override
+  State<FavoritePage> createState() => _FavoritePageState();
+}
+
+class _FavoritePageState extends State<FavoritePage> {
+  List list = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    sharepref().getFavorites(list);
+
+    print("!!!!!!!!!!!!!! $list");
+    Future.delayed(
+      Duration(seconds: 2),
+      () => print("!!!!!!!!!!!!!! $list"),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +65,11 @@ class FavoritePage extends StatelessWidget {
         ),
         Consumer<FilterProv>(
           builder: (context, value, child) {
-            List ll = value.searchFav.isEmpty ? value.fav : value.searchFav;
+            if (value.favelistprov.isNotEmpty) {
+              list = value.favelistprov;
+            }
+            // value.favelistprov = list;
+            List ll = value.searchFav.isEmpty ? list : value.searchFav;
             return ll.length > 0
                 ? Column(
                     children: [
@@ -55,7 +80,7 @@ class FavoritePage extends StatelessWidget {
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
-                          itemCount: ll.length,
+                          itemCount: list.length,
                           padding: EdgeInsets.all(0),
                           itemBuilder: (context, index) {
                             return AnimationConfiguration.staggeredList(
@@ -65,17 +90,17 @@ class FavoritePage extends StatelessWidget {
                                 verticalOffset: 50.0,
                                 child: FadeInAnimation(
                                   child: CustomTile(
-                                    title: ll[index]['title'],
-                                    image: ll[index]['image'],
-                                    category: ll[index]['category'],
-                                    chefAvatar: ll[index]['chefAvatar'],
-                                    chefName: ll[index]['chefName'],
-                                    isLiked: ll[index]['isLiked'],
+                                    title: list[index]['title'],
+                                    image: list[index]['image'],
+                                    category: list[index]['category'],
+                                    chefAvatar: list[index]['chefAvatar'],
+                                    chefName: list[index]['chefName'],
+                                    isLiked: list[index]['isLiked'],
                                     onTap: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => RecipePage(
-                                            list: ll,
+                                            list: list,
                                             index: index,
                                           ),
                                         )),
@@ -83,7 +108,12 @@ class FavoritePage extends StatelessWidget {
                                         width: 60,
                                         child: IconButton(
                                             onPressed: () {
-                                              value.removeFave = ll[index];
+                                              // value.removeFave = ll[index];
+                                              sharepref().deleteFave(index + 1,
+                                                  list: list);
+                                              print("index ${index}");
+                                              value.favelistprov = list;
+
                                               if (value.searchFav.isNotEmpty) {
                                                 value.removeSearchFave =
                                                     ll[index];

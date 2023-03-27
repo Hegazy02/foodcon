@@ -131,7 +131,7 @@ class _RecipePageState extends State<RecipePage> {
                               color: Colors.orange,
                               size: 18,
                             ),
-                            Text(widget.list![widget.index!]['star']),
+                            Text("${widget.list![widget.index!]['star']}"),
                             SizedBox(
                               width: 5,
                             ),
@@ -139,7 +139,8 @@ class _RecipePageState extends State<RecipePage> {
                               Icons.alarm,
                               size: 18,
                             ),
-                            Text(widget.list![widget.index!]['min'] + "min"),
+                            Text("${widget.list![widget.index!]['min']}" +
+                                "min"),
                             Spacer(),
                             Text(
                               widget.list![widget.index!]['title'],
@@ -152,7 +153,7 @@ class _RecipePageState extends State<RecipePage> {
                           ],
                         ),
                       ),
-                      preferredSize: Size(double.infinity, 0)),
+                      preferredSize: Size(double.infinity, 50)),
                   // shape: const RoundedRectangleBorder(
                   //   borderRadius: BorderRadius.only(
                   //     bottomLeft: Radius.circular(30.0),

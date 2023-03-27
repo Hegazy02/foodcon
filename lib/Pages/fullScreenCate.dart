@@ -6,8 +6,10 @@ import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/Services/sharedPref.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FullScreenCate extends StatelessWidget {
   bool? isAll = false;
@@ -121,35 +123,22 @@ class FullScreenCate extends StatelessWidget {
                             builder: (context, value, child) {
                               print(value.fil2[value.ScreenIndex]);
                               return CiruledButton(
-                                iconColor: value.fil2[value.ScreenIndex]
-                                            ['isLiked'] ==
-                                        true
-                                    ? Colors.red
-                                    : Colors.black,
-                                icon: value.fil2[value.ScreenIndex]
-                                            ['isLiked'] ==
-                                        true
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color: Colors.white,
-                                onTap: () {
-                                  value.fil2[value.ScreenIndex]['isLiked'] =
-                                      !value.fil2[value.ScreenIndex]['isLiked'];
-                                  if (value.fil2[value.ScreenIndex]
-                                          ['isLiked'] ==
-                                      true) {
-                                    value.addFav =
-                                        value.fil2[value.ScreenIndex];
-                                  } else {
-                                    value.removeFave =
-                                        value.fil2[value.ScreenIndex];
-                                  }
-
-                                  print(
-                                      "** ${value.fil2[value.ScreenIndex]['isLiked']}");
-                                },
-                                padding: 5,
-                              );
+                                  padding: 8,
+                                  iconColor: value.fil2[value.ScreenIndex]
+                                              ['isLiked'] ==
+                                          true
+                                      ? Colors.red
+                                      : Colors.black,
+                                  icon: value.fil2[value.ScreenIndex]
+                                              ['isLiked'] ==
+                                          true
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: Colors.white,
+                                  onTap: () async {
+                                    sharepref().saveFavorites(
+                                        value, value.ScreenIndex);
+                                  });
                             },
                           ),
                         ],
