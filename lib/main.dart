@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Pages/AllCategoriesPage.dart';
+import 'package:foodcon/Pages/AllChefsPage.dart';
+import 'package:foodcon/Pages/AllPopularRecipesPage.dart.dart';
 import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
@@ -52,6 +55,9 @@ class MyApp extends StatelessWidget {
             FollowingPage().id: (context) => FollowingPage(),
             RecipePage().id: (context) => RecipePage(),
             EditprogilePage().id: (context) => EditprogilePage(),
+            AllCategoriesPage().id: (context) => AllCategoriesPage(),
+            AllChefsPage().id: (context) => AllChefsPage(),
+            AllPopularRecipesPage().id: (context) => AllPopularRecipesPage(),
           },
         );
       }),

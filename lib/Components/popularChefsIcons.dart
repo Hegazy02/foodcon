@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
+import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
+import 'package:sizer/sizer.dart';
 
 class popularChefsIcons extends StatelessWidget {
   int? index;
@@ -21,6 +23,37 @@ class popularChefsIcons extends StatelessWidget {
             backgroundImage: AssetImage(avatar != "" ? avatar : Klogo),
             radius: radius,
           )),
+    );
+  }
+}
+
+class AllChefsIcons extends StatelessWidget {
+  int index;
+  double? radius;
+  AllChefsIcons({super.key, required this.index, this.radius});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        popularChefsIcons(
+            list: popularChefsList,
+            index: index,
+            radius: radius,
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChefProfile(
+                    chefName: autoList[index]['chefName'],
+                    chefAvatar: autoList[index]['chefAvatar'],
+                    posted: autoList[index]['posted'],
+                  ),
+                ))),
+        SizedBox(
+          height: 1.5.h,
+        ),
+        Text(popularChefsList[index]['chefName'])
+      ],
     );
   }
 }

@@ -19,7 +19,6 @@ bottomSheet(context, setFun) {
                 ),
                 title: Text("Gallery"),
                 onTap: () {
-                  photofromGallery(setFun);
                   Navigator.of(context).pop();
                 },
               ),
@@ -29,7 +28,6 @@ bottomSheet(context, setFun) {
                 ),
                 title: Text("Camera"),
                 onTap: () {
-                  photofromCamera(setFun);
                   Navigator.of(context).pop();
                 },
               ),
