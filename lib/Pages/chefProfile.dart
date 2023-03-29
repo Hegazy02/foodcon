@@ -11,7 +11,7 @@ class ChefProfile extends StatelessWidget {
   String id = "chefProfile";
   String chefAvatar;
   String chefName;
-  String posted;
+  DateTime posted;
 
   ChefProfile({
     super.key,
@@ -173,7 +173,7 @@ class ChefProfile extends StatelessWidget {
                           children: [
                             Text(chefName),
                             Text(
-                              posted,
+                              "${posted}",
                               style: TextStyle(
                                   fontSize: 12, color: Colors.grey[600]),
                             )

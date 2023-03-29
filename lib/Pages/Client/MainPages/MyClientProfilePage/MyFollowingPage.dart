@@ -19,9 +19,9 @@ class FollowingPage extends StatelessWidget {
         itemBuilder: (context, index) => ListTile(
           leading: CircleAvatar(
             radius: 30,
-            backgroundImage: AssetImage(autoList[index]['chefAvatar']),
+            backgroundImage: AssetImage("${autoList[index].chefAvatar}"),
           ),
-          title: Text(autoList[index]['chefName']),
+          title: Text("${autoList[index].chefName}"),
           subtitle: Text("7 Recipes"),
           trailing: SizedBox(
             width: 30.w,

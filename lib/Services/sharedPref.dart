@@ -1,106 +1,82 @@
+import 'dart:convert';
+import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class sharepref {
   static late SharedPreferences prefs;
-  int? counter;
+  RecipeModel? savedData;
+  String? encodedData;
   instialize() async {
     prefs = await SharedPreferences.getInstance();
   }
 
-  saveFavorites(var value, index) async {
-    counter = prefs.getInt('counter');
-
-    if (counter == null || counter == 0) {
-      print("counter is null ya 3mmmm");
-      await prefs.setInt('counter', 1);
-      counter = 1;
-      await prefs.setString('favRecipeTitle1', value.fil2[index]['title']);
-      await prefs.setString(
-          'favRecipeCategory1', value.fil2[index]['category']);
-      await prefs.setString('favRecipeImage1', value.fil2[index]['image']);
-      await prefs.setString(
-          'favRecipeChefName1', value.fil2[index]['chefName']);
-      await prefs.setString(
-          'favRecipeChefAvatar1', value.fil2[index]['chefAvatar']);
-      await prefs.setDouble('favRecipeStar1', value.fil2[index]['star']);
-      await prefs.setInt('favRecipeMin1', value.fil2[index]['min']);
-      await prefs.setString('favRecipeDesc1', value.fil2[index]['desc']);
-    } else {
-      counter = counter! + 1;
-      await prefs.setInt('counter', counter!);
-      await prefs.setString(
-          'favRecipeTitle$counter', value.fil2[index]['title']);
-      await prefs.setString(
-          'favRecipeCategory$counter', value.fil2[index]['category']);
-      await prefs.setString(
-          'favRecipeImage$counter', value.fil2[index]['image']);
-      await prefs.setString(
-          'favRecipeChefName$counter', value.fil2[index]['chefName']);
-      await prefs.setString(
-          'favRecipeChefAvatar$counter', value.fil2[index]['chefAvatar']);
-      await prefs.setDouble('favRecipeStar$counter', value.fil2[index]['star']);
-      await prefs.setInt('favRecipeMin$counter', value.fil2[index]['min']);
-      await prefs.setString('favRecipeDesc$counter', value.fil2[index]['desc']);
+  saveFavorites(List<RecipeModel> value, index) async {
+    List<String>? mylist = await prefs.getStringList("mylist");
+    if (mylist == null) {
+      mylist = [];
     }
-    print(
-        "favRecipeTitle${counter}####### ${prefs.getString('favRecipeTitle${counter}')}");
-    value.fil2[index]['isLiked'] = !value.fil2[index]['isLiked'];
-    if (value.fil2[index]['isLiked'] == true) {
-      value.addFav = value.fil2[index];
-    } else {
-      value.removeFave = value.fil2[index];
-    }
-    print("** ${value.fil2[index]['isLiked']}");
-    print("#### success save");
+    Map myMap = {
+      "title": value[index].title,
+      "image": value[index].image,
+      "category": value[index].category,
+      "chefName": value[index].chefName,
+      "chefAvatar": value[index].chefAvatar,
+      "desc": value[index].desc,
+    };
+    encodedData = jsonEncode(myMap);
+    mylist.add(encodedData!);
+    await prefs.setStringList("mylist", mylist);
   }
 
-  getFavorites(List list) async {
-    counter = prefs.getInt('counter');
-    print("counter $counter");
-    if (counter != null) {
-      print("****get counter $counter");
-      for (int i = 1; i <= counter!; i++) {
-        final String? title = prefs.getString('favRecipeTitle$i');
-        final String? category = prefs.getString('favRecipeCategory$i');
-        final String? image = prefs.getString('favRecipeImage$i');
-        final String? chefName = prefs.getString('favRecipeChefName$i');
-        final String? chefAvatar = prefs.getString('favRecipeChefAvatar$i');
-        final double? Star = prefs.getDouble('favRecipeStar$i');
-        final int? min = prefs.getInt('favRecipeMin$i');
-        final String? des = prefs.getString('favRecipeDesc$i');
-        list.add({
-          "title": title,
-          "category": category,
-          "image": image,
-          "chefName": chefName,
-          "chefAvatar": chefAvatar,
-          "Star": Star,
-          "min": min,
-          "des": des,
-        });
+  Future<List<RecipeModel>> getFavorites() async {
+    List<RecipeModel> list = [];
+    List<String>? getlist;
+    getlist = await prefs.getStringList("mylist");
+    print(getlist);
+    if (getlist != null) {
+      list = await decodeList(getlist);
+    }
+    return list;
+  }
+
+  decodeList(List<String> getlist) async {
+    List<RecipeModel> list = [];
+    for (int i = 0; i < getlist.length; i++) {
+      RecipeModel decodedData =
+          await RecipeModel.fromJson(jsonDecode(getlist[i]));
+      list.add(decodedData);
+    }
+    return list;
+  }
+
+  deleteFave({RecipeModel? item, context}) async {
+    List<String>? mylist = await prefs.getStringList("mylist");
+    if (mylist == null) {
+      mylist = [];
+    }
+
+    var myprov = Provider.of<FilterProv>(context, listen: false);
+    List<RecipeModel> newlist = await decodeList(mylist);
+    deleteItem(newlist, item, mylist);
+    myprov.favelistprov = newlist;
+    prefs.setStringList("mylist", mylist);
+  }
+
+  void deleteItem(
+      List<RecipeModel> newlist, RecipeModel? item, List<String> mylist) {
+    for (var i = 0; i < newlist.length; i++) {
+      if (newlist[i].title == item!.title &&
+          newlist[i].desc == item.desc &&
+          newlist[i].image == item.image &&
+          newlist[i].posted == item.posted &&
+          newlist[i].chefAvatar == item.chefAvatar &&
+          newlist[i].chefName == item.chefName) {
+        newlist.removeAt(i);
+        mylist.removeAt(i);
+        break;
       }
     }
-  }
-
-  deleteFave(i, {List? list}) {
-    print("deleteFave list ${list}");
-    counter = prefs.getInt('counter');
-    prefs.remove('favRecipeTitle$i');
-    prefs.remove('favRecipeCategory$i');
-    prefs.remove('favRecipeImage$i');
-    prefs.remove('favRecipeChefName$i');
-    prefs.remove('favRecipeChefAvatar$i');
-    prefs.remove('favRecipeStar$i');
-    prefs.remove('favRecipeMin$i');
-    prefs.remove('favRecipeDesc$i');
-    prefs.setInt('counter', counter! - 1);
-    print("Counter $counter");
-    print("deleteFave i ${i}");
-    var s = list!.removeAt(i - 1);
-    print("ssssssssss########### $s");
-  }
-
-  removeCounter() {
-    prefs.remove('counter');
   }
 }

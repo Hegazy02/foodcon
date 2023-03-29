@@ -13,7 +13,6 @@ import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrder
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
 import 'package:foodcon/Pages/Client/masterPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
-import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:foodcon/constants.dart';
@@ -21,8 +20,11 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {
+  WidgetsFlutterBinding
+      .ensureInitialized(); //بتخلي التطبيق ميعملش رن الا لما الحاجه الي بعد سطر دا تتنقذ
+  await sharepref().instialize(); // الي هي دي
   runApp(MyApp());
-  await sharepref().instialize();
+
   // sharepref().deleteFave(-1);
   // sharepref().deleteFave(0);
   // sharepref().deleteFave(1);
@@ -31,7 +33,33 @@ void main() async {
   // sharepref().deleteFave(4);
   // sharepref().deleteFave(5);
   // sharepref().deleteFave(6);
-  // sharepref().deleteFave(7);
+  // sharepref().deleteFave(8);
+  // sharepref().deleteFave(9);
+  // sharepref().deleteFave(10);
+  // sharepref().deleteFave(11);
+  // sharepref().deleteFave(12);
+  // sharepref().deleteFave(13);
+  // sharepref().deleteFave(14);
+  // sharepref().deleteFave(15);
+  // sharepref().deleteFave(16);
+  // sharepref().deleteFave(17);
+  // sharepref().deleteFave(18);
+  // sharepref().deleteFave(19);
+  // sharepref().deleteFave(20);
+  // sharepref().deleteFave(21);
+  // sharepref().deleteFave(22);
+  // sharepref().deleteFave(23);
+  // sharepref().deleteFave(24);
+  // sharepref().deleteFave(25);
+  // sharepref().deleteFave(26);
+  // sharepref().deleteFave(27);
+  // sharepref().deleteFave(28);
+  // sharepref().deleteFave(29);
+  // sharepref().deleteFave(30);
+  // sharepref().deleteFave(31);
+  // sharepref().deleteFave(32);
+  // sharepref().deleteFave(33);
+  // sharepref().deleteFave(34);
   // sharepref().removeCounter();
 }
 

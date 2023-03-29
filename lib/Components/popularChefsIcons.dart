@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class popularChefsIcons extends StatelessWidget {
-  int? index;
-  List? list = [];
   String? image;
   double? radius;
   Function()? onTap;
-  popularChefsIcons(
-      {this.index, this.list, this.image, this.radius, this.onTap});
+  popularChefsIcons({this.image, this.radius, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    String avatar = image == null ? list![index!]['chefAvatar'] : image;
     return ClipRRect(
       child: InkWell(
           onTap: onTap,
           child: CircleAvatar(
-            backgroundImage: AssetImage(avatar != "" ? avatar : Klogo),
+            backgroundImage: AssetImage(image ?? Klogo),
             radius: radius,
           )),
     );
@@ -37,16 +34,15 @@ class AllChefsIcons extends StatelessWidget {
     return Column(
       children: [
         popularChefsIcons(
-            list: popularChefsList,
-            index: index,
+            image: popularChefsList[index]['chefAvatar'],
             radius: radius,
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ChefProfile(
-                    chefName: autoList[index]['chefName'],
-                    chefAvatar: autoList[index]['chefAvatar'],
-                    posted: autoList[index]['posted'],
+                    chefName: "${autoList[index].chefName}",
+                    chefAvatar: "${autoList[index].chefAvatar}",
+                    posted: autoList[index].posted!,
                   ),
                 ))),
         SizedBox(

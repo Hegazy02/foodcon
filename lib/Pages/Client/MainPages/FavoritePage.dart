@@ -4,6 +4,7 @@ import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -16,19 +17,12 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  List list = [];
-
+  List<RecipeModel>? list = [];
   @override
   void initState() {
     super.initState();
-
-    sharepref().getFavorites(list);
-
-    print("!!!!!!!!!!!!!! $list");
-    Future.delayed(
-      Duration(seconds: 2),
-      () => print("!!!!!!!!!!!!!! $list"),
-    );
+    var myprov = Provider.of<FilterProv>(context, listen: false);
+    myprov.getsavedDate();
   }
 
   @override
@@ -51,11 +45,9 @@ class _FavoritePageState extends State<FavoritePage> {
         Consumer<FilterProv>(
           builder: (context, valprov, child) {
             return CustomSearchBar(
-              onChanged: (value) {
-                valprov.searchFav = valprov.fav.where((element) {
-                  return element['title']
-                      .toString()
-                      .startsWith(value.toString());
+              onChanged: (value) async {
+                valprov.searchFav = valprov.favelistprov.where((element) {
+                  return element.title.toString().startsWith(value.toString());
                 }).toList();
                 valprov.searchFav = value.isEmpty ? [] : valprov.searchFav;
                 print("********${valprov.searchFav}");
@@ -65,12 +57,14 @@ class _FavoritePageState extends State<FavoritePage> {
         ),
         Consumer<FilterProv>(
           builder: (context, value, child) {
-            if (value.favelistprov.isNotEmpty) {
-              list = value.favelistprov;
-            }
-            // value.favelistprov = list;
-            List ll = value.searchFav.isEmpty ? list : value.searchFav;
-            return ll.length > 0
+            list = value.favelistprov;
+            print("=============");
+
+            List<RecipeModel>? ll =
+                value.searchFav.isEmpty ? list : value.searchFav;
+            print("@@@@@@@@@@@@@@@@@ my ll");
+            print(ll);
+            return ll!.length > 0
                 ? Column(
                     children: [
                       SizedBox(
@@ -80,7 +74,7 @@ class _FavoritePageState extends State<FavoritePage> {
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
-                          itemCount: list.length,
+                          itemCount: ll.length,
                           padding: EdgeInsets.all(0),
                           itemBuilder: (context, index) {
                             return AnimationConfiguration.staggeredList(
@@ -89,46 +83,46 @@ class _FavoritePageState extends State<FavoritePage> {
                               child: SlideAnimation(
                                 verticalOffset: 50.0,
                                 child: FadeInAnimation(
-                                  child: CustomTile(
-                                    title: list[index]['title'],
-                                    image: list[index]['image'],
-                                    category: list[index]['category'],
-                                    chefAvatar: list[index]['chefAvatar'],
-                                    chefName: list[index]['chefName'],
-                                    isLiked: list[index]['isLiked'],
-                                    onTap: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => RecipePage(
-                                            list: list,
-                                            index: index,
-                                          ),
-                                        )),
-                                    trailing: SizedBox(
-                                        width: 60,
-                                        child: IconButton(
-                                            onPressed: () {
-                                              // value.removeFave = ll[index];
-                                              sharepref().deleteFave(index + 1,
-                                                  list: list);
-                                              print("index ${index}");
-                                              value.favelistprov = list;
+                                    child: CustomTile(
+                                  title: ll[index].title!,
+                                  category: ll[index].category!,
+                                  image: ll[index].image,
+                                  chefName: ll[index].chefName!,
+                                  chefAvatar: ll[index].chefAvatar,
 
-                                              if (value.searchFav.isNotEmpty) {
-                                                value.removeSearchFave =
-                                                    ll[index];
-                                              }
+                                  // isLiked: list[index]['isLiked'],
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => RecipePage(
+                                          list: ll,
+                                          index: index,
+                                        ),
+                                      )),
+                                  trailing: SizedBox(
+                                      width: 60,
+                                      child: IconButton(
+                                          onPressed: () {
+                                            sharepref().deleteFave(
+                                                item: ll[index],
+                                                context: context);
 
-                                              print("******${value.searchFav}");
-                                              print("******${ll}");
-                                              print("******${value.fav}");
-                                            },
-                                            icon: Icon(
-                                              Icons.favorite,
-                                              color: Colors.red,
-                                            ))),
-                                  ),
-                                ),
+                                            // value.favelistprov = ll;
+
+                                            if (value.searchFav.isNotEmpty) {
+                                              value.removeSearchFave =
+                                                  ll[index];
+                                            }
+
+                                            // print("******${value.searchFav}");
+                                            // print("******${ll}");
+                                            // print("******${value.fav}");
+                                          },
+                                          icon: Icon(
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                          ))),
+                                )),
                               ),
                             );
                           },

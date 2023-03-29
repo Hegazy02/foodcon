@@ -22,7 +22,7 @@ class CategoryIcons extends StatelessWidget {
                   value.isCate = index;
                   value.fil2 = autoList
                       .where((element) =>
-                          element['category'] == foodList[index]['category'])
+                          element.category == foodList[index]['category'])
                       .toList();
                 },
                 child: Container(

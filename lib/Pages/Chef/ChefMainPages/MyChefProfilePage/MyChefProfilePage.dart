@@ -159,7 +159,7 @@ class ProfilePage extends StatelessWidget {
                         children: [
                           Text("Hegazy"),
                           Text(
-                            autoList[index]['posted'],
+                            "${autoList[index].posted}",
                             style: TextStyle(
                                 fontSize: 12, color: Colors.grey[600]),
                           )
@@ -209,7 +209,7 @@ class MyRecipe extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(autoList[index]['image']),
+                    image: AssetImage("${autoList[index].image}"),
                     fit: BoxFit.fill),
               ),
             ),
@@ -236,7 +236,7 @@ class MyRecipe extends StatelessWidget {
                           SizedBox(
                             width: 3.w,
                           ),
-                          Text("${autoList[index]['title']}",
+                          Text("${autoList[index].title}",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold)),
@@ -252,11 +252,11 @@ class MyRecipe extends StatelessWidget {
                             color: Colors.white,
                           ),
                           Text(
-                            "${autoList[index]['min']}",
+                            "${autoList[index].min}",
                             style: TextStyle(color: Colors.white),
                           ),
                           Spacer(),
-                          Text("${autoList[index]['level']}",
+                          Text("${autoList[index].level}",
                               style: TextStyle(color: Colors.white)),
                           SizedBox(
                             width: 3.w,
@@ -285,7 +285,7 @@ class MyRecipe extends StatelessWidget {
                       size: 14,
                     ),
                     Text(
-                      "${autoList[index]['star']}",
+                      "${autoList[index].star}",
                       style: TextStyle(color: Colors.white),
                     )
                   ],

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
+import 'package:foodcon/Services/sharedPref.dart';
 
 class FilterProv extends ChangeNotifier {
-  List _page1FilteredList = [];
-  List _page2FilteredList = [];
-  List _favoritesList = [];
-  List _SearchFavoritesList = [];
+  FilterProv() {}
+
+  List<RecipeModel> _page1FilteredList = [];
+  List<RecipeModel> _page2FilteredList = [];
+  List<RecipeModel> _favoritesList = [];
+  List<RecipeModel> _SearchFavoritesList = [];
   int _isGridPressed = 1;
   int _isCatePressed = 0;
   int _fullScreenIndex = 0;
@@ -12,28 +16,32 @@ class FilterProv extends ChangeNotifier {
   bool _switchHome = false;
   bool _favoriteracipe = false;
   bool get favoriteracipe => _favoriteracipe;
-  List _favelistprov = [];
+  List<RecipeModel> _favelistprov = [];
   set favoriteracipe(s) {
     _favoriteracipe = s;
     notifyListeners();
   }
 
-  List<dynamic> get fil1 => _page1FilteredList;
-  List<dynamic> get fil2 => _page2FilteredList;
-  List<dynamic> get fav => _favoritesList;
-  List<dynamic> get searchFav => _SearchFavoritesList;
+  lisen() {
+    notifyListeners();
+  }
+
+  List<RecipeModel> get fil1 => _page1FilteredList;
+  List<RecipeModel> get fil2 => _page2FilteredList;
+  List<RecipeModel> get fav => _favoritesList;
+  List<RecipeModel> get searchFav => _SearchFavoritesList;
   int get isGird => _isGridPressed;
   int get isCate => _isCatePressed;
   int get ScreenIndex => _fullScreenIndex;
   String get follow => _follow;
   bool get switchHome => _switchHome;
-  List<dynamic> get favelistprov => _favelistprov;
-  set fil1(val) {
+  List<RecipeModel> get favelistprov => _favelistprov;
+  set fil1(List<RecipeModel> val) {
     _page1FilteredList = val;
     notifyListeners();
   }
 
-  set fil2(val) {
+  set fil2(List<RecipeModel> val) {
     _page2FilteredList = val;
     notifyListeners();
   }
@@ -53,30 +61,35 @@ class FilterProv extends ChangeNotifier {
     notifyListeners();
   }
 
-  set addFav(val) {
+  set fav(List<RecipeModel> val) {
+    _favoritesList = val;
+    notifyListeners();
+  }
+
+  set addFav(RecipeModel val) {
     _favoritesList.add(val);
     _favoritesList = _favoritesList.toSet().toList();
     notifyListeners();
   }
 
-  set removeFave(val) {
+  set removeFave(RecipeModel val) {
     _favoritesList.remove(val);
     _favoritesList = _favoritesList.toSet().toList();
     notifyListeners();
   }
 
-  set searchFav(val) {
+  set searchFav(List<RecipeModel> val) {
     _SearchFavoritesList = val;
     notifyListeners();
   }
 
-  set removeSearchFave(val) {
+  set removeSearchFave(RecipeModel val) {
     _SearchFavoritesList.remove(val);
     _SearchFavoritesList = _SearchFavoritesList.toSet().toList();
     notifyListeners();
   }
 
-  set favelistprov(val) {
+  set favelistprov(List<RecipeModel> val) {
     _favelistprov = val;
     notifyListeners();
   }
@@ -94,5 +107,13 @@ class FilterProv extends ChangeNotifier {
   changeSwitch() {
     _switchHome = !_switchHome;
     notifyListeners();
+  }
+
+  getsavedDate() async {
+    _favelistprov = await sharepref().getFavorites();
+    print("#######asdasd##########");
+    print(_favelistprov);
+    notifyListeners();
+    // return list;
   }
 }

@@ -77,8 +77,8 @@ class MainPostersCatergoies extends StatelessWidget {
           print("**fil2 ${value.fil2}");
         } else {
           value.fil2 = autoList
-              .where((element) =>
-                  element['category'] == foodList[index]['category'])
+              .where(
+                  (element) => element.category == foodList[index]['category'])
               .toList();
           print("**fil2 ${value.fil2}");
         }
