@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 
-List autoList = [
-  {
+List<RecipeModel> autoList = [
+  RecipeModel.fromJson({
     "title": "c",
     "category": "Pasta",
     "image": "assets/images/home/recipes/recipe1.jpg",
@@ -13,9 +14,9 @@ List autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Easy",
-    "posted": "5 Pm",
-  },
-  {
+    "posted": DateTime.now(),
+  }),
+  RecipeModel.fromJson({
     "title": "مكرونة بالصوص الاحمر",
     "category": "Pasta",
     "image": "assets/images/home/recipes/recipe1.jpg",
@@ -27,9 +28,9 @@ List autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Easy",
-    "posted": "5 Pm",
-  },
-  {
+    "posted": DateTime.now(),
+  }),
+  RecipeModel.fromJson({
     "title": "مكرونة بالصوص الاحمر",
     "category": "Pizza",
     "image": "assets/images/home/recipes/recipe1.jpg",
@@ -41,9 +42,9 @@ List autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Medium",
-    "posted": "10 Pm",
-  },
-  {
+    "posted": DateTime.now(),
+  }),
+  RecipeModel.fromJson({
     "title": "فراخ",
     "category": "Chickens",
     "image": "assets/images/home/recipes/recipe2.jpg",
@@ -55,92 +56,104 @@ List autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Easy",
-    "posted": "12 Pm",
-  },
-  {
-    "title": "فراخ",
-    "category": "Fried",
-    "image": "assets/images/home/recipes/recipe2.jpg",
-    "chefName": "omer",
-    "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
-    "star": 4.5,
-    "min": 30,
-    "isLiked": false,
-    "desc":
-        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
-    "level": "Hard",
-    "posted": "10 pm",
-  },
-  {
-    "title": "فراخ مقلية",
-    "category": "Chickens",
-    "image": "assets/images/home/recipes/recipe3.jpg",
-    "chefName": "Hegazy",
-    "chefAvatar": "${popularChefsPath}chef2.jpg",
-    "star": 4.3,
-    "min": 15,
-    "isLiked": false,
-    "desc":
-        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
-    "level": "Easy",
-    "posted": "1 Pm",
-  },
-  {
-    "title": "فطيرة توت",
-    "category": "Desserts",
-    "image": "assets/images/home/recipes/recipe4.jpg",
-    "chefName": "Sakr",
-    "chefAvatar": "${popularChefsPath}chef3.jpg",
-    "star": 4.1,
-    "min": 17,
-    "isLiked": false,
-    "desc":
-        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
-    "level": "Easy",
-    "posted": "3 Am",
-  },
-  {
-    "title": "برجر",
-    "category": "Burger",
-    "image": "assets/images/home/recipes/recipe5.jpg",
-    "chefName": "Dude",
-    "chefAvatar": "${popularChefsPath}chef4.jpg",
-    "star": 3.7,
-    "min": 5,
-    "isLiked": false,
-    "desc":
-        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
-    "level": "Easy",
-    "posted": "10 Pm",
-  },
-  {
-    "title": "beef",
-    "category": "Burger",
-    "image": "assets/images/home/recipes/recipe6.jpg",
-    "chefName": "Dude",
-    "chefAvatar": "${popularChefsPath}chef5.jpg",
-    "star": 2.6,
-    "min": 10,
-    "isLiked": true,
-    "desc":
-        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
-    "level": "Easy",
-    "posted": "2 Pm",
-  },
-  {
-    "title": "beef",
-    "category": "Shawrma",
-    "image": "assets/images/home/recipes/recipe6.jpg",
-    "chefName": "Dude",
-    "chefAvatar": "${popularChefsPath}chef5.jpg",
-    "star": 2.6,
-    "min": 10,
-    "isLiked": true,
-    "desc":
-        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
-    "level": "Easy",
-    "posted": "12 Pm",
-  },
+    "posted": DateTime.now(),
+  }),
+  RecipeModel.fromJson(
+    {
+      "title": "فراخ",
+      "category": "Fried",
+      "image": "assets/images/home/recipes/recipe2.jpg",
+      "chefName": "omer",
+      "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
+      "star": 4.5,
+      "min": 30,
+      "isLiked": false,
+      "desc":
+          "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+      "level": "Hard",
+      "posted": DateTime.now(),
+    },
+  ),
+  RecipeModel.fromJson(
+    {
+      "title": "فراخ مقلية",
+      "category": "Chickens",
+      "image": "assets/images/home/recipes/recipe3.jpg",
+      "chefName": "Hegazy",
+      "chefAvatar": "${popularChefsPath}chef2.jpg",
+      "star": 4.3,
+      "min": 15,
+      "isLiked": false,
+      "desc":
+          "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+      "level": "Easy",
+      "posted": DateTime.now(),
+    },
+  ),
+  RecipeModel.fromJson(
+    {
+      "title": "فطيرة توت",
+      "category": "Desserts",
+      "image": "assets/images/home/recipes/recipe4.jpg",
+      "chefName": "Sakr",
+      "chefAvatar": "${popularChefsPath}chef3.jpg",
+      "star": 4.1,
+      "min": 17,
+      "isLiked": false,
+      "desc":
+          "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+      "level": "Easy",
+      "posted": DateTime.now(),
+    },
+  ),
+  RecipeModel.fromJson(
+    {
+      "title": "برجر",
+      "category": "Burger",
+      "image": "assets/images/home/recipes/recipe5.jpg",
+      "chefName": "Dude",
+      "chefAvatar": "${popularChefsPath}chef4.jpg",
+      "star": 3.7,
+      "min": 5,
+      "isLiked": false,
+      "desc":
+          "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+      "level": "Easy",
+      "posted": DateTime.now(),
+    },
+  ),
+  RecipeModel.fromJson(
+    {
+      "title": "beef",
+      "category": "Burger",
+      "image": "assets/images/home/recipes/recipe6.jpg",
+      "chefName": "Dude",
+      "chefAvatar": "${popularChefsPath}chef5.jpg",
+      "star": 2.6,
+      "min": 10,
+      "isLiked": true,
+      "desc":
+          "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+      "level": "Easy",
+      "posted": DateTime.now(),
+    },
+  ),
+  RecipeModel.fromJson(
+    {
+      "title": "beef",
+      "category": "Shawrma",
+      "image": "assets/images/home/recipes/recipe6.jpg",
+      "chefName": "Dude",
+      "chefAvatar": "${popularChefsPath}chef5.jpg",
+      "star": 2.6,
+      "min": 10,
+      "isLiked": true,
+      "desc":
+          "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
+      "level": "Easy",
+      "posted": DateTime.now(),
+    },
+  ),
 ];
 String mainPAth = "assets/images/home/main/";
 

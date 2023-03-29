@@ -7,9 +7,10 @@ import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 
 class RecipePage extends StatefulWidget {
-  List? list = [];
+  List<RecipeModel>? list = [];
   int? index;
   String id = "RecipePage";
   RecipePage({super.key, this.list, this.index});
@@ -71,18 +72,18 @@ class _RecipePageState extends State<RecipePage> {
                       title: Row(
                         children: [
                           popularChefsIcons(
-                            image: widget.list![widget.index!]['chefAvatar'],
+                            image: widget.list![widget.index!].chefAvatar,
                             radius: 15,
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ChefProfile(
-                                      chefName: autoList[widget.index!]
-                                          ['chefName'],
-                                      chefAvatar: autoList[widget.index!]
-                                          ['chefAvatar'],
-                                      posted: autoList[widget.index!]['posted'],
+                                      chefName:
+                                          "${autoList[widget.index!].chefName}",
+                                      chefAvatar:
+                                          "${autoList[widget.index!].chefAvatar}",
+                                      posted: autoList[widget.index!].posted!,
                                     ),
                                   ));
                             },
@@ -91,7 +92,7 @@ class _RecipePageState extends State<RecipePage> {
                             width: 5,
                           ),
                           Text(
-                            widget.list![widget.index!]['chefName'],
+                            "${widget.list![widget.index!].chefName}",
                             style: TextStyle(fontSize: 12),
                           )
                         ],
@@ -100,7 +101,7 @@ class _RecipePageState extends State<RecipePage> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
-                                widget.list![widget.index!]['image'],
+                                "${widget.list![widget.index!].image}",
                               ),
                               fit: BoxFit.fill),
                         ),
@@ -131,7 +132,7 @@ class _RecipePageState extends State<RecipePage> {
                               color: Colors.orange,
                               size: 18,
                             ),
-                            Text("${widget.list![widget.index!]['star']}"),
+                            Text("${widget.list![widget.index!].star}"),
                             SizedBox(
                               width: 5,
                             ),
@@ -139,11 +140,10 @@ class _RecipePageState extends State<RecipePage> {
                               Icons.alarm,
                               size: 18,
                             ),
-                            Text("${widget.list![widget.index!]['min']}" +
-                                "min"),
+                            Text("${widget.list![widget.index!].min}" + "min"),
                             Spacer(),
                             Text(
-                              widget.list![widget.index!]['title'],
+                              "${widget.list![widget.index!].title}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -191,7 +191,7 @@ class _RecipePageState extends State<RecipePage> {
                       "كبة اللحم بالبرغل ... تميزي دائماً بتقديم أطيب وصفات المقبلات الشامية الرائعة من وصفات الكبة على سفرتك، تعلمي خطوات العمل البسيطة وقدميها على سفرتك ساخنة"),
                 ),
                 ListView.builder(
-                  itemCount: ll.length,
+                  itemCount: list2.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -205,7 +205,7 @@ class _RecipePageState extends State<RecipePage> {
                               borderRadius: BorderRadius.circular(100)),
                         ),
                         Text(
-                          ll[index],
+                          list2[index],
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
@@ -215,7 +215,7 @@ class _RecipePageState extends State<RecipePage> {
                   ),
                 ),
                 ListView.builder(
-                  itemCount: l.length,
+                  itemCount: list1.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -229,7 +229,7 @@ class _RecipePageState extends State<RecipePage> {
                               borderRadius: BorderRadius.circular(100)),
                         ),
                         Text(
-                          l[index],
+                          list1[index],
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
@@ -273,8 +273,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-List l = [
+List list1 = [
   " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً",
   " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً"
 ];
-List ll = [" لحم مفروم | 1 كوب", " لحم مفروم | 1 كوب"];
+List list2 = [" لحم مفروم | 1 كوب", " لحم مفروم | 1 كوب"];

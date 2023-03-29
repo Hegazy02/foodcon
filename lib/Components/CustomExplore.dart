@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MainPosters.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 
 class CustomExplore extends StatelessWidget {
   final double? height;
@@ -9,7 +10,7 @@ class CustomExplore extends StatelessWidget {
   int index;
   String? title;
   bool? isGrid = false;
-  List myList = [];
+  List<RecipeModel> myList = [];
   CustomExplore(
       {super.key,
       required this.myList,
@@ -21,15 +22,15 @@ class CustomExplore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map item = categoriesList.firstWhere(
-        (element) => element['category'] == myList[index]['category']);
-    if (isGrid == true && myList[index]['title'].toString().length > 14) {
-      title = "..${myList[index]['title'].toString().substring(0, 15)}";
-    } else if (isGrid == false &&
-        myList[index]['title'].toString().length > 19) {
-      title = "..${myList[index]['title'].toString().substring(0, 19)}";
+    Map item = categoriesList
+        .firstWhere((element) => element['category'] == myList[index].category);
+
+    if (isGrid == true && myList[index].title.toString().length > 14) {
+      title = "..${myList[index].title.toString().substring(0, 15)}";
+    } else if (isGrid == false && myList[index].title.toString().length > 19) {
+      title = "..${myList[index].title.toString().substring(0, 19)}";
     } else {
-      title = myList[index]['title'];
+      title = myList[index].title;
     }
 
     return Row(
@@ -44,7 +45,7 @@ class CustomExplore extends StatelessWidget {
               child: MainPosters(
                 index: index,
                 width: width,
-                image: myList[index]['image'],
+                image: myList[index].image,
                 sigmaX: 0.5,
                 sigmaY: 0.5,
                 onTap: onTap,
@@ -100,7 +101,7 @@ class CustomExplore extends StatelessWidget {
                         color: Colors.grey,
                       ),
                       Text(
-                        "${myList[index]['min']}",
+                        "${myList[index].min}",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
@@ -122,14 +123,14 @@ class CustomExplore extends StatelessWidget {
                         color: Colors.orange,
                       ),
                       Text(
-                        "${myList[index]['star']}",
+                        "${myList[index].star}",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
                       ),
                       Spacer(),
                       Text(
-                        "${myList[index]['chefName']}",
+                        "${myList[index].chefName}",
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),

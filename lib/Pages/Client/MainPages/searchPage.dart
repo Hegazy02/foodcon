@@ -4,6 +4,7 @@ import 'package:foodcon/Components/CustomExplore.dart';
 import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
@@ -33,7 +34,7 @@ class _SearchPageState extends State<SearchPage> {
               onChanged: (value) {
                 searchVal = value;
                 valprov.fil2 = autoList.where((element) {
-                  return element['title']
+                  return element.title
                       .toString()
                       .startsWith(searchVal.toString());
                 }).toList();
@@ -96,7 +97,7 @@ class _SearchPageState extends State<SearchPage> {
         ),
         Consumer<FilterProv>(
           builder: (context, value, child) {
-            List? l = value.fil2.isEmpty ? autoList : value.fil2;
+            List<RecipeModel> l = value.fil2.isEmpty ? autoList : value.fil2;
             return value.isGird == 1
                 ? Expanded(
                     child: AnimationLimiter(
@@ -122,12 +123,12 @@ class _SearchPageState extends State<SearchPage> {
                                           ),
                                         ));
                                   },
-                                  title: l[index]['title'],
-                                  image: l[index]['image'],
-                                  category: l[index]['category'],
-                                  chefAvatar: l[index]['chefAvatar'],
-                                  chefName: l[index]['chefName'],
-                                  isLiked: l[index]['isLiked'],
+                                  title: "${l[index].title}",
+                                  image: "${l[index].image}",
+                                  category: "${l[index].category}",
+                                  chefAvatar: "${l[index].chefAvatar}",
+                                  chefName: "${l[index].chefName}",
+                                  isLiked: l[index].isLiked,
                                   trailing: SizedBox(
                                     width: 60,
                                     child: Row(
@@ -136,7 +137,7 @@ class _SearchPageState extends State<SearchPage> {
                                           Icons.star,
                                           color: Colors.orange,
                                         ),
-                                        Text("${l[index]['star']}")
+                                        Text("${l[index].star}")
                                       ],
                                     ),
                                   ),

@@ -10,6 +10,7 @@ import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -65,7 +66,7 @@ class HomePage extends StatelessWidget {
                             searchVal = value;
 
                             valprov.fil1 = autoList.where((element) {
-                              return element['title']
+                              return element.title
                                   .toString()
                                   .startsWith(searchVal.toString());
                             }).toList();
@@ -179,7 +180,7 @@ class HomePage extends StatelessWidget {
                   itemCount: popularRecipesList.length,
                   itemBuilder: (context, index) {
                     return popularRecipes(
-                      l: autoList,
+                      popularRecipeshomeList: autoList,
                       index: index,
                       onTap: () => Navigator.push(
                           context,
@@ -193,9 +194,9 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChefProfile(
-                              chefName: autoList[index]['chefName'],
-                              chefAvatar: autoList[index]['chefAvatar'],
-                              posted: autoList[index]['posted'],
+                              chefName: "${autoList[index].chefName}",
+                              chefAvatar: "${autoList[index].chefAvatar}",
+                              posted: autoList[index].posted!,
                             ),
                           )),
                     );
@@ -226,9 +227,9 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ChefProfile(
-                                    chefName: autoList[index]['chefName'],
-                                    chefAvatar: autoList[index]['chefAvatar'],
-                                    posted: autoList[index]['posted'],
+                                    chefName: "${autoList[index].chefName}",
+                                    chefAvatar: "${autoList[index].chefAvatar}",
+                                    posted: autoList[index].posted!,
                                   ),
                                 ));
                             print("www");
@@ -255,12 +256,15 @@ class HomePage extends StatelessWidget {
 }
 
 class popularRecipes extends StatelessWidget {
-  List l;
+  List<RecipeModel> popularRecipeshomeList;
   int? index;
   Function()? onTap;
   Function()? onTapchefAvatar;
   popularRecipes(
-      {required this.l, this.index, this.onTap, this.onTapchefAvatar});
+      {required this.popularRecipeshomeList,
+      this.index,
+      this.onTap,
+      this.onTapchefAvatar});
 
   @override
   Widget build(BuildContext context) {
@@ -277,7 +281,8 @@ class popularRecipes extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: AssetImage(l[index!]['image']),
+                    image:
+                        AssetImage("${popularRecipeshomeList[index!].image}"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -300,12 +305,12 @@ class popularRecipes extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "${l[index!]['star']}",
+                            "${popularRecipeshomeList[index!].star}",
                             style: TextStyle(color: Colors.white),
                           ),
                           Spacer(),
                           Text(
-                            "${l[index!]['min']} min",
+                            "${popularRecipeshomeList[index!].min} min",
                             style: TextStyle(color: Colors.white),
                           ),
                           Spacer(),
@@ -327,7 +332,8 @@ class popularRecipes extends StatelessWidget {
               child: GestureDetector(
                 onTap: onTapchefAvatar,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage(l[index!]['chefAvatar']),
+                  backgroundImage: AssetImage(
+                      "${popularRecipeshomeList[index!].chefAvatar}"),
                   child: Text(""),
                   radius: 18.sp,
                 ),
@@ -336,7 +342,7 @@ class popularRecipes extends StatelessWidget {
             SizedBox(
               width: 5,
             ),
-            Text(l[index!]['chefName']),
+            Text("${popularRecipeshomeList[index!].chefName}"),
           ],
         ),
         // SizedBox(

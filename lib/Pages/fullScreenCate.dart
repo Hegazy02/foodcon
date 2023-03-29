@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/CiruledButton.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
@@ -9,7 +10,6 @@ import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FullScreenCate extends StatelessWidget {
   bool? isAll = false;
@@ -23,7 +23,7 @@ class FullScreenCate extends StatelessWidget {
     return Scaffold(body: Consumer<FilterProv>(
       builder: (context, value, child) {
         if (isAll == false) {
-          cateType = value.fil2[0]['category'];
+          cateType = value.fil2[0].category;
 
           print("**cateType ${cateType}*");
         } else {
@@ -48,7 +48,7 @@ class FullScreenCate extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage(value.fil2[index]['image']),
+                              image: AssetImage("${value.fil2[index].image}"),
                               fit: BoxFit.fill)),
                     ),
                     Container(
@@ -95,18 +95,16 @@ class FullScreenCate extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           popularChefsIcons(
-                            index: value.ScreenIndex,
-                            list: value.fil2,
+                            image: value.fil2[value.ScreenIndex].chefAvatar,
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ChefProfile(
-                                    chefName: autoList[value.ScreenIndex]
-                                        ['chefName'],
-                                    chefAvatar: autoList[value.ScreenIndex]
-                                        ['chefAvatar'],
-                                    posted: autoList[value.ScreenIndex]
-                                        ['posted'],
+                                    chefName:
+                                        "${autoList[value.ScreenIndex].chefName}",
+                                    chefAvatar:
+                                        "${autoList[value.ScreenIndex].chefAvatar}",
+                                    posted: autoList[value.ScreenIndex].posted!,
                                   ),
                                 )),
                           ),
@@ -114,7 +112,7 @@ class FullScreenCate extends StatelessWidget {
                             width: 2.5.w,
                           ),
                           Text(
-                            value.fil2[value.ScreenIndex]['chefName'],
+                            "${value.fil2[value.ScreenIndex].chefName}",
                             style:
                                 TextStyle(fontSize: 14.sp, color: Colors.white),
                           ),
@@ -124,20 +122,32 @@ class FullScreenCate extends StatelessWidget {
                               print(value.fil2[value.ScreenIndex]);
                               return CiruledButton(
                                   padding: 8,
-                                  iconColor: value.fil2[value.ScreenIndex]
-                                              ['isLiked'] ==
-                                          true
-                                      ? Colors.red
-                                      : Colors.black,
-                                  icon: value.fil2[value.ScreenIndex]
-                                              ['isLiked'] ==
+                                  iconColor:
+                                      value.fil2[value.ScreenIndex].isLiked ==
+                                              true
+                                          ? Colors.red
+                                          : Colors.black,
+                                  icon: value.fil2[value.ScreenIndex].isLiked ==
                                           true
                                       ? Icons.favorite
                                       : Icons.favorite_border,
                                   color: Colors.white,
                                   onTap: () async {
-                                    sharepref().saveFavorites(
-                                        value, value.ScreenIndex);
+                                    if (value.fil2[value.ScreenIndex].isLiked ==
+                                        false) {
+                                      sharepref().saveFavorites(
+                                          value.fil2, value.ScreenIndex);
+                                    } else {
+                                      // sharepref().deleteFave(value.ScreenIndex);
+                                    }
+                                    value.fil2[value.ScreenIndex].isLiked =
+                                        !value.fil2[value.ScreenIndex].isLiked!;
+
+                                    value.lisen();
+                                    print(
+                                        "00000000000000000000000000000000000000}");
+                                    print(
+                                        "${value.fil2[value.ScreenIndex].isLiked}");
                                   });
                             },
                           ),
@@ -146,7 +156,7 @@ class FullScreenCate extends StatelessWidget {
                       SizedBox(
                         height: 1.h,
                       ),
-                      Text(value.fil2[value.ScreenIndex]['desc'],
+                      Text("${value.fil2[value.ScreenIndex].desc}",
                           style: TextStyle(color: Colors.white)),
                       SizedBox(
                         height: 5.h,
