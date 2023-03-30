@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
@@ -11,7 +12,7 @@ class ChefProfile extends StatelessWidget {
   String id = "chefProfile";
   String chefAvatar;
   String chefName;
-  DateTime posted;
+  int posted;
 
   ChefProfile({
     super.key,
@@ -188,7 +189,16 @@ class ChefProfile extends StatelessWidget {
                       onTap: () {
                         print("object");
                       },
-                      child: MyRecipe(index: index),
+                      child: MyRecipe(
+                        index: index,
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecipePage(
+                                recipe: autoList[index],
+                              ),
+                            )),
+                      ),
                     ),
                   ],
                 );

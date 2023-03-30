@@ -12,19 +12,22 @@ class sharepref {
     prefs = await SharedPreferences.getInstance();
   }
 
-  saveFavorites(List<RecipeModel> value, index) async {
+  saveFavorites({required RecipeModel item}) async {
     List<String>? mylist = await prefs.getStringList("mylist");
     if (mylist == null) {
       mylist = [];
     }
     Map myMap = {
-      "title": value[index].title,
-      "image": value[index].image,
-      "category": value[index].category,
-      "chefName": value[index].chefName,
-      "chefAvatar": value[index].chefAvatar,
-      "desc": value[index].desc,
+      "title": item.title,
+      "image": item.image,
+      "category": item.category,
+      "chefName": item.chefName,
+      "chefAvatar": item.chefAvatar,
+      "desc": item.desc,
+      "posted": item.posted
     };
+    print("******my map ***************");
+    print(myMap);
     encodedData = jsonEncode(myMap);
     mylist.add(encodedData!);
     await prefs.setStringList("mylist", mylist);
@@ -51,7 +54,7 @@ class sharepref {
     return list;
   }
 
-  deleteFave({RecipeModel? item, context}) async {
+  deleteFave({required RecipeModel? item, required context}) async {
     List<String>? mylist = await prefs.getStringList("mylist");
     if (mylist == null) {
       mylist = [];
@@ -59,6 +62,12 @@ class sharepref {
 
     var myprov = Provider.of<FilterProv>(context, listen: false);
     List<RecipeModel> newlist = await decodeList(mylist);
+
+    newlist.forEach((element) {
+      print("*********** new list *****************");
+      print(element.posted);
+    });
+
     deleteItem(newlist, item, mylist);
     myprov.favelistprov = newlist;
     prefs.setStringList("mylist", mylist);
@@ -75,8 +84,13 @@ class sharepref {
           newlist[i].chefName == item.chefName) {
         newlist.removeAt(i);
         mylist.removeAt(i);
+        print("****************item deleted***********");
         break;
       }
     }
+  }
+
+  deleteAll() async {
+    await prefs.remove("mylist");
   }
 }

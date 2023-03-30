@@ -23,9 +23,9 @@ void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); //بتخلي التطبيق ميعملش رن الا لما الحاجه الي بعد سطر دا تتنقذ
   await sharepref().instialize(); // الي هي دي
+  // await sharepref().deleteAll();
   runApp(MyApp());
 
-  // sharepref().deleteFave(-1);
   // sharepref().deleteFave(0);
   // sharepref().deleteFave(1);
   // sharepref().deleteFave(2);
@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<FilterProv>(
-          create: (context) => FilterProv(),
+          create: (context) => FilterProv()..fav,
         )
       ],
       child: Sizer(builder: (context, orientation, deviceType) {
@@ -93,7 +93,6 @@ class MyApp extends StatelessWidget {
             MyOrdersPage().id: (context) => MyOrdersPage(),
             ReceivedOrdersPage().id: (context) => ReceivedOrdersPage(),
             FollowingPage().id: (context) => FollowingPage(),
-            RecipePage().id: (context) => RecipePage(),
             EditprogilePage().id: (context) => EditprogilePage(),
             AllCategoriesPage().id: (context) => AllCategoriesPage(),
             AllChefsPage().id: (context) => AllChefsPage(),

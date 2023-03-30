@@ -8,7 +8,7 @@ class RecipeModel {
   String? level;
   double? star;
   int? min;
-  DateTime? posted;
+  var posted;
   bool? isLiked = false;
   // String? desc;
   RecipeModel(

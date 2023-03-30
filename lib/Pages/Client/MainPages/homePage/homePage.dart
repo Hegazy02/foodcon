@@ -166,7 +166,7 @@ class HomePage extends StatelessWidget {
                 height: 5,
               ),
               SizedBox(
-                height: 28.h,
+                height: 24.h,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
@@ -186,8 +186,7 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => RecipePage(
-                              list: autoList,
-                              index: index,
+                              recipe: autoList[index],
                             ),
                           )),
                       onTapchefAvatar: () => Navigator.push(
@@ -273,7 +272,7 @@ class popularRecipes extends StatelessWidget {
       children: [
         Container(
             width: 120,
-            height: 20.h,
+            height: 16.h,
             child: InkWell(
               onTap: onTap,
               splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),

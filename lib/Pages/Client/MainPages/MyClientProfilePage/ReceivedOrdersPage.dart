@@ -34,8 +34,7 @@ class ReceivedOrdersPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => RecipePage(
-                        list: autoList,
-                        index: index,
+                        recipe: autoList[index],
                       ),
                     )),
                 onButtonPressed: () {},

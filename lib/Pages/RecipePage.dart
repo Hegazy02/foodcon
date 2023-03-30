@@ -3,17 +3,17 @@ import 'package:foodcon/Components/CiruledButton.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/filteredList.dart';
-import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/Services/sharedPref.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 
 class RecipePage extends StatefulWidget {
-  List<RecipeModel>? list = [];
-  int? index;
+  RecipeModel recipe;
+
   String id = "RecipePage";
-  RecipePage({super.key, this.list, this.index});
+  RecipePage({super.key, required this.recipe});
 
   @override
   State<RecipePage> createState() => _RecipePageState();
@@ -37,23 +37,36 @@ class _RecipePageState extends State<RecipePage> {
                       children: [
                         Spacer(),
                         CiruledButton(
-                          iconColor: value.favoriteracipe == true
+                          iconColor: widget.recipe.isLiked == true
                               ? Colors.red
                               : Colors.black,
-                          icon: value.favoriteracipe == true
+                          icon: widget.recipe.isLiked == true
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: Colors.white,
                           onTap: () {
-                            value.favoriteracipe = !value.favoriteracipe;
+                            widget.recipe.isLiked = !widget.recipe.isLiked!;
 
-                            if (value.favoriteracipe == true) {
-                              print("t");
+                            if (widget.recipe.isLiked == true) {
+                              sharepref().saveFavorites(item: widget.recipe);
+
+                              print("tttttttttttttttttt");
                               // value.addFav = value.fil2[value.ScreenIndex];
                             } else {
-                              print("qwe");
+                              print("&&&&&&&widget.recipe&&&&&&&&&");
+                              print(widget.recipe.title);
+                              print(widget.recipe.desc);
+
+                              print(widget.recipe.chefAvatar);
+                              print(widget.recipe.chefName);
+                              print(widget.recipe.image);
+                              print(widget.recipe.posted);
+                              sharepref().deleteFave(
+                                  item: widget.recipe, context: context);
+                              print("qweeeeeeeeeee");
                               // value.removeFave = value.fil2[value.ScreenIndex];
                             }
+                            value.refresh();
 
                             // print("** ${value.fil2[value.ScreenIndex]['isLiked']}");
                           },
@@ -72,18 +85,16 @@ class _RecipePageState extends State<RecipePage> {
                       title: Row(
                         children: [
                           popularChefsIcons(
-                            image: widget.list![widget.index!].chefAvatar,
+                            image: widget.recipe.chefAvatar,
                             radius: 15,
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ChefProfile(
-                                      chefName:
-                                          "${autoList[widget.index!].chefName}",
-                                      chefAvatar:
-                                          "${autoList[widget.index!].chefAvatar}",
-                                      posted: autoList[widget.index!].posted!,
+                                      chefName: "${widget.recipe.chefName}",
+                                      chefAvatar: "${widget.recipe.chefAvatar}",
+                                      posted: widget.recipe.posted!,
                                     ),
                                   ));
                             },
@@ -92,7 +103,7 @@ class _RecipePageState extends State<RecipePage> {
                             width: 5,
                           ),
                           Text(
-                            "${widget.list![widget.index!].chefName}",
+                            "${widget.recipe.chefName}",
                             style: TextStyle(fontSize: 12),
                           )
                         ],
@@ -101,7 +112,7 @@ class _RecipePageState extends State<RecipePage> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
-                                "${widget.list![widget.index!].image}",
+                                "${widget.recipe.image}",
                               ),
                               fit: BoxFit.fill),
                         ),
@@ -132,7 +143,7 @@ class _RecipePageState extends State<RecipePage> {
                               color: Colors.orange,
                               size: 18,
                             ),
-                            Text("${widget.list![widget.index!].star}"),
+                            Text("${widget.recipe.star}"),
                             SizedBox(
                               width: 5,
                             ),
@@ -140,10 +151,10 @@ class _RecipePageState extends State<RecipePage> {
                               Icons.alarm,
                               size: 18,
                             ),
-                            Text("${widget.list![widget.index!].min}" + "min"),
+                            Text("${widget.recipe.min}" + "min"),
                             Spacer(),
                             Text(
-                              "${widget.list![widget.index!].title}",
+                              "${widget.recipe.title}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
