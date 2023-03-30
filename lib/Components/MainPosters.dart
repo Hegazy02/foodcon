@@ -1,7 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Pages/fullScreenCate.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
+import 'package:foodcon/Providers/PressedProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:provider/provider.dart';
 
 class MainPosters extends StatelessWidget {
   int? index;
@@ -49,55 +53,58 @@ class MainPosters extends StatelessWidget {
 
 class MainPostersCatergoies extends StatelessWidget {
   int index;
-  var value;
+  List<RecipeModel> mylist;
   double fontSize;
 
   MainPostersCatergoies(
       {super.key,
       required this.index,
-      required this.value,
+      required this.mylist,
       required this.fontSize});
 
   @override
   Widget build(BuildContext context) {
-    return MainPosters(
-      index: index,
-      width: 80,
-      image: foodList[index].image,
-      sigmaX: 1.5,
-      sigmaY: 1,
-      onTap: () {
-        value.ScreenIndex = 0;
-        value.isCate = index;
-        print(value.isCate);
-        print("**isCate ${value.isCate}");
+    return Consumer<FilterProv>(
+      builder: (context, value, child) => MainPosters(
+        index: index,
+        width: 80,
+        image: foodList[index].image,
+        sigmaX: 1.5,
+        sigmaY: 1,
+        onTap: () {
+          value.ScreenIndex = 0;
+          value.isCate = index;
+          print(value.isCate);
+          print("**isCate ${value.isCate}");
 
-        if (index == 0) {
-          value.fil2 = autoList;
-          print("**fil2 ${value.fil2}");
-        } else {
-          value.fil2 = autoList
-              .where((element) => element.category == foodList[index].category)
-              .toList();
-          print("**fil2 ${value.fil2}");
-        }
+          if (index == 0) {
+            mylist = autoList;
+            print("**fil2 ${value}");
+          } else {
+            mylist = autoList
+                .where(
+                    (element) => element.category == foodList[index].category)
+                .toList();
+            print("**fil2 ${mylist}");
+          }
 
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    FullScreenCate(isAll: index == 0 ? true : false)));
-      },
-      child: Container(
-          alignment: Alignment.center,
-          color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-          child: Text(
-            "${foodList[index].category}",
-            style: TextStyle(
-                fontSize: fontSize,
-                color: Colors.white,
-                shadows: [Shadow(offset: Offset(3, 3), blurRadius: 20)]),
-          )),
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => FullScreenCate(
+                      myList: mylist, isAll: index == 0 ? true : false)));
+        },
+        child: Container(
+            alignment: Alignment.center,
+            color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
+            child: Text(
+              "${foodList[index].category}",
+              style: TextStyle(
+                  fontSize: fontSize,
+                  color: Colors.white,
+                  shadows: [Shadow(offset: Offset(3, 3), blurRadius: 20)]),
+            )),
+      ),
     );
   }
 }

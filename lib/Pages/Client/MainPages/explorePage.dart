@@ -1,53 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomExplore.dart';
+import 'package:foodcon/Components/ForYouCard.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:sizer/sizer.dart';
 
 class ExplorePage extends StatelessWidget {
-  final double? height;
-  final double? width;
-  ExplorePage({this.height, this.width});
+  ExplorePage({super.key});
   @override
   ScrollController controller = ScrollController();
   Widget build(BuildContext context) {
-    try {
-      Future.delayed(Duration(seconds: 1), () async {
-        for (var i = 0; i < autoList.length; i++) {
-          if (controller.hasClients) {
-            await controller.animateTo(controller.offset + 220,
-                duration: Duration(seconds: 4), curve: Curves.linear);
-            print("*******");
-          }
-        }
-      });
-    } catch (e) {
-      print(e);
-    }
+    // try {
+    //   Future.delayed(Duration(seconds: 1), () async {
+    //     for (var i = 0; i < autoList.length; i++) {
+    //       if (controller.hasClients) {
+    //         await controller.animateTo(controller.offset + 220,
+    //             duration: Duration(seconds: 4), curve: Curves.linear);
+    //         print("*******");
+    //       }
+    //     }
+    //   });
+    // } catch (e) {
+    //   print(e);
+    // }
 
-    return Column(
-      children: [
-        SizedBox(
-          height: height! * 0.05,
-        ),
+    return Padding(
+      padding: EdgeInsets.only(left: 10),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        SizedBox(height: 5.h),
         Row(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                'For You',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+            Text(
+              'For You',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ],
         ),
         SizedBox(
-          height: height! * 0.02,
+          height: 2.h,
         ),
         Container(
-          padding: EdgeInsets.only(left: 0),
           child: SizedBox(
-            height: height! * 0.32,
+            height: 40.h,
             child: ListView.separated(
               controller: controller,
               separatorBuilder: (context, index) {
@@ -58,35 +53,19 @@ class ExplorePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: autoList.length,
               itemBuilder: (context, index) {
-                return CustomExplore(
-                  index: index,
-                  height: height! * 0.2,
-                  width: width! * 0.6,
-                  isGrid: false,
-                  myList: autoList,
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RecipePage(
-                          recipe: autoList[index],
-                        ),
-                      )),
-                );
+                return ForYouCard();
               },
             ),
           ),
         ),
         SizedBox(
-          height: height! * 0.01,
+          height: 1.h,
         ),
         Row(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                'Following',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+            Text(
+              'Following',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -113,35 +92,32 @@ class ExplorePage extends StatelessWidget {
         // )
         Expanded(
           child: AnimationLimiter(
-            child: GridView.count(
-                padding: EdgeInsets.only(top: 5),
-                crossAxisCount: 2,
-                children: List.generate(autoList.length, (index) {
-                  return AnimationConfiguration.staggeredGrid(
-                    position: index,
-                    duration: const Duration(milliseconds: 375),
-                    columnCount: 2,
-                    child: ScaleAnimation(
-                        child: FadeInAnimation(
-                            child: CustomExplore(
-                      index: index,
-                      height: height! * 0.15,
-                      width: width! * 0.45,
-                      isGrid: true,
-                      myList: autoList,
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RecipePage(
-                              recipe: autoList[index],
-                            ),
-                          )),
-                    ))),
-                  );
-                })),
-          ),
-        )
-      ],
+              child: ListView.builder(
+                  padding: EdgeInsets.only(top: 5),
+                  itemCount: autoList.length,
+                  itemBuilder: (context, index) =>
+                      AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 375),
+                        child: SlideAnimation(
+                            child: FadeInAnimation(
+                                child: CustomExplore(
+                          index: index,
+                          height: 20.h,
+                          width: 95.w,
+                          isGrid: true,
+                          myList: autoList,
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RecipePage(
+                                  recipe: autoList[index],
+                                ),
+                              )),
+                        ))),
+                      ))),
+        ),
+      ]),
     );
   }
 }

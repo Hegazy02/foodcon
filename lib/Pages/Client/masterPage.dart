@@ -4,7 +4,7 @@ import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyAccProfileP
 import 'package:foodcon/Pages/Client/MainPages/explorePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/homePage/homePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:provider/provider.dart';
 
 class masterPage extends StatefulWidget {
@@ -21,15 +21,10 @@ class _masterPageState extends State<masterPage> {
   @override
   int selectedpage = 0;
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     List body = [
       HomePage(),
       SearchPage(),
-      ExplorePage(
-        height: height,
-        width: width,
-      ),
+      ExplorePage(),
       FavoritePage(),
       MyAccProfilePage(),
     ];

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CiruledButton.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';

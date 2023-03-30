@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/favProv.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,7 +60,7 @@ class sharepref {
       mylist = [];
     }
 
-    var myprov = Provider.of<FilterProv>(context, listen: false);
+    var myprov = Provider.of<FavoriteProv>(context, listen: false);
     List<RecipeModel> newlist = await decodeList(mylist);
 
     newlist.forEach((element) {

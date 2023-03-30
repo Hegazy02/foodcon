@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/PressedProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
@@ -80,21 +80,19 @@ class ChefProfile extends StatelessWidget {
                 SizedBox(
                   width: 30.w,
                   height: 5.h,
-                  child: Consumer<FilterProv>(
-                    builder: (context, value, child) => BorderdButton(
+                  child: Consumer<PressedProv>(
+                    builder: (context, val, child) => BorderdButton(
                       borderColor: KprimaryColor,
-                      txt: value.follow,
+                      txt: val.follow,
                       onPressed: () {
-                        value.changeFollow();
+                        // val.changeFollow();
                       },
-                      txtColor: value.follow == 'Follow'
-                          ? Colors.white
-                          : KprimaryColor,
                       circular: 20,
                       padding: 0,
-                      color: value.follow == 'Follow'
-                          ? KprimaryColor
-                          : Colors.white,
+                      txtColor:
+                          val.follow == 'Follow' ? Colors.white : KprimaryColor,
+                      color:
+                          val.follow == 'Follow' ? KprimaryColor : Colors.white,
                     ),
                   ),
                 ),

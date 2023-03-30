@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MainPosters.dart';
+import 'package:foodcon/Components/Tricks.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Pages/AllCategoriesPage.dart';
 import 'package:foodcon/Pages/AllChefsPage.dart';
@@ -8,7 +9,7 @@ import 'package:foodcon/Pages/AllPopularRecipesPage.dart.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/constants.dart';
@@ -125,7 +126,7 @@ class HomePage extends StatelessWidget {
                       builder: (context, value, child) {
                         return MainPostersCatergoies(
                           index: index,
-                          value: value,
+                          mylist: value.fil1,
                           fontSize: 16,
                         );
                       },
@@ -137,9 +138,13 @@ class HomePage extends StatelessWidget {
                 height: 5,
               ),
               CustomRows(
-                  RightText: "اشهر الشيفات",
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(AllChefsPage().id)),
+                RightText: "اشهر الشيفات",
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AllChefsPage(),
+                    )),
+              ),
               SizedBox(
                 height: 14.h,
                 child: ListView.separated(
@@ -205,7 +210,8 @@ class HomePage extends StatelessWidget {
               CustomRows(
                 RightText: "تركات شيفات",
                 onTap: () {},
-              )
+              ),
+              SizedBox(height: 100, child: Tricks()),
             ]),
           ),
           ///////////////////
@@ -271,7 +277,7 @@ class popularRecipes extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-            width: 120,
+            width: 180,
             height: 16.h,
             child: InkWell(
               onTap: onTap,
