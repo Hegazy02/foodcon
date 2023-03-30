@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Models/CategoryModel.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 
 List<RecipeModel> autoList = [
@@ -14,7 +15,7 @@ List<RecipeModel> autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Easy",
-    "posted": DateTime.now(),
+    "posted": DateTime.now().year,
   }),
   RecipeModel.fromJson({
     "title": "مكرونة بالصوص الاحمر",
@@ -28,7 +29,7 @@ List<RecipeModel> autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Easy",
-    "posted": DateTime.now(),
+    "posted": DateTime.now().year,
   }),
   RecipeModel.fromJson({
     "title": "مكرونة بالصوص الاحمر",
@@ -42,7 +43,7 @@ List<RecipeModel> autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Medium",
-    "posted": DateTime.now(),
+    "posted": DateTime.now().year,
   }),
   RecipeModel.fromJson({
     "title": "فراخ",
@@ -56,7 +57,7 @@ List<RecipeModel> autoList = [
     "desc":
         "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
     "level": "Easy",
-    "posted": DateTime.now(),
+    "posted": DateTime.now().year,
   }),
   RecipeModel.fromJson(
     {
@@ -71,7 +72,7 @@ List<RecipeModel> autoList = [
       "desc":
           "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
       "level": "Hard",
-      "posted": DateTime.now(),
+      "posted": DateTime.now().year,
     },
   ),
   RecipeModel.fromJson(
@@ -87,7 +88,7 @@ List<RecipeModel> autoList = [
       "desc":
           "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
       "level": "Easy",
-      "posted": DateTime.now(),
+      "posted": DateTime.now().year,
     },
   ),
   RecipeModel.fromJson(
@@ -119,7 +120,7 @@ List<RecipeModel> autoList = [
       "desc":
           "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
       "level": "Easy",
-      "posted": DateTime.now(),
+      "posted": DateTime.now().year,
     },
   ),
   RecipeModel.fromJson(
@@ -135,7 +136,7 @@ List<RecipeModel> autoList = [
       "desc":
           "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
       "level": "Easy",
-      "posted": DateTime.now(),
+      "posted": DateTime.now().year,
     },
   ),
   RecipeModel.fromJson(
@@ -151,7 +152,7 @@ List<RecipeModel> autoList = [
       "desc":
           "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
       "level": "Easy",
-      "posted": DateTime.now(),
+      "posted": DateTime.now().year,
     },
   ),
 ];
@@ -290,41 +291,41 @@ List categoriesList = [
     "color4": Color.fromARGB(255, 122, 121, 121)
   },
 ];
-List foodList = [
-  {
+List<CategoryModel> foodList = [
+  CategoryModel.fromJson({
     "category": "Explore",
     "icon": "assets/images/home/icons/all.png",
     "image": "${mainPAth}Grilled Chickens.jpg",
-  },
-  {
+  }),
+  CategoryModel.fromJson({
     "category": "Pasta",
     "icon": "assets/images/home/icons/spaguetti.png",
     "image": "${mainPAth}With Rice.jpg",
-  },
-  {
+  }),
+  CategoryModel.fromJson({
     "category": "Burger",
     "icon": "assets/images/home/icons/burger.png",
     "image": "${mainPAth}Burger.jpg",
-  },
-  {
+  }),
+  CategoryModel.fromJson({
     "category": "Chickens",
     "icon": "assets/images/home/icons/chicken.png",
     "image": "${mainPAth}Grilled Chickens.jpg",
-  },
-  {
+  }),
+  CategoryModel.fromJson({
     "category": "Pizza",
     "icon": "assets/images/home/icons/pizza.png",
     "image": "${mainPAth}Pizza.jpg",
-  },
-  {
+  }),
+  CategoryModel.fromJson({
     "category": "Fried",
     "icon": "assets/images/home/icons/fried chicken.png",
     "image": "${mainPAth}Fried Chickens.jpg",
-  },
-  {
+  }),
+  CategoryModel.fromJson({
     "category": "Shawrma",
     "icon": "assets/images/home/icons/shawarma.png",
     "image": "${mainPAth}Shawrma.jpg",
-  }
+  })
 ];
 List girdListOption = [Icons.grid_view, Icons.list];

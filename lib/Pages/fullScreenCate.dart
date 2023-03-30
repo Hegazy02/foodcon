@@ -136,9 +136,11 @@ class FullScreenCate extends StatelessWidget {
                                     if (value.fil2[value.ScreenIndex].isLiked ==
                                         false) {
                                       sharepref().saveFavorites(
-                                          value.fil2, value.ScreenIndex);
+                                          item: value.fil2[value.ScreenIndex]);
                                     } else {
-                                      // sharepref().deleteFave(value.ScreenIndex);
+                                      sharepref().deleteFave(
+                                          context: context,
+                                          item: value.fil2[value.ScreenIndex]);
                                     }
                                     value.fil2[value.ScreenIndex].isLiked =
                                         !value.fil2[value.ScreenIndex].isLiked!;
@@ -170,8 +172,7 @@ class FullScreenCate extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => RecipePage(
-                                  list: autoList,
-                                  index: value.ScreenIndex,
+                                  recipe: autoList[value.ScreenIndex],
                                 ),
                               ));
                         },

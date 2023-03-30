@@ -68,8 +68,7 @@ class ExplorePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => RecipePage(
-                          list: autoList,
-                          index: index,
+                          recipe: autoList[index],
                         ),
                       )),
                 );
@@ -134,8 +133,7 @@ class ExplorePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => RecipePage(
-                              list: autoList,
-                              index: index,
+                              recipe: autoList[index],
                             ),
                           )),
                     ))),

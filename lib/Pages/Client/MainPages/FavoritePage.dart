@@ -95,8 +95,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => RecipePage(
-                                          list: ll,
-                                          index: index,
+                                          recipe: ll[index],
                                         ),
                                       )),
                                   trailing: SizedBox(

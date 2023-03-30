@@ -22,7 +22,7 @@ class CategoryIcons extends StatelessWidget {
                   value.isCate = index;
                   value.fil2 = autoList
                       .where((element) =>
-                          element.category == foodList[index]['category'])
+                          element.category == foodList[index].category)
                       .toList();
                 },
                 child: Container(
@@ -52,7 +52,7 @@ class CategoryIcons extends StatelessWidget {
                                   0.0, 0.0, 0.0, 1.0, 0.0,
                                 ]),
                           child: Image.asset(
-                            foodList[index]['icon'],
+                            "${foodList[index].icon}",
                           ),
                         ),
                       ),
@@ -60,7 +60,7 @@ class CategoryIcons extends StatelessWidget {
                         height: 3,
                       ),
                       Text(
-                        foodList[index]['category'],
+                        "${foodList[index].category}",
                         style: TextStyle(
                             color: value.isCate == index
                                 ? Colors.white

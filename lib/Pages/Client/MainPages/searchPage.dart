@@ -118,8 +118,7 @@ class _SearchPageState extends State<SearchPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => RecipePage(
-                                            list: l,
-                                            index: index,
+                                            recipe: l[index],
                                           ),
                                         ));
                                   },
@@ -171,8 +170,7 @@ class _SearchPageState extends State<SearchPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => RecipePage(
-                                        list: l,
-                                        index: index,
+                                        recipe: l[index],
                                       ),
                                     )),
                               ))),

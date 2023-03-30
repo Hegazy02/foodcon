@@ -3,8 +3,6 @@ import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 
 class FilterProv extends ChangeNotifier {
-  FilterProv() {}
-
   List<RecipeModel> _page1FilteredList = [];
   List<RecipeModel> _page2FilteredList = [];
   List<RecipeModel> _favoritesList = [];
@@ -14,13 +12,8 @@ class FilterProv extends ChangeNotifier {
   int _fullScreenIndex = 0;
   String _follow = "Follow";
   bool _switchHome = false;
-  bool _favoriteracipe = false;
-  bool get favoriteracipe => _favoriteracipe;
+
   List<RecipeModel> _favelistprov = [];
-  set favoriteracipe(s) {
-    _favoriteracipe = s;
-    notifyListeners();
-  }
 
   lisen() {
     notifyListeners();
@@ -115,5 +108,9 @@ class FilterProv extends ChangeNotifier {
     print(_favelistprov);
     notifyListeners();
     // return list;
+  }
+
+  refresh() {
+    notifyListeners();
   }
 }

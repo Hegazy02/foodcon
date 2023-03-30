@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MainPosters.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
+import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
@@ -28,8 +29,17 @@ class AllPopularRecipesPage extends StatelessWidget {
                   childAspectRatio: 3 / 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10),
-              itemCount: foodList.length,
-              itemBuilder: (context, index) => MyRecipe(index: index)),
+              itemCount: autoList.length,
+              itemBuilder: (context, index) => MyRecipe(
+                    index: index,
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RecipePage(
+                            recipe: autoList[index],
+                          ),
+                        )),
+                  )),
         ),
       ),
     );

@@ -63,7 +63,7 @@ class MainPostersCatergoies extends StatelessWidget {
     return MainPosters(
       index: index,
       width: 80,
-      image: foodList[index]['image'],
+      image: foodList[index].image,
       sigmaX: 1.5,
       sigmaY: 1,
       onTap: () {
@@ -77,8 +77,7 @@ class MainPostersCatergoies extends StatelessWidget {
           print("**fil2 ${value.fil2}");
         } else {
           value.fil2 = autoList
-              .where(
-                  (element) => element.category == foodList[index]['category'])
+              .where((element) => element.category == foodList[index].category)
               .toList();
           print("**fil2 ${value.fil2}");
         }
@@ -93,7 +92,7 @@ class MainPostersCatergoies extends StatelessWidget {
           alignment: Alignment.center,
           color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
           child: Text(
-            foodList[index]['category'],
+            "${foodList[index].category}",
             style: TextStyle(
                 fontSize: fontSize,
                 color: Colors.white,
