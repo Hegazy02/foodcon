@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Components/MainPosters.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
-import 'package:foodcon/Providers/filteredList.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
-import 'package:provider/provider.dart';
 
 class AllChefsPage extends StatelessWidget {
   String id = "AllChefsPage";

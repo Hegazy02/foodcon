@@ -13,7 +13,9 @@ import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrder
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
 import 'package:foodcon/Pages/Client/masterPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/PressedProv.dart';
+import 'package:foodcon/Providers/favProv.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
@@ -71,8 +73,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<FilterProv>(
-          create: (context) => FilterProv()..fav,
-        )
+          create: (context) => FilterProv(),
+        ),
+        ChangeNotifierProvider<FavoriteProv>(
+          create: (context) => FavoriteProv(),
+        ),
+        ChangeNotifierProvider<PressedProv>(
+          create: (context) => PressedProv(),
+        ),
       ],
       child: Sizer(builder: (context, orientation, deviceType) {
         return MaterialApp(

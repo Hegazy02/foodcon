@@ -3,7 +3,8 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/favProv.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,7 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   void initState() {
     super.initState();
-    var myprov = Provider.of<FilterProv>(context, listen: false);
+    var myprov = Provider.of<FavoriteProv>(context, listen: false);
     myprov.getsavedDate();
   }
 
@@ -42,7 +43,7 @@ class _FavoritePageState extends State<FavoritePage> {
         SizedBox(
           height: 2.h,
         ),
-        Consumer<FilterProv>(
+        Consumer<FavoriteProv>(
           builder: (context, valprov, child) {
             return CustomSearchBar(
               onChanged: (value) async {
@@ -55,7 +56,7 @@ class _FavoritePageState extends State<FavoritePage> {
             );
           },
         ),
-        Consumer<FilterProv>(
+        Consumer<FavoriteProv>(
           builder: (context, value, child) {
             list = value.favelistprov;
             print("=============");
@@ -105,17 +106,10 @@ class _FavoritePageState extends State<FavoritePage> {
                                             sharepref().deleteFave(
                                                 item: ll[index],
                                                 context: context);
-
-                                            // value.favelistprov = ll;
-
                                             if (value.searchFav.isNotEmpty) {
                                               value.removeSearchFave =
                                                   ll[index];
                                             }
-
-                                            // print("******${value.searchFav}");
-                                            // print("******${ll}");
-                                            // print("******${value.fav}");
                                           },
                                           icon: Icon(
                                             Icons.favorite,

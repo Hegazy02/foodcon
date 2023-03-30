@@ -104,7 +104,7 @@ List<RecipeModel> autoList = [
       "desc":
           "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
       "level": "Easy",
-      "posted": DateTime.now(),
+      "posted": DateTime.now().year,
     },
   ),
   RecipeModel.fromJson(

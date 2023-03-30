@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';

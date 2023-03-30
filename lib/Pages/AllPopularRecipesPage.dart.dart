@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MainPosters.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
 

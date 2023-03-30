@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MainPosters.dart';
-import 'package:foodcon/Providers/filteredList.dart';
+import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +24,8 @@ class AllCategoriesPage extends StatelessWidget {
                 childAspectRatio: 3 / 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10),
-            itemBuilder: (context, index) =>
-                MainPostersCatergoies(index: index, value: value, fontSize: 22),
+            itemBuilder: (context, index) => MainPostersCatergoies(
+                index: index, mylist: value.fil2, fontSize: 22),
           ),
         ),
       ),
