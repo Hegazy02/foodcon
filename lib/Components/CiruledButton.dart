@@ -6,14 +6,15 @@ class CiruledButton extends StatelessWidget {
   Color? iconColor;
   Function()? onTap;
   double padding;
+  double? radius;
 
-  CiruledButton({
-    required this.icon,
-    this.color,
-    this.iconColor,
-    required this.onTap,
-    required this.padding,
-  });
+  CiruledButton(
+      {required this.icon,
+      this.color,
+      this.iconColor,
+      required this.onTap,
+      required this.padding,
+      this.radius});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CiruledButton extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(padding),
           decoration: BoxDecoration(
-              color: color, borderRadius: BorderRadius.circular(30)),
+              color: color, borderRadius: BorderRadius.circular(radius ?? 30)),
           child: Icon(
             icon,
             color: iconColor,

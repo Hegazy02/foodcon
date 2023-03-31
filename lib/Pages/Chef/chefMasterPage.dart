@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/Client/MainPages/FavoritePage.dart';
-import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyAccProfilePage.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/chartsPage.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/chefHomePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/explorePage.dart';
-import 'package:foodcon/Pages/Client/MainPages/homePage/homePage.dart';
-import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:provider/provider.dart';
+import 'package:iconsax/iconsax.dart';
 
-class masterPage extends StatefulWidget {
-  String id = "home";
-  masterPage({super.key});
+class ChefMasterPage extends StatefulWidget {
+  String id = "chefmaster";
+  ChefMasterPage({super.key});
 
   @override
-  State<masterPage> createState() => _masterPageState();
+  State<ChefMasterPage> createState() => _ChefMasterPageState();
 }
 
-class _masterPageState extends State<masterPage> {
+class _ChefMasterPageState extends State<ChefMasterPage> {
   String searchVal = "";
   TextEditingController editingController = TextEditingController();
   @override
-  int selectedpage = 0;
+  int selectedpage = 3;
   Widget build(BuildContext context) {
     List body = [
-      HomePage(),
-      SearchPage(),
       ExplorePage(),
-      FavoritePage(),
-      MyAccProfilePage(),
+      ProfilePage(),
+      ChartsPage(),
+      ChefHomePage(),
     ];
 
     return Scaffold(
@@ -45,19 +44,20 @@ class _masterPageState extends State<masterPage> {
                 },
                 items: [
                   BottomNavigationBarItem(
-                      label: "Home", icon: Icon(Icons.home)),
+                      label: "الاعدادات", icon: Icon(Iconsax.setting_3)),
                   BottomNavigationBarItem(
-                      label: "search", icon: Icon(Icons.search)),
+                      label: "البروفايل", icon: Icon(Iconsax.profile_circle)),
                   BottomNavigationBarItem(
-                      label: "Explore", icon: Icon(Icons.explore)),
+                      label: "الاحصائيات", icon: Icon(Iconsax.chart)),
                   BottomNavigationBarItem(
-                      label: "Favorite", icon: Icon(Icons.favorite)),
-                  BottomNavigationBarItem(
-                      label: "Profile", icon: Icon(Icons.person)),
+                      label: "الطلبات", icon: Icon(Iconsax.shopping_cart)),
                 ]);
           },
         ),
-        body: body[selectedpage]);
+        body: Padding(
+          padding: EdgeInsets.all(8),
+          child: body[selectedpage],
+        ));
   }
 }
 

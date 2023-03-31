@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Pages/Client/masterPage.dart';
+import 'package:foodcon/Pages/Client/clientMasterPage.dart';
 import 'package:foodcon/constants.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -52,7 +52,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).pushReplacementNamed(masterPage().id);
+                  Navigator.of(context)
+                      .pushReplacementNamed(ClientMasterPage().id);
                   print("asd");
                 },
                 child: SizedBox(
