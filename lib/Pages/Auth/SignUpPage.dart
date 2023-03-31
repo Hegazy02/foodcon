@@ -41,17 +41,18 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 Image.asset(
                   Klogo,
-                  height: 120,
+                  height: 14.h,
                 ),
                 SizedBox(
-                  height: 70,
+                  height: 7.h,
                 ),
                 Text(
                   "Sign UP",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 3.h,
                 ),
                 Form(
                   key: formKey,
@@ -134,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
                 SizedBox(
-                  height: 60,
+                  height: 6.h,
                 ),
                 SizedBox(
                   height: 6.h,
@@ -147,12 +148,14 @@ class _SignUpPageState extends State<SignUpPage> {
                     txtColor: Colors.white,
                     color: KprimaryColor,
                     onPressed: () {
-                      Validation();
+                      // Validation();
+                      Navigator.of(context)
+                          .pushReplacementNamed(BeforeOnboardingPage().id);
                     },
                   ),
                 ),
                 SizedBox(
-                  height: 60,
+                  height: 6.h,
                 )
               ],
             ),

@@ -104,7 +104,7 @@ class ExplorePage extends StatelessWidget {
                                 child: CustomExplore(
                           index: index,
                           height: 20.h,
-                          width: 95.w,
+                          width: 90.w,
                           isGrid: true,
                           myList: autoList,
                           onTap: () => Navigator.push(

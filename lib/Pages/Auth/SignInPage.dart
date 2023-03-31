@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
-import 'package:foodcon/Pages/Client/masterPage.dart';
+import 'package:foodcon/Pages/Client/clientMasterPage.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     FormState? form = formKey.currentState;
     if (form!.validate()) {
       print("qeqqwe");
-      Navigator.of(context).pushReplacementNamed(masterPage().id);
+      Navigator.of(context).pushReplacementNamed(ClientMasterPage().id);
     }
   }
 

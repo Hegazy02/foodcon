@@ -3,6 +3,7 @@ import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
+import 'package:foodcon/Pages/Chef/chefMasterPage.dart';
 import 'package:foodcon/Services/imagePicker.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
@@ -25,7 +26,10 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
     }
   }
 
-  String userType = "user";
+  String client = "مستخدم";
+  String chef = "شيف";
+  String userType = "مستخدم";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,14 +134,14 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                         padding: 10,
                         borderColor: KprimaryColor,
                         circular: 20,
-                        txt: "Chef",
+                        txt: chef,
                         txtColor:
-                            userType == 'user' ? KprimaryColor : Colors.white,
+                            userType == client ? KprimaryColor : Colors.white,
                         color:
-                            userType == 'user' ? Colors.white : KprimaryColor,
+                            userType == client ? Colors.white : KprimaryColor,
                         onPressed: () {
                           setState(() {
-                            userType = "chef";
+                            userType = chef;
                           });
                         },
                       ),
@@ -149,17 +153,17 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                         padding: 10,
                         borderColor: KprimaryColor,
                         txtColor:
-                            userType == 'user' ? Colors.white : KprimaryColor,
+                            userType == client ? Colors.white : KprimaryColor,
                         circular: 20,
-                        txt: "User",
+                        txt: client,
                         // txtColor: KprimaryColor,
                         onPressed: () {
                           setState(() {
-                            userType = "user";
+                            userType = client;
                           });
                         },
                         color:
-                            userType == 'user' ? KprimaryColor : Colors.white,
+                            userType == client ? KprimaryColor : Colors.white,
                       ),
                     ),
                   ],
@@ -178,7 +182,15 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                     txt: "Continue",
                     // txtColor: KprimaryColor,
                     onPressed: () {
-                      Validation();
+                      // Validation();
+                      if (userType == client) {
+                        Navigator.of(context)
+                            .pushReplacementNamed(OnBoardingPage().id);
+                      } else {
+                        print("new chef added");
+                        Navigator.of(context)
+                            .pushReplacementNamed(ChefMasterPage().id);
+                      }
                     },
                     color: KprimaryColor,
                   ),

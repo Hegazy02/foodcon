@@ -23,10 +23,8 @@ class ReceivedOrdersPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: 6,
               itemBuilder: (context, index) => MyOrder(
-                image: "${autoList[index].image}",
-                title: "${autoList[index].title}",
-                chefName: "${autoList[index].chefName}",
-                index: index,
+                isTwoButtons: false,
+                recipe: autoList[index],
                 items: 1,
                 price: 100,
                 ButtonTxt: "Order again",

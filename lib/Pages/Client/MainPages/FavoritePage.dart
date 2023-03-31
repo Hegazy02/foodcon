@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomTile.dart';
+import 'package:foodcon/Components/notFound.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/favProv.dart';
@@ -123,23 +124,7 @@ class _FavoritePageState extends State<FavoritePage> {
                       ),
                     ],
                   )
-                : Column(
-                    children: [
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Image.asset("assets/images/not found2.png"),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        "This Page Contains Nothing but Scraps",
-                        style: TextStyle(
-                            fontSize: 15.sp, color: Color(0xFFB7003A)),
-                      ),
-                      // Spacer(),
-                    ],
-                  );
+                : NotFound();
           },
         )
       ],

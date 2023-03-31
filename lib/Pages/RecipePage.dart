@@ -21,13 +21,16 @@ class RecipePage extends StatefulWidget {
 
 class _RecipePageState extends State<RecipePage> {
   bool fav = false;
-
+  TextStyle FirstStyle = TextStyle(fontWeight: FontWeight.bold);
+  TextStyle SecondStyle =
+      TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Consumer<FilterProv>(
         builder: (context, value, child) => DefaultTabController(
+            initialIndex: 2,
             length: 3,
             child: NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -128,7 +131,10 @@ class _RecipePageState extends State<RecipePage> {
                               ])),
                         ),
                       )),
-                  title: Text("Recipe"),
+                  title: Text(
+                    "الاكلة",
+                    style: FirstStyle,
+                  ),
                   bottom: PreferredSize(
                       child: Container(
                         height: 50,
@@ -155,8 +161,7 @@ class _RecipePageState extends State<RecipePage> {
                             Spacer(),
                             Text(
                               "${widget.recipe.title}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                              style: SecondStyle,
                             ),
                             SizedBox(
                               width: 10,
@@ -165,12 +170,6 @@ class _RecipePageState extends State<RecipePage> {
                         ),
                       ),
                       preferredSize: Size(double.infinity, 50)),
-                  // shape: const RoundedRectangleBorder(
-                  //   borderRadius: BorderRadius.only(
-                  //     bottomLeft: Radius.circular(30.0),
-                  //     bottomRight: Radius.circular(30.0),
-                  //   ),
-                  // ),
                 ),
                 SliverPersistentHeader(
                     delegate: _SliverAppBarDelegate(
@@ -180,14 +179,23 @@ class _RecipePageState extends State<RecipePage> {
                     unselectedLabelColor: Colors.grey,
                     tabs: [
                       Tab(
-                        child: Text("Details"),
+                        child: Text(
+                          "الوصفة",
+                          style: FirstStyle,
+                        ),
                       ),
                       Tab(
-                        child: Text("Ingregients"),
+                        child: Text(
+                          "مكونات",
+                          style: FirstStyle,
+                        ),
                       ),
                       Tab(
-                        child: Text("Recipe"),
-                      )
+                        child: Text(
+                          "تفاصيل",
+                          style: FirstStyle,
+                        ),
+                      ),
                     ],
                   ),
                 ))
@@ -196,13 +204,12 @@ class _RecipePageState extends State<RecipePage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: SecondStyle,
                       textDirection: TextDirection.rtl,
                       "كبة اللحم بالبرغل ... تميزي دائماً بتقديم أطيب وصفات المقبلات الشامية الرائعة من وصفات الكبة على سفرتك، تعلمي خطوات العمل البسيطة وقدميها على سفرتك ساخنة"),
                 ),
                 ListView.builder(
-                  itemCount: list2.length,
+                  itemCount: ingredients.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -216,17 +223,16 @@ class _RecipePageState extends State<RecipePage> {
                               borderRadius: BorderRadius.circular(100)),
                         ),
                         Text(
-                          list2[index],
+                          ingredients[index],
                           textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                          style: SecondStyle,
                         ),
                       ],
                     ),
                   ),
                 ),
                 ListView.builder(
-                  itemCount: list1.length,
+                  itemCount: recipe.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -240,10 +246,9 @@ class _RecipePageState extends State<RecipePage> {
                               borderRadius: BorderRadius.circular(100)),
                         ),
                         Text(
-                          list1[index],
+                          recipe[index],
                           textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                          style: SecondStyle,
                         ),
                       ],
                     ),
@@ -284,8 +289,10 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-List list1 = [
+String details =
+    "كبة اللحم بالبرغل ... تميزي دائماً بتقديم أطيب وصفات المقبلات الشامية الرائعة من وصفات الكبة على سفرتك، تعلمي خطوات العمل البسيطة وقدميها على سفرتك ساخنة";
+List recipe = [
   " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً",
   " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً"
 ];
-List list2 = [" لحم مفروم | 1 كوب", " لحم مفروم | 1 كوب"];
+List ingredients = [" لحم مفروم | 1 كوب", " لحم مفروم | 1 كوب"];

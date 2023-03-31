@@ -318,7 +318,9 @@ class popularRecipes extends StatelessWidget {
                             "${popularRecipeshomeList[index!].min} min",
                             style: TextStyle(color: Colors.white),
                           ),
-                          Spacer(),
+                          SizedBox(
+                            width: 5,
+                          ),
                         ],
                       ),
                     ),

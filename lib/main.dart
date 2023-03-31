@@ -6,12 +6,13 @@ import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Auth/SignUpPage.dart';
+import 'package:foodcon/Pages/Chef/chefMasterPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/EditProfilePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
-import 'package:foodcon/Pages/Client/masterPage.dart';
+import 'package:foodcon/Pages/Client/clientMasterPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/PressedProv.dart';
 import 'package:foodcon/Providers/favProv.dart';
@@ -89,9 +90,9 @@ class MyApp extends StatelessWidget {
               primarySwatch: mainC,
               primaryColor: KprimaryColor,
               cardColor: KprimaryColor),
-          home: masterPage(),
+          home: ChefMasterPage(),
           routes: {
-            masterPage().id: (context) => masterPage(),
+            ClientMasterPage().id: (context) => ClientMasterPage(),
             SignUpPage().id: (context) => SignUpPage(),
             BeforeOnboardingPage().id: (context) => BeforeOnboardingPage(),
             LoginPage().id: (context) => LoginPage(),
@@ -105,6 +106,7 @@ class MyApp extends StatelessWidget {
             AllCategoriesPage().id: (context) => AllCategoriesPage(),
             AllChefsPage().id: (context) => AllChefsPage(),
             AllPopularRecipesPage().id: (context) => AllPopularRecipesPage(),
+            ChefMasterPage().id: (context) => ChefMasterPage(),
           },
         );
       }),
