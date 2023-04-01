@@ -37,7 +37,7 @@ class _changeProfilePicState extends State<changeProfilePic> {
           right: 32.w,
           child: GestureDetector(
             onTap: () async {
-              bottomSheet(context, setState);
+              BottomSheetHelpers().imagePicker(context, setState);
             },
             child: Container(
               child: Icon(

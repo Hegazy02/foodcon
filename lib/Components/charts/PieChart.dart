@@ -4,13 +4,23 @@ import 'package:foodcon/Components/charts/AppColors.dart';
 import 'package:foodcon/Components/charts/indicator.dart';
 
 class CustomPieChart extends StatefulWidget {
-  const CustomPieChart({super.key});
+  double? blueValue;
+  double? yellowValue;
+  double? PurpleValue;
+  double? greenValue;
+
+  CustomPieChart(
+      {super.key,
+      this.blueValue,
+      this.yellowValue,
+      this.PurpleValue,
+      this.greenValue});
 
   @override
-  State<StatefulWidget> createState() => PieChart2State();
+  State<CustomPieChart> createState() => CustomPieChartstate();
 }
 
-class PieChart2State extends State {
+class CustomPieChartstate extends State<CustomPieChart> {
   int touchedIndex = -1;
 
   @override
@@ -46,7 +56,12 @@ class PieChart2State extends State {
                   ),
                   sectionsSpace: 0,
                   centerSpaceRadius: 30,
-                  sections: showingSections(),
+                  sections: showingSections(
+                    blueValue: widget.blueValue,
+                    yellowValue: widget.yellowValue,
+                    PurpleValue: widget.PurpleValue,
+                    greenValue: widget.greenValue,
+                  ),
                 ),
               ),
             ),
@@ -97,7 +112,12 @@ class PieChart2State extends State {
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections({
+    double? blueValue,
+    double? yellowValue,
+    double? PurpleValue,
+    double? greenValue,
+  }) {
     return List.generate(4, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
@@ -107,8 +127,8 @@ class PieChart2State extends State {
         case 0:
           return PieChartSectionData(
             color: AppColors.contentColorBlue,
-            value: 40,
-            title: '40%',
+            value: blueValue,
+            title: "${40}%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -120,8 +140,8 @@ class PieChart2State extends State {
         case 1:
           return PieChartSectionData(
             color: AppColors.contentColorYellow,
-            value: 30,
-            title: '30%',
+            value: yellowValue,
+            title: "${20}%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -133,8 +153,8 @@ class PieChart2State extends State {
         case 2:
           return PieChartSectionData(
             color: AppColors.contentColorPurple,
-            value: 15,
-            title: '15%',
+            value: PurpleValue,
+            title: "${30}%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -146,8 +166,8 @@ class PieChart2State extends State {
         case 3:
           return PieChartSectionData(
             color: AppColors.contentColorGreen,
-            value: 15,
-            title: '15%',
+            value: greenValue,
+            title: "${10}%",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,

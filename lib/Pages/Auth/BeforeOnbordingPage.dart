@@ -66,7 +66,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                       right: 32.w,
                       child: GestureDetector(
                         onTap: () async {
-                          bottomSheet(context, setState);
+                          BottomSheetHelpers().imagePicker(context, setState);
                         },
                         child: Container(
                           child: Icon(

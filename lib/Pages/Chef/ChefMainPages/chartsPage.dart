@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Components/charts/CurvedChart.dart';
 import 'package:foodcon/Components/charts/PieChart.dart';
-import 'package:foodcon/constants.dart';
+import 'package:foodcon/Components/decoratedContainer.dart';
+import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:sizer/sizer.dart';
 
 class ChartsPage extends StatelessWidget {
@@ -8,58 +10,40 @@ class ChartsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List myReceivedOrders = [1, 1, 1, 1, 1, 1];
-    List myPreparingOrders = [1, 1];
-    List myFinishedOrders = [1];
-    TextStyle style = TextStyle(
-      fontSize: 14.sp,
-      fontWeight: FontWeight.bold,
-    );
-
-    return DefaultTabController(
-      initialIndex: 2,
-      length: 3,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 2.h,
-          ),
-          TabBar(
-              labelColor: KprimaryColor,
-              indicatorColor: KprimaryColor,
-              unselectedLabelColor: Colors.grey,
-              tabs: [
-                Tab(
-                  child: Text("هذا الشهر"),
-                ),
-                Tab(
-                  child: Text("هذا الاسبوع"),
-                ),
-                Tab(
-                  child: Text("الاجمالي"),
-                ),
-              ]),
-          SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: TabBarView(children: [
-              Column(
+    return Column(
+      children: [
+        SizedBox(
+          height: 3.h,
+        ),
+        Column(
+          children: [
+            decoratedContainer(
+              child: Column(
                 children: [
-                  salesBar(),
-                  CustomPieChart(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      dateRow(type: "السنين", itemCount: 2),
+                      dateRow(type: "الاشهر", itemCount: 12),
+                      dateRow(type: "الاسابيع", itemCount: 4),
+                    ],
+                  ),
+                  salesBar()
                 ],
               ),
-              Column(
-                children: [salesBar(), CustomPieChart()],
-              ),
-              Column(
-                children: [salesBar(), CustomPieChart()],
-              ),
-            ]),
-          )
-        ],
-      ),
+            ),
+            // decoratedContainer(child: salesBar()),
+            decoratedContainer(
+              child: CustomPieChart(
+                  blueValue: 4, yellowValue: 2, PurpleValue: 3, greenValue: 1),
+            ),
+            // decoratedContainer(child: CurvedChart()),
+            decoratedContainer(
+                child: SizedBox(
+                    height: 35.h, width: double.infinity, child: Text(""))),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -69,13 +53,10 @@ class salesBar extends StatelessWidget {
   int? bestSeller = 0;
   salesBar({super.key, this.sales, this.bestSeller});
   TextStyle pressedStyle = TextStyle(
-      fontSize: 14.sp, fontWeight: FontWeight.bold, color: Colors.white);
+      fontSize: 14.sp, fontWeight: FontWeight.bold, color: Colors.black);
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: KprimaryColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -101,6 +82,46 @@ class salesBar extends StatelessWidget {
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class dateRow extends StatelessWidget {
+  String? dateName;
+  String? type;
+  int? itemCount;
+
+  dateRow({
+    super.key,
+    this.dateName,
+    required this.type,
+    required this.itemCount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: [
+          Text(
+            dateName == null ? "الكل" : "${dateName}",
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              onPressed: () => BottomSheetHelpers()
+                  .date(context, itemcount: itemCount!, type: type!),
+              child: Text(
+                type!,
+              )),
         ],
       ),
     );
