@@ -2,11 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
+import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ForYouCard extends StatelessWidget {
-  ForYouCard({super.key});
+  int index;
+  ForYouCard({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +83,15 @@ class ForYouCard extends StatelessWidget {
                                 builder: (context, value, child) =>
                                     GestureDetector(
                                   onTap: () {
-                                    like = !like;
+                                    autoList[index].isLiked =
+                                        !autoList[index].isLiked!;
                                     value.refresh();
                                   },
                                   child: Icon(
-                                    like == false
+                                    autoList[index].isLiked == false
                                         ? Icons.favorite_border
                                         : Icons.favorite,
-                                    color: like == false
+                                    color: autoList[index].isLiked == false
                                         ? Colors.white
                                         : Colors.red,
                                   ),

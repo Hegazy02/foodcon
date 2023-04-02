@@ -53,7 +53,7 @@ class ExplorePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: autoList.length,
               itemBuilder: (context, index) {
-                return ForYouCard();
+                return ForYouCard(index: index);
               },
             ),
           ),
