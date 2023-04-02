@@ -43,7 +43,7 @@ class BottomSheetHelpers {
   }
 
   date(context, {required int itemcount, required String type}) {
-    List<bool> _selectedOptions = [
+    List<bool> ChartMonthsselectedOptions = [
       false,
       false,
       false,
@@ -57,6 +57,7 @@ class BottomSheetHelpers {
       false,
       false,
     ];
+
     return showModalBottomSheet(
         context: context,
         shape: RoundedRectangleBorder(
@@ -79,6 +80,9 @@ class BottomSheetHelpers {
                   ),
                   Spacer(),
                   ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25))),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
@@ -100,11 +104,11 @@ class BottomSheetHelpers {
                         "${listfun(type)[index]}",
                         style: itemsStyle,
                       ),
-                      value: _selectedOptions[index],
+                      value: ChartMonthsselectedOptions[index],
                       onChanged: (value) {
-                        _selectedOptions[index] = value!;
+                        ChartMonthsselectedOptions[index] = value!;
                         val.refresh();
-                        print(_selectedOptions);
+                        print(ChartMonthsselectedOptions);
                       },
                     ),
                   ),

@@ -26,7 +26,7 @@ class CustomPieChartstate extends State<CustomPieChart> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 2,
+      aspectRatio: 1.5,
       child: Row(
         children: <Widget>[
           const SizedBox(

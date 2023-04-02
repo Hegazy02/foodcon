@@ -47,7 +47,7 @@ class ProfilePage extends StatelessWidget {
                         return Icon(
                           Icons.star,
                           color: KprimaryColor,
-                          size: 16,
+                          size: 18,
                         );
                       },
                     ),
@@ -236,71 +236,85 @@ class MyRecipe extends StatelessWidget {
                         Colors.black.withOpacity(0.5),
                         Colors.black.withOpacity(0.5)
                       ])),
-                  child: Container(
-                    color: Colors.grey.withOpacity(0.3),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Spacer(),
-                        Row(
-                          textDirection: TextDirection.rtl,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                      child: Container(
+                        color: Colors.grey.withOpacity(0.2),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            SizedBox(
-                              width: 3.w,
+                            Spacer(
+                              flex: 1,
                             ),
-                            Text("${autoList[index].title}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 2.w,
+                            Row(
+                              textDirection: TextDirection.rtl,
+                              children: [
+                                SizedBox(
+                                  width: 3.w,
+                                ),
+                                Text("${autoList[index].title}",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
-                            Icon(
-                              Icons.alarm,
-                              color: Colors.white,
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 3.w,
+                                ),
+                                Icon(
+                                  Icons.alarm,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                                Text(
+                                  "${autoList[index].min}",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Spacer(),
+                                Text("${autoList[index].level}",
+                                    style: TextStyle(color: Colors.white)),
+                                SizedBox(
+                                  width: 3.w,
+                                )
+                              ],
                             ),
-                            Text(
-                              "${autoList[index].min}",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Spacer(),
-                            Text("${autoList[index].level}",
-                                style: TextStyle(color: Colors.white)),
-                            SizedBox(
-                              width: 3.w,
+                            Spacer(
+                              flex: 2,
                             )
                           ],
                         ),
-                        Spacer()
-                      ],
+                      ),
                     ),
                   )),
               Positioned(
-                top: 0,
-                left: 0,
-                child: Container(
-                  margin: EdgeInsets.only(left: 10, top: 5),
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color: Colors.orange,
-                        size: 14,
+                top: 5,
+                left: 5,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.orange,
+                              size: 18,
+                            ),
+                            Text(
+                              "${autoList[index].star}",
+                              style: TextStyle(color: Colors.white),
+                            )
+                          ],
+                        ),
                       ),
-                      Text(
-                        "${autoList[index].star}",
-                        style: TextStyle(color: Colors.white),
-                      )
-                    ],
+                    ),
                   ),
                 ),
               )
