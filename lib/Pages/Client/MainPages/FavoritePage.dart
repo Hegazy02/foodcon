@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:foodcon/Components/CustomSearchBar.dart';
 import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Components/notFound.dart';
-import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/favProv.dart';
-import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +48,7 @@ class _FavoritePageState extends State<FavoritePage> {
             return CustomSearchBar(
               onChanged: (value) async {
                 valprov.searchFav = valprov.favelistprov.where((element) {
-                  return element.title.toString().startsWith(value.toString());
+                  return element.title.toString().startsWith(value);
                 }).toList();
                 valprov.searchFav = value.isEmpty ? [] : valprov.searchFav;
                 print("********${valprov.searchFav}");

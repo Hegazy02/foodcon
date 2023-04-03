@@ -1,9 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
+import 'package:foodcon/Components/MyRecipe.dart';
+import 'package:foodcon/Helpers/bottomSheet.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/AddNewRecipePage.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/chefSearchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -29,44 +35,36 @@ class ProfilePage extends StatelessWidget {
               SizedBox(
                 width: 2.w,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Hegazy",
-                    style:
-                        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                    width: 30.w,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return Icon(
-                          Icons.star,
-                          color: KprimaryColor,
-                          size: 18,
-                        );
-                      },
-                    ),
-                  )
-                ],
+              Text(
+                "Hegazy",
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               Spacer(),
-              SizedBox(
-                width: 30.w,
+              Container(
                 height: 5.h,
+                width: 20.w,
                 child: BorderdButton(
                   borderColor: KprimaryColor,
-                  txt: "Edit profile",
+                  txt: "ايام العمل",
                   onPressed: () {
-                    print("object");
+                    BottomSheetHelpers(isProfielPic: false)
+                        .workingDays(context);
                   },
                   txtColor: KprimaryColor,
                   circular: 20,
                   padding: 0,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => chefSearchPage()));
+                },
+                icon: Icon(
+                  Iconsax.search_normal,
+                  color: KprimaryColor,
                 ),
               ),
               SizedBox(
@@ -80,56 +78,81 @@ class ProfilePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
-                "Recipes",
-                style: TextStyle(color: Colors.grey),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "التقييم",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "${4.0}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.orange,
+                      )
+                    ],
+                  ),
+                ],
               ),
-              Text(
-                "Followers",
-                style: TextStyle(color: Colors.grey),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "المتابعين",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Text(
+                    "20",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
-              Text(
-                "Following",
-                style: TextStyle(color: Colors.grey),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 1.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "8",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "60",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "3",
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "الوصفات",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Text(
+                    "30",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ],
           ),
           SizedBox(
             height: 2.h,
           ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 15.w),
-            height: 5.h,
-            child: BorderdButton(
-              borderColor: KprimaryColor,
-              txt: "Add new recipe",
-              onPressed: () {
-                print("object");
-              },
-              txtColor: KprimaryColor,
-              circular: 20,
-              padding: 0,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 5.h,
+                width: 60.w,
+                child: BorderdButton(
+                  borderColor: KprimaryColor,
+                  txt: "اضافة وصفة جديده",
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddNewRecipePage(),
+                      )),
+                  txtColor: KprimaryColor,
+                  circular: 20,
+                  padding: 0,
+                ),
+              ),
+            ],
           ),
           Divider(),
           ListView.separated(
@@ -140,187 +163,23 @@ class ProfilePage extends StatelessWidget {
             ),
             itemCount: autoList.length,
             itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/images/home/Chefs/chef5.jpg"),
-                        radius: 20,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Hegazy"),
-                          Text(
-                            "${autoList[index].posted}",
-                            style: TextStyle(
-                                fontSize: 12, color: Colors.grey[600]),
-                          )
-                        ],
-                      ),
-                      Spacer(),
-                      CustomDropDown(),
-                      SizedBox(
-                        width: 10,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 0.4.h,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      print("object");
-                    },
-                    child: MyRecipe(
-                      index: index,
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                RecipePage(recipe: autoList[index]),
-                          )),
-                    ),
-                  ),
-                ],
+              return GestureDetector(
+                onTap: () {
+                  print("object");
+                },
+                child: MyRecipe(
+                  recipe: autoList[index],
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            RecipePage(recipe: autoList[index]),
+                      )),
+                ),
               );
             },
           ),
         ],
-      ),
-    );
-  }
-}
-
-class MyRecipe extends StatelessWidget {
-  int index;
-  Function()? onTap;
-  MyRecipe({super.key, required this.index, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Container(
-                height: 180,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("${autoList[index].image}"),
-                      fit: BoxFit.fill),
-                ),
-              ),
-              Container(
-                  height: 8.h,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                        Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-                        Colors.black.withOpacity(0.5),
-                        Colors.black.withOpacity(0.5)
-                      ])),
-                  child: ClipRRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                      child: Container(
-                        color: Colors.grey.withOpacity(0.2),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Spacer(
-                              flex: 1,
-                            ),
-                            Row(
-                              textDirection: TextDirection.rtl,
-                              children: [
-                                SizedBox(
-                                  width: 3.w,
-                                ),
-                                Text("${autoList[index].title}",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 3.w,
-                                ),
-                                Icon(
-                                  Icons.alarm,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                Text(
-                                  "${autoList[index].min}",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Spacer(),
-                                Text("${autoList[index].level}",
-                                    style: TextStyle(color: Colors.white)),
-                                SizedBox(
-                                  width: 3.w,
-                                )
-                              ],
-                            ),
-                            Spacer(
-                              flex: 2,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )),
-              Positioned(
-                top: 5,
-                left: 5,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Colors.orange,
-                              size: 18,
-                            ),
-                            Text(
-                              "${autoList[index].star}",
-                              style: TextStyle(color: Colors.white),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
       ),
     );
   }

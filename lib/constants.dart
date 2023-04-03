@@ -19,3 +19,9 @@ MaterialColor mainC = MaterialColor(
   },
 );
 int mainColor = 0xFFF55744;
+RoundedRectangleBorder KAppBarShape = const RoundedRectangleBorder(
+  borderRadius: BorderRadius.only(
+    bottomLeft: Radius.circular(30.0),
+    bottomRight: Radius.circular(30.0),
+  ),
+);

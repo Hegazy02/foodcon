@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CategoryIcons.dart';
 import 'package:foodcon/Components/CustomExplore.dart';
+import 'package:foodcon/Components/CustomSearchBar.dart';
 import 'package:foodcon/Components/CustomTile.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
-import 'package:foodcon/Providers/PressedProv.dart';
-import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:sizer/sizer.dart';
@@ -182,39 +181,6 @@ class _SearchPageState extends State<SearchPage> {
           },
         )
       ],
-    );
-  }
-}
-
-class CustomSearchBar extends StatelessWidget {
-  Function(String)? onChanged;
-  CustomSearchBar({super.key, this.onChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: TextField(
-        onChanged: onChanged,
-        cursorColor: Colors.grey,
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(0),
-            // border: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(width: 1, color: Colors.grey)),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(width: 1, color: Colors.grey)),
-            hintText: "Search",
-            hintStyle: TextStyle(fontSize: 18),
-            prefixIcon: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.black,
-                ))),
-      ),
     );
   }
 }

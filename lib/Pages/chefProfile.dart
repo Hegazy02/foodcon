@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
+import 'package:foodcon/Components/MyRecipe.dart';
+import 'package:foodcon/Global/textStyle.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/PressedProv.dart';
@@ -26,14 +28,11 @@ class ChefProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Chef profile"),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30.0),
-            bottomRight: Radius.circular(30.0),
+          title: Text(
+            "صفحة الشيف",
+            style: appBarStyle,
           ),
-        ),
-      ),
+          shape: KAppBarShape),
       body: DefaultTabController(
         length: 2,
         child: ListView(
@@ -188,7 +187,7 @@ class ChefProfile extends StatelessWidget {
                         print("object");
                       },
                       child: MyRecipe(
-                        index: index,
+                        recipe: autoList[index],
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(

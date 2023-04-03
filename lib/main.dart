@@ -14,7 +14,9 @@ import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrder
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
 import 'package:foodcon/Pages/Client/clientMasterPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
+import 'package:foodcon/Providers/AddNewRecipePro.dart';
 import 'package:foodcon/Providers/PressedProv.dart';
+import 'package:foodcon/Providers/chefProfileSearchProv.dart';
 import 'package:foodcon/Providers/favProv.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/sharedPref.dart';
@@ -81,6 +83,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<PressedProv>(
           create: (context) => PressedProv(),
+        ),
+        ChangeNotifierProvider<chefProfileSearchProv>(
+          create: (context) => chefProfileSearchProv(),
+        ),
+        ChangeNotifierProvider<AddNewRecipePro>(
+          create: (context) => AddNewRecipePro(),
         ),
       ],
       child: Sizer(builder: (context, orientation, deviceType) {

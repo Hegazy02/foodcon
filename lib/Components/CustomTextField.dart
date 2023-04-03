@@ -2,32 +2,41 @@ import 'package:flutter/material.dart';
 
 class CostumTextField extends StatelessWidget {
   String? label;
+  String? hint;
   TextInputType? keyboardType;
   bool? secured;
   Widget? icon;
   Function()? onPressed;
   String? Function(String?)? validator;
   String? initialValue;
-  CostumTextField(
-      {this.label,
-      this.keyboardType,
-      this.secured,
-      this.icon,
-      this.onPressed,
-      this.validator,
-      this.initialValue});
+  bool? isRtl;
+  CostumTextField({
+    this.label,
+    this.hint,
+    this.keyboardType,
+    this.secured,
+    this.icon,
+    this.onPressed,
+    this.validator,
+    this.initialValue,
+    this.isRtl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
+        textDirection: isRtl == false ? TextDirection.ltr : TextDirection.rtl,
         initialValue: initialValue,
         decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-            label: Text(label!),
-            suffixIcon: IconButton(
-                onPressed: onPressed ?? () {}, icon: icon ?? Text(""))),
+            label: label != null ? Text(label!) : null,
+            hintText: hint,
+            hintTextDirection: TextDirection.rtl,
+            suffixIcon: icon == null
+                ? icon
+                : IconButton(onPressed: onPressed ?? () {}, icon: icon!)),
         obscureText: secured ?? false,
         keyboardType: keyboardType ?? TextInputType.name,
         validator: validator,
