@@ -2,7 +2,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
+import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/AddNewRecipePage.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/chefSearchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
@@ -33,115 +35,25 @@ class ProfilePage extends StatelessWidget {
               SizedBox(
                 width: 2.w,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Hegazy",
-                    style:
-                        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                    width: 30.w,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return Icon(
-                          Icons.star,
-                          color: KprimaryColor,
-                          size: 18,
-                        );
-                      },
-                    ),
-                  )
-                ],
+              Text(
+                "Hegazy",
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
               ),
               Spacer(),
-              SizedBox(
-                width: 30.w,
-                height: 5.h,
-                child: BorderdButton(
-                  borderColor: KprimaryColor,
-                  txt: "Edit profile",
-                  onPressed: () {
-                    print("object");
-                  },
-                  txtColor: KprimaryColor,
-                  circular: 20,
-                  padding: 0,
-                ),
-              ),
-              SizedBox(
-                width: 5.w,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 3.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "Recipes",
-                style: TextStyle(color: Colors.grey),
-              ),
-              Text(
-                "Followers",
-                style: TextStyle(color: Colors.grey),
-              ),
-              Text(
-                "Following",
-                style: TextStyle(color: Colors.grey),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 1.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "8",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "60",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                "3",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 2.h,
-          ),
-          Row(
-            children: [
-              Spacer(
-                flex: 2,
-              ),
               Container(
                 height: 5.h,
-                width: 60.w,
+                width: 20.w,
                 child: BorderdButton(
                   borderColor: KprimaryColor,
-                  txt: "Add new recipe",
+                  txt: "ايام العمل",
                   onPressed: () {
-                    print("object");
+                    BottomSheetHelpers(isProfielPic: false)
+                        .workingDays(context);
                   },
                   txtColor: KprimaryColor,
                   circular: 20,
                   padding: 0,
                 ),
-              ),
-              Spacer(
-                flex: 1,
               ),
               IconButton(
                 onPressed: () {
@@ -155,8 +67,90 @@ class ProfilePage extends StatelessWidget {
                   color: KprimaryColor,
                 ),
               ),
-              Spacer(
-                flex: 1,
+              SizedBox(
+                width: 5.w,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 3.h,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "التقييم",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "${4.0}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.orange,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "المتابعين",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Text(
+                    "20",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "الوصفات",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  Text(
+                    "30",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 5.h,
+                width: 60.w,
+                child: BorderdButton(
+                  borderColor: KprimaryColor,
+                  txt: "اضافة وصفة جديده",
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddNewRecipePage(),
+                      )),
+                  txtColor: KprimaryColor,
+                  circular: 20,
+                  padding: 0,
+                ),
               ),
             ],
           ),

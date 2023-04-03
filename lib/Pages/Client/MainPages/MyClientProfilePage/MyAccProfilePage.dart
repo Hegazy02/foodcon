@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/EditProfilePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
-import 'package:foodcon/Services/imagePicker.dart';
-import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class MyAccProfilePage extends StatelessWidget {
-  const MyAccProfilePage({super.key});
+  MyAccProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +19,21 @@ class MyAccProfilePage extends StatelessWidget {
         ),
         ListTile(
             contentPadding: EdgeInsets.all(7),
-            leading: image == null
-                ? CircleAvatar(
-                    child: Text(
-                      "H",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    radius: 30,
-                  )
-                : CircleAvatar(
-                    backgroundImage: FileImage(image!),
-                    radius: 30,
-                  ),
+            leading: FutureBuilder(
+                future: BottomSheetHelpers.futureProfilePic,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return CircleAvatar(
+                      backgroundImage: FileImage(snapshot.data!),
+                      radius: 30,
+                    );
+                  } else {
+                    return CircleAvatar(
+                      child: Text("H"),
+                      radius: 30,
+                    );
+                  }
+                }),
             title: Text("Hegazy"),
             subtitle: Text("Abdelrhmanhegazy02@gmail.com"),
             onTap: () => Navigator.of(context).pushNamed(EditprogilePage().id)),

@@ -140,8 +140,8 @@ class dateRow extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
               ),
-              onPressed: () => BottomSheetHelpers()
-                  .date(context, itemcount: itemCount!, type: type!),
+              onPressed: () => BottomSheetHelpers(isProfielPic: false)
+                  .date(context: context, itemcount: itemCount!, type: type!),
               child: Text(
                 type!,
               )),

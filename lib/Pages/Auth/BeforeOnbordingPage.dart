@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
+import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
@@ -47,15 +48,21 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                     Column(
                       children: [
                         Center(
-                          child: image == null
-                              ? CircleAvatar(
-                                  radius: 60,
-                                )
-                              : CircleAvatar(
-                                  backgroundImage: FileImage(image!),
-                                  radius: 60,
-                                ),
-                        ),
+                            child: FutureBuilder(
+                                future: BottomSheetHelpers.futureProfilePic,
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return CircleAvatar(
+                                      backgroundImage:
+                                          FileImage(snapshot.data!),
+                                      radius: 60,
+                                    );
+                                  } else {
+                                    return CircleAvatar(
+                                      radius: 60,
+                                    );
+                                  }
+                                })),
                         SizedBox(
                           height: 2.h,
                         )
@@ -66,7 +73,8 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                       right: 32.w,
                       child: GestureDetector(
                         onTap: () async {
-                          BottomSheetHelpers().imagePicker(context, setState);
+                          BottomSheetHelpers(isProfielPic: true)
+                              .imagePicker(context);
                         },
                         child: Container(
                           child: Icon(

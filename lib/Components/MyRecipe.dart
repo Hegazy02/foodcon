@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:foodcon/Global/textStyle.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sizer/sizer.dart';
@@ -30,69 +31,69 @@ class MyRecipe extends StatelessWidget {
                 ),
               ),
               Container(
-                  height: 8.h,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                        Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
-                        Colors.black.withOpacity(0.5),
-                        Colors.black.withOpacity(0.5)
-                      ])),
-                  child: ClipRRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                      child: Container(
-                        color: Colors.grey.withOpacity(0.2),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Spacer(
-                              flex: 1,
-                            ),
-                            Row(
-                              textDirection: TextDirection.rtl,
-                              children: [
-                                SizedBox(
-                                  width: 3.w,
-                                ),
-                                Text("${recipe.title}",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 3.w,
-                                ),
-                                Icon(
-                                  Icons.alarm,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                Text(
-                                  "${recipe.min}",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Spacer(),
-                                Text("${recipe.level}",
-                                    style: TextStyle(color: Colors.white)),
-                                SizedBox(
-                                  width: 3.w,
-                                )
-                              ],
-                            ),
-                            Spacer(
-                              flex: 2,
-                            )
-                          ],
-                        ),
+                padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                height: 10.h,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                      Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
+                      Colors.black.withOpacity(0.5),
+                      Colors.black.withOpacity(0.5)
+                    ])),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                    child: Container(
+                      color: Colors.grey.withOpacity(0.3),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Spacer(
+                            flex: 1,
+                          ),
+                          Row(
+                            textDirection: TextDirection.rtl,
+                            children: [
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text("${recipe.title}", style: recipeTitleStyle),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Icon(
+                                Icons.alarm,
+                                color: Colors.white,
+                                size: 18,
+                              ),
+                              Text(
+                                "${recipe.min}",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Spacer(),
+                              Text("${recipe.level}",
+                                  style: TextStyle(color: Colors.white)),
+                              SizedBox(
+                                width: 3.w,
+                              )
+                            ],
+                          ),
+                          Spacer(
+                            flex: 2,
+                          )
+                        ],
                       ),
                     ),
-                  )),
+                  ),
+                ),
+              ),
               Positioned(
                 top: 5,
                 left: 5,

@@ -18,14 +18,20 @@ class _changeProfilePicState extends State<changeProfilePic> {
         Column(
           children: [
             Center(
-              child: image == null
-                  ? CircleAvatar(
-                      radius: 60,
-                    )
-                  : CircleAvatar(
-                      backgroundImage: FileImage(image!),
-                      radius: 60,
-                    ),
+              child: FutureBuilder(
+                  future: BottomSheetHelpers.futureProfilePic,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return CircleAvatar(
+                        backgroundImage: FileImage(snapshot.data!),
+                        radius: 60,
+                      );
+                    } else {
+                      return CircleAvatar(
+                        radius: 60,
+                      );
+                    }
+                  }),
             ),
             SizedBox(
               height: 2.h,
@@ -37,7 +43,7 @@ class _changeProfilePicState extends State<changeProfilePic> {
           right: 32.w,
           child: GestureDetector(
             onTap: () async {
-              BottomSheetHelpers().imagePicker(context, setState);
+              BottomSheetHelpers(isProfielPic: true).imagePicker(context);
             },
             child: Container(
               child: Icon(
