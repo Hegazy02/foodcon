@@ -4,25 +4,32 @@ import 'dart:io';
 import 'dart:math';
 
 class CustomImagePicker {
-  static File? pic;
+  static File? profilePic;
+  static File? recPic;
 
   final piker = ImagePicker();
-
+  int? rand;
+  String? imagename;
   var imageurl;
 // Reference? refrance;
-  empty(setFun) {
-    setFun(() {});
-  }
 
-  Future<File?> photofromCamera({required context}) async {
+  Future<String?>? photofromCamera(
+      {required context, required bool isProfilePic}) async {
     XFile? piked = await piker.pickImage(source: ImageSource.camera);
     if (piked != null) {
-      pic = File(piked.path);
+      if (isProfilePic) {
+        profilePic = File(piked.path);
 
-      int rand = Random().nextInt(1000000000);
-      String imagename = "$rand${basename(piked.path)}";
+        rand = Random().nextInt(1000000000);
+        imagename = "$rand${basename(piked.path)}";
+        return piked.path;
+      } else {
+        recPic = File(piked.path);
 
-      return pic;
+        rand = Random().nextInt(1000000000);
+        imagename = "$rand${basename(piked.path)}";
+        return piked.path;
+      }
 
       // refrance = FirebaseStorage.instance.ref("images").child(imagename);
       // ///////////
@@ -32,20 +39,26 @@ class CustomImagePicker {
       // CollectionReference users =
       //     FirebaseFirestore.instance.collection(kUsersCollection);
       // updateMyAvatar(users, newuid ?? homeUid, imageurl);
-
-      // empty(setFun);
     }
   }
 
-  Future<File?> photofromGallery({required context}) async {
+  Future<String?>? photofromGallery(
+      {required context, required bool isProfilePic}) async {
     XFile? piked = await piker.pickImage(source: ImageSource.gallery);
     if (piked != null) {
-      pic = File(piked.path);
+      if (isProfilePic) {
+        profilePic = File(piked.path);
 
-      int rand = Random().nextInt(1000000000);
-      String imagename = "$rand${basename(piked.path)}";
+        rand = Random().nextInt(1000000000);
+        imagename = "$rand${basename(piked.path)}";
+        return piked.path;
+      } else {
+        recPic = File(piked.path);
 
-      return pic;
+        rand = Random().nextInt(1000000000);
+        imagename = "$rand${basename(piked.path)}";
+        return piked.path;
+      }
 
       // refrance = FirebaseStorage.instance.ref("images").child(imagename);
       //////////
@@ -55,8 +68,6 @@ class CustomImagePicker {
       // CollectionReference users =
       //     FirebaseFirestore.instance.collection(kUsersCollection);
       // updateMyAvatar(users, newuid ?? homeUid, imageurl);
-
-      // empty(setFun);
     }
   }
 }

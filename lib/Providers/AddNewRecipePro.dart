@@ -3,11 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class AddNewRecipePro extends ChangeNotifier {
-  String? _amountValue = 'ملقعة صغيرة';
+  String? _amountValue = 'ملعقة صغيرة';
   String? _defficultyValue = 'سهلة';
-  List<bool> _ingredientsNumbers = [true];
-  List<bool> _processNumbers = [true];
+  List<TextEditingController> _ingredientsNumbers = <TextEditingController>[
+    TextEditingController()
+  ];
+  List<TextEditingController> _processNumbers = <TextEditingController>[
+    TextEditingController(),
+  ];
+
   File? _recipePic;
+
   get recipePic => _recipePic;
   set recipePic(val) {
     _recipePic = val;
@@ -16,8 +22,8 @@ class AddNewRecipePro extends ChangeNotifier {
 
   String? get amountValue => _amountValue;
   String? get defficultyValue => _defficultyValue;
-  List get ingredientsNumbers => _ingredientsNumbers;
-  List get processNumbers => _processNumbers;
+  List<TextEditingController> get ingredientsNumbers => _ingredientsNumbers;
+  List<TextEditingController> get processNumbers => _processNumbers;
 
   set amountValue(val) {
     _amountValue = val;
@@ -29,23 +35,23 @@ class AddNewRecipePro extends ChangeNotifier {
     notifyListeners();
   }
 
-  set AddingredientsNumbers(bool val) {
+  set AddingredientsNumbers(TextEditingController val) {
     _ingredientsNumbers.add(val);
     notifyListeners();
   }
 
-  set removeingredientsNumbers(index) {
-    _ingredientsNumbers.removeAt(index);
+  set removeingredientsNumbers(TextEditingController val) {
+    _ingredientsNumbers.remove(val);
     notifyListeners();
   }
 
-  set AddprocessNumbers(bool val) {
+  set AddprocessNumbers(TextEditingController val) {
     _processNumbers.add(val);
     notifyListeners();
   }
 
-  set removeprocessNumbers(index) {
-    _processNumbers.removeAt(index);
+  set removeprocessNumbers(TextEditingController con) {
+    _processNumbers.remove(con);
     notifyListeners();
   }
 }

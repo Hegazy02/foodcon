@@ -10,17 +10,20 @@ class CostumTextField extends StatelessWidget {
   String? Function(String?)? validator;
   String? initialValue;
   bool? isRtl;
-  CostumTextField({
-    this.label,
-    this.hint,
-    this.keyboardType,
-    this.secured,
-    this.icon,
-    this.onPressed,
-    this.validator,
-    this.initialValue,
-    this.isRtl,
-  });
+  Function(String)? onChanged;
+  TextEditingController? controllers;
+  CostumTextField(
+      {this.label,
+      this.hint,
+      this.keyboardType,
+      this.secured,
+      this.icon,
+      this.onPressed,
+      this.validator,
+      this.initialValue,
+      this.isRtl,
+      this.onChanged,
+      this.controllers});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,8 @@ class CostumTextField extends StatelessWidget {
         obscureText: secured ?? false,
         keyboardType: keyboardType ?? TextInputType.name,
         validator: validator,
+        onChanged: onChanged,
+        controller: controllers,
       ),
     );
   }

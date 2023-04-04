@@ -23,7 +23,13 @@ class _changeProfilePicState extends State<changeProfilePic> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return CircleAvatar(
-                        backgroundImage: FileImage(snapshot.data!),
+                        backgroundImage: AssetImage(snapshot.data!),
+                        radius: 60,
+                      );
+                    } else if (CustomImagePicker.profilePic != null) {
+                      return CircleAvatar(
+                        backgroundImage:
+                            FileImage(CustomImagePicker.profilePic!),
                         radius: 60,
                       );
                     } else {

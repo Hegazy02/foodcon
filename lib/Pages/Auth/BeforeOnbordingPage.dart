@@ -54,7 +54,14 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                                   if (snapshot.hasData) {
                                     return CircleAvatar(
                                       backgroundImage:
-                                          FileImage(snapshot.data!),
+                                          NetworkImage(snapshot.data!),
+                                      radius: 60,
+                                    );
+                                  } else if (CustomImagePicker.profilePic !=
+                                      null) {
+                                    return CircleAvatar(
+                                      backgroundImage: FileImage(
+                                          CustomImagePicker.profilePic!),
                                       radius: 60,
                                     );
                                   } else {

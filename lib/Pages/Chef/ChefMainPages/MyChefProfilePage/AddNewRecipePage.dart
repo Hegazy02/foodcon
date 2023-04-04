@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/CustomDropDown.dart';
@@ -5,6 +7,7 @@ import 'package:foodcon/Components/CustomTextField.dart';
 import 'package:foodcon/Global/textStyle.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Providers/AddNewRecipePro.dart';
+import 'package:foodcon/Services/imagePicker.dart';
 import 'package:foodcon/constants.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
@@ -72,20 +75,34 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               ],
             ),
             FutureBuilder(
-                future: BottomSheetHelpers.futureRecipe,
+                future: BottomSheetHelpers.futureRecipepic,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
+                    print("if");
                     return Container(
                       height: 150,
                       width: 70.w,
-                      padding: EdgeInsets.only(bottom: 10),
+                      margin: EdgeInsets.only(bottom: 10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
-                              image: FileImage(snapshot.data!),
+                              image: NetworkImage(snapshot.data!),
+                              fit: BoxFit.fill)),
+                    );
+                  } else if (CustomImagePicker.recPic != null) {
+                    print("else if");
+                    return Container(
+                      height: 150,
+                      width: 70.w,
+                      margin: EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                              image: FileImage(CustomImagePicker.recPic!),
                               fit: BoxFit.fill)),
                     );
                   } else {
+                    print("else");
                     return SizedBox();
                   }
                 }),
@@ -112,43 +129,48 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               ],
             ),
             Consumer<AddNewRecipePro>(
-              builder: (context, valProv, child) => ListView.builder(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                itemCount: valProv.ingredientsNumbers.length,
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    CostumTextField(
-                      isRtl: true,
-                      hint: "الصنف",
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: 10.w,
-                          child: CustomButton(
-                            child: Icon(Icons.delete),
-                            onPressed: () {
-                              valProv.removeingredientsNumbers = index;
-                            },
-                            padding: EdgeInsets.symmetric(horizontal: 1),
-                          ),
+              builder: (context, valProv, child) => ListView(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  children: valProv.ingredientsNumbers
+                      .map(
+                        (TextEditingController e) => Column(
+                          children: [
+                            CostumTextField(
+                              isRtl: true,
+                              hint: "الصنف",
+                              controllers: e,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                SizedBox(
+                                  width: 10.w,
+                                  child: CustomButton(
+                                    child: Icon(Icons.delete),
+                                    onPressed: () {
+                                      valProv.removeingredientsNumbers = e;
+                                    },
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 1),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 25.w,
+                                  child: CostumTextField(
+                                    keyboardType: TextInputType.number,
+                                    isRtl: true,
+                                    hint: "عدد المرات",
+                                    controllers: TextEditingController(),
+                                  ),
+                                ),
+                                CustomDropdown(type: 'مقادير'),
+                              ],
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 25.w,
-                          child: CostumTextField(
-                            keyboardType: TextInputType.number,
-                            isRtl: true,
-                            hint: "عدد المرات",
-                          ),
-                        ),
-                        CustomDropdown(type: 'مقادير'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                      )
+                      .toList()),
             ),
             Consumer<AddNewRecipePro>(
               builder: (context, valProv, child) => Padding(
@@ -156,7 +178,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
                 child: CustomButton(
                   child: Text("اضافة مكون"),
                   onPressed: () {
-                    valProv.AddingredientsNumbers = true;
+                    valProv.AddingredientsNumbers = TextEditingController();
                   },
                 ),
               ),
@@ -171,11 +193,12 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               ],
             ),
             Consumer<AddNewRecipePro>(
-                builder: (context, valProv, child) => ListView.builder(
-                      itemCount: valProv.processNumbers.length,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      itemBuilder: (context, index) => Row(
+                builder: (context, valProv, child) => ListView(
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    children:
+                        valProv.processNumbers.map((TextEditingController e) {
+                      return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           SizedBox(
@@ -183,7 +206,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
                             child: CustomButton(
                               child: Icon(Icons.delete),
                               onPressed: () {
-                                valProv.removeprocessNumbers = index;
+                                valProv.removeprocessNumbers = e;
                               },
                               padding: EdgeInsets.symmetric(horizontal: 1),
                             ),
@@ -193,18 +216,21 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
                             child: CostumTextField(
                               isRtl: true,
                               hint: "العملية",
+                              controllers: e,
                             ),
                           ),
                         ],
-                      ),
-                    )),
+                      );
+                    }).toList())),
             Consumer<AddNewRecipePro>(
               builder: (context, valProv, child) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 70),
                 child: CustomButton(
                   child: Text("اضافة عملية"),
                   onPressed: () {
-                    valProv.AddprocessNumbers = true;
+                    print(valProv.processNumbers);
+                    valProv.AddprocessNumbers = TextEditingController();
+                    print(valProv.processNumbers);
                   },
                 ),
               ),
@@ -222,7 +248,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  width: 27.w,
+                  width: 29.w,
                   child: CostumTextField(
                     keyboardType: TextInputType.number,
                     isRtl: true,
@@ -232,9 +258,19 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
                 CustomDropdown(type: 'q'),
               ],
             ),
+            const SizedBox(
+              height: 10,
+            ),
             CustomButton(
-              child: Text("انشاء الوصفة"),
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                "انشاء الوصفة",
+                style: recipeTitleStyle,
+              ),
               onPressed: () {},
+            ),
+            const SizedBox(
+              height: 10,
             ),
           ],
         ),

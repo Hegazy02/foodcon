@@ -10,10 +10,10 @@ class CustomDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String>? defficultyLevel = ['سهلة', 'متوسطة', 'صعبة'];
     List<String>? amountList = [
-      'نصف ملقعة صغيرة',
-      'ملقعة صغيرة',
-      'نصف ملقعة كبيرة',
-      'ملقعة كبيرة',
+      'نصف ملعقة صغيرة',
+      'ملعقة صغيرة',
+      'نصف ملعقة كبيرة',
+      'ملعقة كبيرة',
       'نصف كوب كبير',
       'كوب كبير',
       'نصف كوب صغير',
