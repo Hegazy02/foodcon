@@ -24,7 +24,7 @@ class MyAccProfilePage extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return CircleAvatar(
-                      backgroundImage: FileImage(snapshot.data!),
+                      backgroundImage: NetworkImage(snapshot.data!),
                       radius: 30,
                     );
                   } else {

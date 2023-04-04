@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/imagePicker.dart';
@@ -9,8 +8,8 @@ import 'package:sizer/sizer.dart';
 
 class BottomSheetHelpers {
   bool isProfielPic;
-  static Future<File?>? futureRecipe;
-  static Future<File?>? futureProfilePic;
+  static Future<String?>? futureRecipepic;
+  static Future<String?>? futureProfilePic;
   BottomSheetHelpers({required this.isProfielPic});
 
   TextStyle itemsStyle = TextStyle(fontSize: 16.sp);
@@ -42,11 +41,12 @@ class BottomSheetHelpers {
                   ),
                   onTap: () {
                     if (isProfielPic) {
-                      futureProfilePic =
-                          pick.photofromGallery(context: context);
+                      futureProfilePic = pick.photofromGallery(
+                          context: context, isProfilePic: isProfielPic);
                       Navigator.pop(context);
                     } else {
-                      futureRecipe = pick.photofromGallery(context: context);
+                      futureProfilePic = pick.photofromGallery(
+                          context: context, isProfilePic: isProfielPic);
                       Navigator.pop(context);
                     }
                   },
@@ -64,10 +64,12 @@ class BottomSheetHelpers {
                   ),
                   onTap: () async {
                     if (isProfielPic) {
-                      futureProfilePic = pick.photofromCamera(context: context);
+                      futureProfilePic = pick.photofromCamera(
+                          context: context, isProfilePic: isProfielPic);
                       Navigator.pop(context);
                     } else {
-                      futureRecipe = pick.photofromCamera(context: context);
+                      futureRecipepic = pick.photofromCamera(
+                          context: context, isProfilePic: isProfielPic);
                     }
 
                     Navigator.pop(context);
