@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/chartsPage.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/chefHomePage.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/chefSettingsPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/explorePage.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class _ChefMasterPageState extends State<ChefMasterPage> {
   int selectedpage = 3;
   Widget build(BuildContext context) {
     List body = [
-      ExplorePage(),
+      chefSettingsPage(),
       ProfilePage(),
       ChartsPage(),
       ChefHomePage(),

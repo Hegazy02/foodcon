@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomSearchBar.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Global/textStyle.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
@@ -16,12 +17,8 @@ class chefSearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "البحث",
-          style: appBarStyle,
-        ),
-        shape: KAppBarShape,
+      appBar: RoundedAppBar(
+        title: "البحث",
       ),
       body: Column(
         children: [

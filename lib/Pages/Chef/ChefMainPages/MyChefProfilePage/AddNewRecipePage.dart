@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/CustomDropDown.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Global/textStyle.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Providers/AddNewRecipePro.dart';
 import 'package:foodcon/Services/imagePicker.dart';
-import 'package:foodcon/constants.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -24,13 +24,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        shape: KAppBarShape,
-        title: Text(
-          "اضافة وصفة جديده",
-          style: appBarStyle,
-        ),
-      ),
+      appBar: RoundedAppBar(title: "اضافة وصفة جديدة"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(

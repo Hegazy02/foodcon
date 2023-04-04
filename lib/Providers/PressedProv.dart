@@ -7,6 +7,7 @@ class PressedProv extends ChangeNotifier {
 
   String get follow => _follow;
   bool get switchHome => _switchHome;
+
   //////////////////
 
   changeFollow() {

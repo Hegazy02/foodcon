@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Components/darkThemeColors.dart';
 import 'package:foodcon/Pages/AllCategoriesPage.dart';
 import 'package:foodcon/Pages/AllChefsPage.dart';
 import 'package:foodcon/Pages/AllPopularRecipesPage.dart.dart';
@@ -13,59 +14,29 @@ import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/stepperPage.dart';
 import 'package:foodcon/Pages/Client/clientMasterPage.dart';
-import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/AddNewRecipePro.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Providers/PressedProv.dart';
 import 'package:foodcon/Providers/chefProfileSearchProv.dart';
 import 'package:foodcon/Providers/favProv.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/sharedPref.dart';
-import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'Services/darkmoodSharedPref.dart';
 
+bool? mood;
+DarkmoodProv darkProv = DarkmoodProv();
 void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); //بتخلي التطبيق ميعملش رن الا لما الحاجه الي بعد سطر دا تتنقذ
   await sharepref().instialize(); // الي هي دي
-  // await sharepref().deleteAll();
-  runApp(MyApp());
+  mood = await DarkmoodSharedPref.getmood();
+  print("mood ${mood}");
+  darkProv.isDarkmood = mood ?? false;
+  print("  darkProv.isDarkmood ${darkProv.isDarkmood}");
 
-  // sharepref().deleteFave(0);
-  // sharepref().deleteFave(1);
-  // sharepref().deleteFave(2);
-  // sharepref().deleteFave(3);
-  // sharepref().deleteFave(4);
-  // sharepref().deleteFave(5);
-  // sharepref().deleteFave(6);
-  // sharepref().deleteFave(8);
-  // sharepref().deleteFave(9);
-  // sharepref().deleteFave(10);
-  // sharepref().deleteFave(11);
-  // sharepref().deleteFave(12);
-  // sharepref().deleteFave(13);
-  // sharepref().deleteFave(14);
-  // sharepref().deleteFave(15);
-  // sharepref().deleteFave(16);
-  // sharepref().deleteFave(17);
-  // sharepref().deleteFave(18);
-  // sharepref().deleteFave(19);
-  // sharepref().deleteFave(20);
-  // sharepref().deleteFave(21);
-  // sharepref().deleteFave(22);
-  // sharepref().deleteFave(23);
-  // sharepref().deleteFave(24);
-  // sharepref().deleteFave(25);
-  // sharepref().deleteFave(26);
-  // sharepref().deleteFave(27);
-  // sharepref().deleteFave(28);
-  // sharepref().deleteFave(29);
-  // sharepref().deleteFave(30);
-  // sharepref().deleteFave(31);
-  // sharepref().deleteFave(32);
-  // sharepref().deleteFave(33);
-  // sharepref().deleteFave(34);
-  // sharepref().removeCounter();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -90,14 +61,21 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<AddNewRecipePro>(
           create: (context) => AddNewRecipePro(),
         ),
+        ChangeNotifierProvider<DarkmoodProv>(
+          create: (context) => DarkmoodProv(),
+        ),
       ],
       child: Sizer(builder: (context, orientation, deviceType) {
+        print("qqqqqqqqqqqq ${Provider.of<DarkmoodProv>(context).isDarkmood}");
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-              primarySwatch: mainC,
-              primaryColor: KprimaryColor,
-              cardColor: KprimaryColor),
+          theme: Styles.themeData(
+              Provider.of<DarkmoodProv>(context).isDarkmood, context),
+
+          //  ThemeData(
+          //     primarySwatch: mainC,
+          //     primaryColor: KprimaryColor,
+          //     cardColor: KprimaryColor),
           home: ChefMasterPage(),
           routes: {
             ClientMasterPage().id: (context) => ClientMasterPage(),
@@ -105,7 +83,6 @@ class MyApp extends StatelessWidget {
             BeforeOnboardingPage().id: (context) => BeforeOnboardingPage(),
             LoginPage().id: (context) => LoginPage(),
             OnBoardingPage().id: (context) => OnBoardingPage(),
-            // ChefProfile().id: (context) => ChefProfile(),
             StepperPage().id: (context) => StepperPage(),
             MyOrdersPage().id: (context) => MyOrdersPage(),
             ReceivedOrdersPage().id: (context) => ReceivedOrdersPage(),

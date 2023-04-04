@@ -1,18 +1,18 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
-import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/AddNewRecipePage.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/chefSearchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfilePage extends StatelessWidget {
+  DarkmoodProv darkmood = DarkmoodProv();
   ProfilePage({super.key});
   TabController? controller;
   @override
@@ -44,13 +44,17 @@ class ProfilePage extends StatelessWidget {
                 height: 5.h,
                 width: 20.w,
                 child: BorderdButton(
-                  borderColor: KprimaryColor,
+                  borderColor: darkmood.isDarkmood
+                      ? kDarksecondThemeColor
+                      : KprimaryColor,
                   txt: "ايام العمل",
                   onPressed: () {
                     BottomSheetHelpers(isProfielPic: false)
                         .workingDays(context);
                   },
-                  txtColor: KprimaryColor,
+                  txtColor: darkmood.isDarkmood
+                      ? kDarksecondThemeColor
+                      : KprimaryColor,
                   circular: 20,
                   padding: 0,
                 ),
@@ -64,7 +68,9 @@ class ProfilePage extends StatelessWidget {
                 },
                 icon: Icon(
                   Iconsax.search_normal,
-                  color: KprimaryColor,
+                  color: darkmood.isDarkmood
+                      ? kDarksecondThemeColor
+                      : KprimaryColor,
                 ),
               ),
               SizedBox(
@@ -140,14 +146,18 @@ class ProfilePage extends StatelessWidget {
                 height: 5.h,
                 width: 60.w,
                 child: BorderdButton(
-                  borderColor: KprimaryColor,
+                  borderColor: darkmood.isDarkmood
+                      ? kDarksecondThemeColor
+                      : KprimaryColor,
                   txt: "اضافة وصفة جديده",
                   onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => AddNewRecipePage(),
                       )),
-                  txtColor: KprimaryColor,
+                  txtColor: darkmood.isDarkmood
+                      ? kDarksecondThemeColor
+                      : KprimaryColor,
                   circular: 20,
                   padding: 0,
                 ),

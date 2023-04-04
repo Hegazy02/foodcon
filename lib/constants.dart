@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 const Color KprimaryColor = Color(0xFFF55744);
+const kDarkThemeColor = Color(0xff0E1D36);
+const kDarksecondThemeColor = Color.fromARGB(255, 66, 100, 211);
 const Klogo = "assets/images/Logo.png";
 
 MaterialColor mainC = MaterialColor(
@@ -19,9 +21,3 @@ MaterialColor mainC = MaterialColor(
   },
 );
 int mainColor = 0xFFF55744;
-RoundedRectangleBorder KAppBarShape = const RoundedRectangleBorder(
-  borderRadius: BorderRadius.only(
-    bottomLeft: Radius.circular(30.0),
-    bottomRight: Radius.circular(30.0),
-  ),
-);

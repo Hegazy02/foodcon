@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/ChangeProfilePic.dart';
 import 'package:foodcon/Components/CustomTextField.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -14,6 +16,7 @@ class EditprogilePage extends StatefulWidget {
 }
 
 class _EditprogilePageState extends State<EditprogilePage> {
+  DarkmoodProv darkmood = DarkmoodProv();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Validation() {
     FormState? form = formKey.currentState;
@@ -27,8 +30,8 @@ class _EditprogilePageState extends State<EditprogilePage> {
   Widget build(BuildContext context) {
     var formKey;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Account info"),
+      appBar: RoundedAppBar(
+        title: "تعديل الحساب",
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -71,7 +74,9 @@ class _EditprogilePageState extends State<EditprogilePage> {
                   width: 80.w,
                   child: BorderdButton(
                     padding: 10,
-                    borderColor: KprimaryColor,
+                    borderColor: darkmood.isDarkmood
+                        ? kDarksecondThemeColor
+                        : KprimaryColor,
                     txtColor: Colors.white,
                     circular: 20,
                     txt: buttontxt,
@@ -82,7 +87,9 @@ class _EditprogilePageState extends State<EditprogilePage> {
                         Navigator.of(context).pop();
                       });
                     },
-                    color: KprimaryColor,
+                    color: darkmood.isDarkmood
+                        ? kDarksecondThemeColor
+                        : KprimaryColor,
                   ),
                 ),
               ],

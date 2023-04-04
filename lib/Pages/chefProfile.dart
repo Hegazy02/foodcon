@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
-import 'package:foodcon/Global/textStyle.dart';
-import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/PressedProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
@@ -27,12 +26,7 @@ class ChefProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text(
-            "صفحة الشيف",
-            style: appBarStyle,
-          ),
-          shape: KAppBarShape),
+      appBar: RoundedAppBar(title: "صفحة الشيف"),
       body: DefaultTabController(
         length: 2,
         child: ListView(

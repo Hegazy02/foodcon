@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
@@ -11,9 +12,7 @@ class FollowingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Following"),
-      ),
+      appBar: RoundedAppBar(title: "المتابعين"),
       body: ListView.builder(
         itemCount: autoList.length,
         itemBuilder: (context, index) => ListTile(
