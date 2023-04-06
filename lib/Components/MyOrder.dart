@@ -11,6 +11,7 @@ class MyOrder extends StatelessWidget {
   Function() onButtonPressed;
   Function()? onCancelButton;
   Function()? onTap;
+  Color txtColor;
 
   MyOrder(
       {required this.isTwoButtons,
@@ -20,7 +21,7 @@ class MyOrder extends StatelessWidget {
       required this.onButtonPressed,
       this.onCancelButton,
       required this.price,
-      required this.onTap});
+      required this.onTap,required this.txtColor});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class MyOrder extends StatelessWidget {
                       "\$${price}",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: KprimaryColor,
+                          color: txtColor,
                           fontSize: 16),
                     ),
                   ],

@@ -128,7 +128,7 @@ class _SearchPageState extends State<SearchPage> {
                                   chefAvatar: "${l[index].chefAvatar}",
                                   chefName: "${l[index].chefName}",
                                   isLiked: l[index].isLiked,
-                                  trailing: SizedBox(
+                                  leading: SizedBox(
                                     width: 60,
                                     child: Row(
                                       children: [

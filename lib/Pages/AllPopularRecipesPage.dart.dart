@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MainPosters.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfilePage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
@@ -14,13 +15,7 @@ class AllPopularRecipesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Text("أشهر الأكلات"),
-          ],
-        ),
-      ),
+      appBar: RoundedAppBar(title: "اشهر الاكلات"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<FilterProv>(
@@ -33,6 +28,9 @@ class AllPopularRecipesPage extends StatelessWidget {
               itemCount: autoList.length,
               itemBuilder: (context, index) => MyRecipe(
                     recipe: autoList[index],
+                    title: autoList[index].title!.length > 14
+                        ? "..${autoList[index].title!.substring(0, 13)}"
+                        : autoList[index].title,
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(

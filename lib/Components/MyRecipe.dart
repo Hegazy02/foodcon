@@ -9,7 +9,8 @@ import 'package:sizer/sizer.dart';
 class MyRecipe extends StatelessWidget {
   RecipeModel recipe;
   Function()? onTap;
-  MyRecipe({super.key, required this.recipe, this.onTap});
+  String? title;
+  MyRecipe({super.key, required this.recipe, this.onTap, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class MyRecipe extends StatelessWidget {
                               SizedBox(
                                 width: 3.w,
                               ),
-                              Text("${recipe.title}", style: recipeTitleStyle),
+                              Text("${title}", style: recipeTitleStyle),
                             ],
                           ),
                           Row(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 
@@ -9,9 +10,7 @@ class AllChefsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("All Chefs"),
-      ),
+      appBar: RoundedAppBar(title: "جميع الشيفات"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(

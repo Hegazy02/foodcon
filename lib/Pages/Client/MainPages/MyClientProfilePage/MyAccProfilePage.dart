@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
-import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
+
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/EditProfilePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';

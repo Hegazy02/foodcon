@@ -11,6 +11,7 @@ class Tricks extends StatelessWidget {
       ),
       scrollDirection: Axis.horizontal,
       itemCount: 8,
+      reverse: true,
       itemBuilder: (context, index) => Container(
         height: 100,
         width: 120,

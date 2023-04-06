@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/constants.dart';
 
 import 'package:easy_stepper/easy_stepper.dart';
@@ -16,9 +17,7 @@ class _StepperPageState extends State<StepperPage> {
   Widget build(BuildContext context) {
     int activeStep = 3;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Track"),
-      ),
+      appBar: RoundedAppBar(title: "تتبع"),
       body: EasyStepper(
         direction: Axis.vertical,
         defaultStepBorderType: BorderType.normal,

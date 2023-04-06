@@ -14,6 +14,7 @@ class CategoryIcons extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 7,
+        reverse: true,
         itemBuilder: (context, index) {
           return Consumer<FilterProv>(
             builder: (context, value, child) {
@@ -31,8 +32,9 @@ class CategoryIcons extends StatelessWidget {
                   height: 60,
                   width: 60,
                   decoration: BoxDecoration(
-                      color:
-                          value.isCate == index ? KprimaryColor : Colors.white,
+                      color: value.isCate == index
+                          ? mainthemeColor
+                          : fillFollowedColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [

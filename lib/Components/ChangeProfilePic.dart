@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Services/imagePicker.dart';
 import 'package:sizer/sizer.dart';
+import 'package:iconsax/iconsax.dart';
 
 class changeProfilePic extends StatefulWidget {
   const changeProfilePic({super.key});
@@ -53,8 +54,8 @@ class _changeProfilePicState extends State<changeProfilePic> {
             },
             child: Container(
               child: Icon(
-                Icons.photo_camera,
-                // color: KprimaryColor,
+                Iconsax.camera,
+                color: Colors.grey[800],
                 size: 32,
               ),
               decoration: BoxDecoration(

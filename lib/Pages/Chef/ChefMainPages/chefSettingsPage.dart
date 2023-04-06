@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Components/IconListTile.dart';
+import 'package:foodcon/Components/ProfileSettingListTile.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
+import 'package:foodcon/Services/darkmoodSharedPref.dart';
 import 'package:foodcon/Services/imagePicker.dart';
-import 'package:foodcon/constants.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 class chefSettingsPage extends StatelessWidget {
   const chefSettingsPage({super.key});
@@ -10,28 +16,62 @@ class chefSettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 3.h,
+        ),
         FutureBuilder(
             future: BottomSheetHelpers.futureProfilePic,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return ListTile(
-                  trailing: CircleAvatar(
-                      radius: 30, child: Image.network(snapshot.data!)),
+                return ProfileSettingsListTile(
+                  child: Image.network(snapshot.data!),
                 );
               } else if (CustomImagePicker.profilePic != null) {
-                return ListTile(
-                    trailing: CircleAvatar(
-                        radius: 30,
-                        child: Image.file(CustomImagePicker.profilePic!)));
+                return ProfileSettingsListTile(
+                    child: Image.file(CustomImagePicker.profilePic!));
               } else {
-                return ListTile(
-                  trailing: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: KprimaryColor,
-                  ),
+                return ProfileSettingsListTile(
+                  child: SizedBox(),
                 );
               }
-            })
+            }),
+        IconListTile(
+          iconData: Iconsax.notification,
+          title: "الاشعارات",
+          onTap: () {},
+        ),
+        Consumer<DarkmoodProv>(
+          builder: (context, valprov, child) => IconListTile(
+            iconData: Iconsax.moon,
+            title: "الوضع الليلي",
+            onTap: () {
+              valprov.isDarkmood = !valprov.isDarkmood;
+              DarkmoodSharedPref.setmood(valprov.isDarkmood);
+            },
+            leading: Switch(
+              value: valprov.isDarkmood,
+              onChanged: (newvalue) {
+                valprov.isDarkmood = newvalue;
+                DarkmoodSharedPref.setmood(valprov.isDarkmood);
+              },
+            ),
+          ),
+        ),
+        IconListTile(
+          iconData: Iconsax.call,
+          title: "اتصل بنا",
+          onTap: () {},
+        ),
+        IconListTile(
+          iconData: Icons.info_outline,
+          title: "عن فودكن",
+          onTap: () {},
+        ),
+        IconListTile(
+          iconData: Iconsax.profile_delete,
+          title: "مسح الحساب",
+          onTap: () {},
+        ),
       ],
     );
   }

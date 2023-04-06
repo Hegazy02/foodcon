@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MainPosters.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:provider/provider.dart';
@@ -11,9 +12,7 @@ class AllCategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("All Categories"),
-      ),
+      appBar: RoundedAppBar(title: "جميع الاصناف"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<FilterProv>(

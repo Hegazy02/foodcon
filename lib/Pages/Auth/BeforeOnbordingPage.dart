@@ -7,6 +7,7 @@ import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Chef/chefMasterPage.dart';
 import 'package:foodcon/Services/imagePicker.dart';
 import 'package:foodcon/constants.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:sizer/sizer.dart';
 
 class BeforeOnboardingPage extends StatefulWidget {
@@ -27,9 +28,9 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
     }
   }
 
-  String client = "مستخدم";
-  String chef = "شيف";
-  String userType = "مستخدم";
+  String client = "User";
+  String chef = "Chef";
+  String userType = "User";
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +86,8 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                         },
                         child: Container(
                           child: Icon(
-                            Icons.photo_camera,
-                            // color: KprimaryColor,
+                            Iconsax.camera,
+                            color: Colors.grey,
                             size: 32,
                           ),
                           decoration: BoxDecoration(
@@ -147,13 +148,14 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                       width: 30.w,
                       child: BorderdButton(
                         padding: 10,
-                        borderColor: KprimaryColor,
+                        borderColor: mainthemeColor,
                         circular: 20,
                         txt: chef,
                         txtColor:
-                            userType == client ? KprimaryColor : Colors.white,
-                        color:
-                            userType == client ? Colors.white : KprimaryColor,
+                            userType == client ? mainthemeColor : Colors.white,
+                        color: userType == client
+                            ? fillFollowedColor
+                            : mainthemeColor,
                         onPressed: () {
                           setState(() {
                             userType = chef;
@@ -166,9 +168,9 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                       width: 30.w,
                       child: BorderdButton(
                         padding: 10,
-                        borderColor: KprimaryColor,
+                        borderColor: mainthemeColor,
                         txtColor:
-                            userType == client ? Colors.white : KprimaryColor,
+                            userType == client ? Colors.white : mainthemeColor,
                         circular: 20,
                         txt: client,
                         // txtColor: KprimaryColor,
@@ -177,8 +179,9 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                             userType = client;
                           });
                         },
-                        color:
-                            userType == client ? KprimaryColor : Colors.white,
+                        color: userType == client
+                            ? mainthemeColor
+                            : fillFollowedColor,
                       ),
                     ),
                   ],
@@ -191,7 +194,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                   width: 80.w,
                   child: BorderdButton(
                     padding: 10,
-                    borderColor: KprimaryColor,
+                    borderColor: mainthemeColor,
                     txtColor: Colors.white,
                     circular: 20,
                     txt: "Continue",
@@ -207,7 +210,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                             .pushReplacementNamed(ChefMasterPage().id);
                       }
                     },
-                    color: KprimaryColor,
+                    color: mainthemeColor,
                   ),
                 ),
               ],

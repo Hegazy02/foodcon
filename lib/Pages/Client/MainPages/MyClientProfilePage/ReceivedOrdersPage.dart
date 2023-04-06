@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/MyOrder.dart';
+import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class ReceivedOrdersPage extends StatelessWidget {
   String id = "receivedOrders";
   ReceivedOrdersPage({super.key});
-
+  DarkmoodProv dartmood = DarkmoodProv();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Received orders"),
-      ),
+      appBar: RoundedAppBar(title: "الطلبات المكتملة"),
       body: Column(
         children: [
           SizedBox(
@@ -36,6 +37,8 @@ class ReceivedOrdersPage extends StatelessWidget {
                       ),
                     )),
                 onButtonPressed: () {},
+                txtColor:
+                    dartmood.isDarkmood ? kDarksecondThemeColor : KprimaryColor,
               ),
             ),
           ),

@@ -9,7 +9,7 @@ class CustomTile extends StatelessWidget {
   String? chefName;
   String? chefAvatar;
   bool? isLiked;
-  Widget? trailing;
+  Widget? leading;
   double? padding;
   Function()? onTap;
 
@@ -20,7 +20,7 @@ class CustomTile extends StatelessWidget {
       this.chefAvatar,
       this.chefName,
       this.isLiked,
-      this.trailing,
+      this.leading,
       this.padding,
       this.onTap});
 
@@ -31,19 +31,37 @@ class CustomTile extends StatelessWidget {
 
     return ListTile(
       contentPadding: EdgeInsets.all(padding ?? 10),
-      leading: ClipRRect(
+      leading: leading,
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration: BoxDecoration(
+                color: mainthemeColor, borderRadius: BorderRadius.circular(20)),
+            child: Text(
+              "${item['category']}",
+              style: TextStyle(
+                fontSize: 11,
+              ),
+            ),
+          ),
+        ],
+      ),
+      subtitle: Align(
+        alignment: Alignment.centerRight,
+        child: Text(title,
+            style: TextStyle(
+              fontSize: 16,
+            )),
+      ),
+      trailing: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
             image != "" ? image! : Klogo,
             fit: BoxFit.fill,
           )),
-      title: Text(
-        "| ${item['category']}",
-        style: TextStyle(fontSize: 11, color: item['color4']),
-      ),
-      subtitle:
-          Text(title, style: TextStyle(fontSize: 16, color: Colors.black)),
-      trailing: trailing,
       onTap: onTap,
     );
   }

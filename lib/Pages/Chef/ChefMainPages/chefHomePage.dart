@@ -5,12 +5,13 @@ import 'package:foodcon/Components/MyOrder.dart';
 import 'package:foodcon/Components/decoratedContainer.dart';
 import 'package:foodcon/Components/notFound.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class ChefHomePage extends StatelessWidget {
   ChefHomePage({super.key});
-
+  DarkmoodProv dark = DarkmoodProv();
   @override
   Widget build(BuildContext context) {
     List myReceivedOrders = [1, 1, 1, 1, 1, 1];
@@ -25,8 +26,10 @@ class ChefHomePage extends StatelessWidget {
             height: 2.h,
           ),
           TabBar(
-              labelColor: KprimaryColor,
-              indicatorColor: KprimaryColor,
+              labelColor:
+                  dark.isDarkmood ? kDarksecondThemeColor : KprimaryColor,
+              indicatorColor:
+                  dark.isDarkmood ? kDarksecondThemeColor : KprimaryColor,
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(
@@ -56,6 +59,9 @@ class ChefHomePage extends StatelessWidget {
                         onCancelButton: () {},
                         price: 70,
                         onTap: () {},
+                        txtColor: dark.isDarkmood
+                            ? kDarksecondThemeColor
+                            : KprimaryColor,
                       ),
                     ),
               myPreparingOrders.isEmpty
@@ -72,6 +78,9 @@ class ChefHomePage extends StatelessWidget {
                         onButtonPressed: () {},
                         price: 70,
                         onTap: () {},
+                        txtColor: dark.isDarkmood
+                            ? kDarksecondThemeColor
+                            : KprimaryColor,
                       ),
                     ),
               myReceivedOrders.isEmpty
@@ -89,6 +98,9 @@ class ChefHomePage extends StatelessWidget {
                         onCancelButton: () {},
                         price: 70,
                         onTap: () {},
+                        txtColor: dark.isDarkmood
+                            ? kDarksecondThemeColor
+                            : KprimaryColor,
                       ),
                     ),
             ]),
