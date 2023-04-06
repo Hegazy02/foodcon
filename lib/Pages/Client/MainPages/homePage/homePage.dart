@@ -9,6 +9,7 @@ import 'package:foodcon/Pages/AllPopularRecipesPage.dart.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
   bool switchHome = false;
   String? searchVal;
   HomePage({super.key});
-
+  DarkmoodProv darkmood = DarkmoodProv();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -77,21 +78,31 @@ class HomePage extends StatelessWidget {
                           },
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
-                              border: InputBorder.none,
-                              // enabledBorder: OutlineInputBorder(
-                              //     borderRadius: BorderRadius.circular(30),
-                              //     borderSide:
-                              //         BorderSide(width: 1, color: Colors.grey)),
-                              // focusedBorder: OutlineInputBorder(
-                              //     borderRadius: BorderRadius.circular(30),
-                              //     borderSide:
-                              //         BorderSide(width: 1, color: Colors.grey)),
+                              contentPadding: EdgeInsets.symmetric(vertical: 0),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: darkmood.isDarkmood == true
+                                        ? kDarksecondThemeColor
+                                        : KprimaryColor,
+                                  )),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: darkmood.isDarkmood == true
+                                        ? kDarksecondThemeColor
+                                        : KprimaryColor,
+                                  )),
                               hintText: "Search",
                               prefixIcon: IconButton(
                                   onPressed: () {},
                                   icon: Icon(
                                     Icons.search,
-                                    color: Colors.black,
+                                    color: darkmood.isDarkmood == true
+                                        ? kDarksecondThemeColor
+                                        : KprimaryColor,
                                   ))),
                         );
                       },
@@ -119,6 +130,7 @@ class HomePage extends StatelessWidget {
                       width: 10,
                     );
                   },
+                  reverse: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: foodList.length,
                   itemBuilder: (context, index) {
@@ -153,6 +165,7 @@ class HomePage extends StatelessWidget {
                       width: 10,
                     );
                   },
+                  reverse: true,
                   itemCount: popularChefsList.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -182,6 +195,7 @@ class HomePage extends StatelessWidget {
                       height: 10,
                     );
                   },
+                  reverse: true,
                   itemCount: popularRecipesList.length,
                   itemBuilder: (context, index) {
                     return popularRecipes(
@@ -245,7 +259,7 @@ class HomePage extends StatelessWidget {
                               MaterialTapTargetSize.shrinkWrap,
                           child: Row(
                             children: [
-                              Expanded(child: Text(value[index]['title'])),
+                              Expanded(child: Text(value[index].title)),
                             ],
                           ));
                     },
@@ -361,6 +375,7 @@ class popularRecipes extends StatelessWidget {
 }
 
 class CustomRows extends StatelessWidget {
+  DarkmoodProv darkmood = DarkmoodProv();
   String? RightText;
   Function()? onTap;
   CustomRows({super.key, this.RightText, this.onTap});
@@ -375,7 +390,11 @@ class CustomRows extends StatelessWidget {
             height: 30,
             child: Text(
               "عرض المزيد",
-              style: TextStyle(color: KprimaryColor),
+              style: TextStyle(
+                color: darkmood.isDarkmood == true
+                    ? kDarksecondThemeColor
+                    : KprimaryColor,
+              ),
             ),
           ),
         ),

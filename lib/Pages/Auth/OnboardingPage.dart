@@ -130,7 +130,7 @@ Container buildDot(int index, BuildContext context) {
     margin: EdgeInsets.only(right: 5),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20),
-      color: KprimaryColor,
+      color: mainthemeColor,
     ),
   );
 }

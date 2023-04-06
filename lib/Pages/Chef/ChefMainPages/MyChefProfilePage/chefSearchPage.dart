@@ -48,6 +48,7 @@ class chefSearchPage extends StatelessWidget {
               return ListView.separated(
                   itemBuilder: (context, index) => MyRecipe(
                         recipe: myList[index],
+                        title: myList[index].title,
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(

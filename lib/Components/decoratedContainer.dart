@@ -10,7 +10,7 @@ class decoratedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: 10),
+        margin: EdgeInsets.only(bottom: 10, top: 10),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
             color: darkmood.isDarkmood ? kDarkThemeColor : Colors.white,

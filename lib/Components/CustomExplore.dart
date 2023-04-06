@@ -37,6 +37,7 @@ class CustomExplore extends StatelessWidget {
     }
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Column(
           children: [
@@ -115,7 +116,7 @@ class CustomExplore extends StatelessWidget {
             ),
             Container(
               width: width,
-              padding: EdgeInsets.only(right: 5, top: 10),
+              padding: EdgeInsets.only(top: 10),
               child: Column(
                 children: [
                   Row(

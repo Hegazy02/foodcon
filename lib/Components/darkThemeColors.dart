@@ -33,6 +33,23 @@ class Styles {
       primaryColorDark: kDarksecondThemeColor,
       textSelectionTheme: TextSelectionThemeData(
           selectionColor: isDarkTheme ? Colors.white : Colors.black),
+      switchTheme: SwitchThemeData(
+        thumbColor: MaterialStateColor.resolveWith((states) {
+          return isDarkTheme ? kDarksecondThemeColor : Colors.white;
+        }),
+        trackColor: MaterialStateColor.resolveWith((states) {
+          return isDarkTheme ? kDarksecondThemeColor : Colors.grey;
+        }),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateColor.resolveWith((states) {
+          return isDarkTheme ? kDarksecondThemeColor : KprimaryColor;
+        }),
+      ),
+      tabBarTheme: TabBarTheme(
+        labelColor: isDarkTheme ? kDarksecondThemeColor : KprimaryColor,
+        indicatorColor: isDarkTheme ? kDarksecondThemeColor : KprimaryColor,
+      ),
     );
   }
 }

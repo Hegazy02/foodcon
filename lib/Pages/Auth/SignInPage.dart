@@ -109,11 +109,11 @@ class _LoginPageState extends State<LoginPage> {
                   width: 80.w,
                   child: BorderdButton(
                     padding: 10,
-                    borderColor: KprimaryColor,
+                    borderColor: mainthemeColor,
                     circular: 20,
                     txt: "Login",
                     txtColor: Colors.white,
-                    color: KprimaryColor,
+                    color: mainthemeColor,
                     onPressed: () {
                       Validation();
                     },

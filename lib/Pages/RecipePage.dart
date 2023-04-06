@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CiruledButton.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/sharedPref.dart';
 import 'package:foodcon/constants.dart';
@@ -9,17 +10,12 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 
-class RecipePage extends StatefulWidget {
+class RecipePage extends StatelessWidget {
   RecipeModel recipe;
 
-  String id = "RecipePage";
   RecipePage({super.key, required this.recipe});
-
-  @override
-  State<RecipePage> createState() => _RecipePageState();
-}
-
-class _RecipePageState extends State<RecipePage> {
+  String id = "RecipePage";
+  DarkmoodProv darkmood = DarkmoodProv();
   bool fav = false;
   TextStyle FirstStyle = TextStyle(fontWeight: FontWeight.bold);
   TextStyle SecondStyle =
@@ -27,7 +23,6 @@ class _RecipePageState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Consumer<FilterProv>(
         builder: (context, value, child) => DefaultTabController(
             initialIndex: 2,
@@ -40,38 +35,23 @@ class _RecipePageState extends State<RecipePage> {
                       children: [
                         Spacer(),
                         CiruledButton(
-                          iconColor: widget.recipe.isLiked == true
+                          iconColor: recipe.isLiked == true
                               ? Colors.red
                               : Colors.black,
-                          icon: widget.recipe.isLiked == true
+                          icon: recipe.isLiked == true
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: Colors.white,
                           onTap: () {
-                            widget.recipe.isLiked = !widget.recipe.isLiked!;
+                            recipe.isLiked = !recipe.isLiked!;
 
-                            if (widget.recipe.isLiked == true) {
-                              sharepref().saveFavorites(item: widget.recipe);
-
-                              print("tttttttttttttttttt");
-                              // value.addFav = value.fil2[value.ScreenIndex];
+                            if (recipe.isLiked == true) {
+                              sharepref().saveFavorites(item: recipe);
                             } else {
-                              print("&&&&&&&widget.recipe&&&&&&&&&");
-                              print(widget.recipe.title);
-                              print(widget.recipe.desc);
-
-                              print(widget.recipe.chefAvatar);
-                              print(widget.recipe.chefName);
-                              print(widget.recipe.image);
-                              print(widget.recipe.posted);
-                              sharepref().deleteFave(
-                                  item: widget.recipe, context: context);
-                              print("qweeeeeeeeeee");
-                              // value.removeFave = value.fil2[value.ScreenIndex];
+                              sharepref()
+                                  .deleteFave(item: recipe, context: context);
                             }
                             value.refresh();
-
-                            // print("** ${value.fil2[value.ScreenIndex]['isLiked']}");
                           },
                           padding: 5,
                         ),
@@ -84,38 +64,53 @@ class _RecipePageState extends State<RecipePage> {
                   ],
                   expandedHeight: 350,
                   flexibleSpace: FlexibleSpaceBar(
-                      titlePadding: EdgeInsets.only(bottom: 8.h, left: 4.w),
+                      titlePadding:
+                          EdgeInsets.only(bottom: 8.h, right: 3.w, left: 3.w),
                       title: Row(
                         children: [
+                          Container(
+                              margin: EdgeInsets.only(right: 10, top: 5),
+                              padding: EdgeInsets.symmetric(horizontal: 7),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: darkmood.isDarkmood == false
+                                      ? Colors.redAccent
+                                      : kDarksecondThemeColor),
+                              child: Text(
+                                "مكرونات",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 8.sp),
+                              )),
+                          Spacer(),
+                          Text(
+                            "${recipe.chefName}",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
                           popularChefsIcons(
-                            image: widget.recipe.chefAvatar,
+                            image: recipe.chefAvatar,
                             radius: 15,
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ChefProfile(
-                                      chefName: "${widget.recipe.chefName}",
-                                      chefAvatar: "${widget.recipe.chefAvatar}",
-                                      posted: widget.recipe.posted!,
+                                      chefName: "${recipe.chefName}",
+                                      chefAvatar: "${recipe.chefAvatar}",
+                                      posted: recipe.posted!,
                                     ),
                                   ));
                             },
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "${widget.recipe.chefName}",
-                            style: TextStyle(fontSize: 12),
-                          )
                         ],
                       ),
                       background: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
-                                "${widget.recipe.image}",
+                                "${recipe.image}",
                               ),
                               fit: BoxFit.fill),
                         ),
@@ -132,13 +127,15 @@ class _RecipePageState extends State<RecipePage> {
                         ),
                       )),
                   title: Text(
-                    "الاكلة",
+                    "الوصفة",
                     style: FirstStyle,
                   ),
                   bottom: PreferredSize(
                       child: Container(
                         height: 50,
-                        color: Colors.white,
+                        color: darkmood.isDarkmood == false
+                            ? Colors.white
+                            : kDarkThemeColor,
                         child: Row(
                           children: [
                             SizedBox(
@@ -147,20 +144,24 @@ class _RecipePageState extends State<RecipePage> {
                             Icon(
                               Icons.star,
                               color: Colors.orange,
-                              size: 18,
+                              size: 20,
                             ),
-                            Text("${widget.recipe.star}"),
+                            Text("${recipe.star}"),
                             SizedBox(
                               width: 5,
                             ),
                             Icon(
                               Icons.alarm,
-                              size: 18,
+                              size: 20,
+                              color: Colors.grey,
                             ),
-                            Text("${widget.recipe.min}" + "min"),
+                            Text("${recipe.min}" + " min"),
+                            SizedBox(
+                              width: 5,
+                            ),
                             Spacer(),
                             Text(
-                              "${widget.recipe.title}",
+                              "${recipe.title}",
                               style: SecondStyle,
                             ),
                             SizedBox(
@@ -174,8 +175,6 @@ class _RecipePageState extends State<RecipePage> {
                 SliverPersistentHeader(
                     delegate: _SliverAppBarDelegate(
                   TabBar(
-                    labelColor: KprimaryColor,
-                    indicatorColor: KprimaryColor,
                     unselectedLabelColor: Colors.grey,
                     tabs: [
                       Tab(
@@ -186,13 +185,13 @@ class _RecipePageState extends State<RecipePage> {
                       ),
                       Tab(
                         child: Text(
-                          "مكونات",
+                          "المكونات",
                           style: FirstStyle,
                         ),
                       ),
                       Tab(
                         child: Text(
-                          "تفاصيل",
+                          "التفاصيل",
                           style: FirstStyle,
                         ),
                       ),
@@ -201,58 +200,64 @@ class _RecipePageState extends State<RecipePage> {
                 ))
               ],
               body: TabBarView(children: [
+                ListView.builder(
+                  padding: EdgeInsets.all(0),
+                  itemCount: recipeData.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(right: 5, bottom: 8),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                              color: darkmood.isDarkmood == false
+                                  ? KprimaryColor
+                                  : kDarksecondThemeColor,
+                              borderRadius: BorderRadius.circular(100)),
+                        ),
+                        Text(
+                          recipeData[index],
+                          textDirection: TextDirection.rtl,
+                          style: SecondStyle,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                ListView.builder(
+                  itemCount: ingredientsData.length,
+                  padding: EdgeInsets.all(0),
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(right: 5, bottom: 8),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Container(
+                          height: 7,
+                          width: 7,
+                          decoration: BoxDecoration(
+                              color: darkmood.isDarkmood == false
+                                  ? KprimaryColor
+                                  : kDarksecondThemeColor,
+                              borderRadius: BorderRadius.circular(100)),
+                        ),
+                        Text(
+                          ingredientsData[index],
+                          textDirection: TextDirection.rtl,
+                          style: SecondStyle,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                       style: SecondStyle,
                       textDirection: TextDirection.rtl,
                       "كبة اللحم بالبرغل ... تميزي دائماً بتقديم أطيب وصفات المقبلات الشامية الرائعة من وصفات الكبة على سفرتك، تعلمي خطوات العمل البسيطة وقدميها على سفرتك ساخنة"),
-                ),
-                ListView.builder(
-                  itemCount: ingredients.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Container(
-                          height: 7,
-                          width: 7,
-                          decoration: BoxDecoration(
-                              color: KprimaryColor,
-                              borderRadius: BorderRadius.circular(100)),
-                        ),
-                        Text(
-                          ingredients[index],
-                          textDirection: TextDirection.rtl,
-                          style: SecondStyle,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                  itemCount: recipe.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Container(
-                          height: 7,
-                          width: 7,
-                          decoration: BoxDecoration(
-                              color: KprimaryColor,
-                              borderRadius: BorderRadius.circular(100)),
-                        ),
-                        Text(
-                          recipe[index],
-                          textDirection: TextDirection.rtl,
-                          style: SecondStyle,
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ]),
             )),
@@ -262,6 +267,7 @@ class _RecipePageState extends State<RecipePage> {
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  DarkmoodProv darkmood = DarkmoodProv();
   _SliverAppBarDelegate(this._tabBar);
 
   final TabBar _tabBar;
@@ -275,9 +281,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(30),
       child: new Container(
-        color: Colors.white, // ADD THE COLOR YOU WANT AS BACKGROUND.
+        color: darkmood.isDarkmood == false ? Colors.white : kDarkThemeColor,
         child: _tabBar,
       ),
     );
@@ -289,10 +294,10 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-String details =
+String detailsData =
     "كبة اللحم بالبرغل ... تميزي دائماً بتقديم أطيب وصفات المقبلات الشامية الرائعة من وصفات الكبة على سفرتك، تعلمي خطوات العمل البسيطة وقدميها على سفرتك ساخنة";
-List recipe = [
+List recipeData = [
   " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً",
   " بمطحنة اللحم قومي بفرم اللحم فرماً ناعماً"
 ];
-List ingredients = [" لحم مفروم | 1 كوب", " لحم مفروم | 1 كوب"];
+List ingredientsData = [" لحم مفروم | 1 كوب", " لحم مفروم | 1 كوب"];

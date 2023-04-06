@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
+import 'package:foodcon/constants.dart';
 
 class CostumTextField extends StatelessWidget {
+  DarkmoodProv darkmood = DarkmoodProv();
   String? label;
   String? hint;
   TextInputType? keyboardType;
@@ -33,13 +36,29 @@ class CostumTextField extends StatelessWidget {
         textDirection: isRtl == false ? TextDirection.ltr : TextDirection.rtl,
         initialValue: initialValue,
         decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                    color: darkmood.isDarkmood == false
+                        ? KprimaryColor
+                        : kDarksecondThemeColor)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.grey)),
             label: label != null ? Text(label!) : null,
+            labelStyle: TextStyle(
+                color: darkmood.isDarkmood == false
+                    ? KprimaryColor
+                    : kDarksecondThemeColor),
             hintText: hint,
             hintTextDirection: TextDirection.rtl,
             suffixIcon: icon == null
                 ? icon
-                : IconButton(onPressed: onPressed ?? () {}, icon: icon!)),
+                : IconButton(
+                    onPressed: onPressed ?? () {},
+                    icon: icon!,
+                    color: Colors.grey,
+                  )),
         obscureText: secured ?? false,
         keyboardType: keyboardType ?? TextInputType.name,
         validator: validator,

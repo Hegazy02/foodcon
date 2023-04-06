@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
 import 'package:foodcon/Components/RoundedAppBar.dart';
+import 'package:foodcon/Components/decoratedContainer.dart';
+import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/chefSearchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Providers/PressedProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -44,48 +48,44 @@ class ChefProfile extends StatelessWidget {
                 SizedBox(
                   width: 2.w,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      chefName,
-                      style: TextStyle(
-                          fontSize: 14.sp, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                      width: 30.w,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          return Icon(
-                            Icons.star,
-                            color: KprimaryColor,
-                            size: 16,
-                          );
-                        },
-                      ),
-                    )
-                  ],
+                Text(
+                  chefName,
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => chefSearchPage()));
+                  },
+                  icon: Icon(
+                    Iconsax.search_normal,
+                    color: darkmood.isDarkmood
+                        ? kDarksecondThemeColor
+                        : KprimaryColor,
+                  ),
+                ),
                 SizedBox(
                   width: 30.w,
                   height: 5.h,
                   child: Consumer<PressedProv>(
                     builder: (context, val, child) => BorderdButton(
-                      borderColor: KprimaryColor,
+                      borderColor: fillFollowColor,
                       txt: val.follow,
                       onPressed: () {
-                        // val.changeFollow();
+                        val.changeFollow();
                       },
                       circular: 20,
                       padding: 0,
-                      txtColor:
-                          val.follow == 'Follow' ? Colors.white : KprimaryColor,
-                      color:
-                          val.follow == 'Follow' ? KprimaryColor : Colors.white,
+                      txtColor: val.follow == 'متابعة'
+                          ? Colors.white
+                          : mainthemeColor,
+                      color: val.follow == 'متابعة'
+                          ? fillFollowColor
+                          : fillFollowedColor,
                     ),
                   ),
                 ),
@@ -95,47 +95,74 @@ class ChefProfile extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 3.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Recipes",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                Text(
-                  "Followers",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                Text(
-                  "Following",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-            SizedBox(
               height: 1.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  "8",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "التقييم",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "${4.0}",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.orange,
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-                Text(
-                  "60",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "المتابعين",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Text(
+                      "20",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
-                Text(
-                  "3",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "الوصفات",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Text(
+                      "30",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ],
             ),
             SizedBox(
-              height: 2.h,
+              height: 7.h,
+              child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(
+                  width: 10,
+                ),
+                itemCount: week.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) =>
+                    decoratedContainer(child: Center(child: Text(week[index]))),
+              ),
             ),
             Divider(),
             ListView.separated(
@@ -146,52 +173,21 @@ class ChefProfile extends StatelessWidget {
               ),
               itemCount: autoList.length,
               itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        CircleAvatar(
-                          backgroundImage: AssetImage(chefAvatar),
-                          radius: 20,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(chefName),
-                            Text(
-                              "${posted}",
-                              style: TextStyle(
-                                  fontSize: 12, color: Colors.grey[600]),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 0.4.h,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print("object");
-                      },
-                      child: MyRecipe(
-                        recipe: autoList[index],
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RecipePage(
-                                recipe: autoList[index],
-                              ),
-                            )),
-                      ),
-                    ),
-                  ],
+                return GestureDetector(
+                  onTap: () {
+                    print("object");
+                  },
+                  child: MyRecipe(
+                    recipe: autoList[index],
+                    title: autoList[index].title,
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RecipePage(
+                            recipe: autoList[index],
+                          ),
+                        )),
+                  ),
                 );
               },
             ),
@@ -201,3 +197,13 @@ class ChefProfile extends StatelessWidget {
     );
   }
 }
+
+List week = [
+  "الجمعة",
+  "الخميس",
+  "الاربعاء",
+  "الثلاثاء",
+  "الاثنين",
+  "الاحد",
+  "السبت",
+];

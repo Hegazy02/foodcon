@@ -179,11 +179,13 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: MyRecipe(
                   recipe: autoList[index],
+                  title: autoList[index].title,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            RecipePage(recipe: autoList[index]),
+                        builder: (context) => RecipePage(
+                          recipe: autoList[index],
+                        ),
                       )),
                 ),
               );

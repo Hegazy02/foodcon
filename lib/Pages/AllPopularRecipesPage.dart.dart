@@ -28,6 +28,9 @@ class AllPopularRecipesPage extends StatelessWidget {
               itemCount: autoList.length,
               itemBuilder: (context, index) => MyRecipe(
                     recipe: autoList[index],
+                    title: autoList[index].title!.length > 14
+                        ? "..${autoList[index].title!.substring(0, 13)}"
+                        : autoList[index].title,
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(

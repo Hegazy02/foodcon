@@ -31,7 +31,6 @@ class BottomSheetHelpers {
                 ListTile(
                   trailing: Icon(
                     Iconsax.gallery,
-                    color: KprimaryColor,
                   ),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -54,7 +53,6 @@ class BottomSheetHelpers {
                 ListTile(
                   trailing: Icon(
                     Iconsax.camera,
-                    color: KprimaryColor,
                   ),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

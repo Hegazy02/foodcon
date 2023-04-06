@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 
 const Color KprimaryColor = Color(0xFFF55744);
-const kDarkThemeColor = Color(0xff0E1D36);
+const kDarkThemeColor = Color(0xFF141C22);
 const kDarksecondThemeColor = Color.fromARGB(255, 66, 100, 211);
 const Klogo = "assets/images/Logo.png";
 
@@ -21,3 +22,10 @@ MaterialColor mainC = MaterialColor(
   },
 );
 int mainColor = 0xFFF55744;
+DarkmoodProv darkmood = DarkmoodProv();
+Color mainthemeColor =
+    darkmood.isDarkmood == false ? KprimaryColor : kDarksecondThemeColor;
+Color fillFollowColor =
+    darkmood.isDarkmood == false ? KprimaryColor : kDarksecondThemeColor;
+Color fillFollowedColor =
+    darkmood.isDarkmood == false ? Colors.white : kDarkThemeColor;

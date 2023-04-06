@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PressedProv extends ChangeNotifier {
-  String _follow = "Follow";
+  String _follow = "متابعة";
   bool _switchHome = false;
   ///////////////
 
@@ -11,10 +11,10 @@ class PressedProv extends ChangeNotifier {
   //////////////////
 
   changeFollow() {
-    if (_follow == "Follow") {
-      _follow = "Followed";
+    if (_follow == "متابعة") {
+      _follow = "متابع";
     } else {
-      _follow = "Follow";
+      _follow = "متابعة";
     }
 
     notifyListeners();

@@ -142,11 +142,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   width: 80.w,
                   child: BorderdButton(
                     padding: 10,
-                    borderColor: KprimaryColor,
+                    borderColor: mainthemeColor,
                     circular: 20,
                     txt: "Sign up",
                     txtColor: Colors.white,
-                    color: KprimaryColor,
+                    color: mainthemeColor,
                     onPressed: () {
                       // Validation();
                       Navigator.of(context)

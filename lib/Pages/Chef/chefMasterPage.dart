@@ -3,7 +3,6 @@ import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/MyChefProfile
 import 'package:foodcon/Pages/Chef/ChefMainPages/chartsPage.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/chefHomePage.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/chefSettingsPage.dart';
-import 'package:foodcon/Pages/Client/MainPages/explorePage.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:provider/provider.dart';
 import 'package:iconsax/iconsax.dart';
