@@ -9,7 +9,7 @@ class CustomTile extends StatelessWidget {
   String? chefName;
   String? chefAvatar;
   bool? isLiked;
-  Widget? leading;
+  Widget? subtitle;
   double? padding;
   Function()? onTap;
 
@@ -20,7 +20,7 @@ class CustomTile extends StatelessWidget {
       this.chefAvatar,
       this.chefName,
       this.isLiked,
-      this.leading,
+      this.subtitle,
       this.padding,
       this.onTap});
 
@@ -31,37 +31,34 @@ class CustomTile extends StatelessWidget {
 
     return ListTile(
       contentPadding: EdgeInsets.all(padding ?? 10),
-      leading: leading,
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            decoration: BoxDecoration(
-                color: mainthemeColor, borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              "${item['category']}",
-              style: TextStyle(
-                fontSize: 11,
-              ),
-            ),
-          ),
-        ],
+      leading: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+            color: mainthemeColor, borderRadius: BorderRadius.circular(20)),
+        child: Text(
+          "${item['category']}",
+          style: TextStyle(fontSize: 11, color: Colors.white),
+        ),
       ),
-      subtitle: Align(
+      title: Align(
         alignment: Alignment.centerRight,
         child: Text(title,
             style: TextStyle(
               fontSize: 16,
             )),
       ),
-      trailing: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            image != "" ? image! : Klogo,
-            fit: BoxFit.fill,
-          )),
+      subtitle: Align(alignment: Alignment.centerRight, child: subtitle),
+      trailing: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage(
+                  image != "" ? image! : Klogo,
+                ))),
+      ),
       onTap: onTap,
     );
   }

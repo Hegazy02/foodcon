@@ -99,7 +99,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                           recipe: ll[index],
                                         ),
                                       )),
-                                  leading: SizedBox(
+                                  subtitle: SizedBox(
                                       width: 60,
                                       child: IconButton(
                                           onPressed: () {

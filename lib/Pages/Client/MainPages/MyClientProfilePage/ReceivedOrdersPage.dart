@@ -28,7 +28,7 @@ class ReceivedOrdersPage extends StatelessWidget {
                 recipe: autoList[index],
                 items: 1,
                 price: 100,
-                ButtonTxt: "Order again",
+                ButtonTxt: "اطلب مره اخرى",
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(

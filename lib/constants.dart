@@ -24,8 +24,7 @@ MaterialColor mainC = MaterialColor(
 int mainColor = 0xFFF55744;
 DarkmoodProv darkmood = DarkmoodProv();
 Color mainthemeColor =
-    darkmood.isDarkmood == false ? KprimaryColor : kDarksecondThemeColor;
+    darkmood.isDarkmood ? kDarksecondThemeColor : KprimaryColor;
 Color fillFollowColor =
-    darkmood.isDarkmood == false ? KprimaryColor : kDarksecondThemeColor;
-Color fillFollowedColor =
-    darkmood.isDarkmood == false ? Colors.white : kDarkThemeColor;
+    darkmood.isDarkmood ? kDarksecondThemeColor : KprimaryColor;
+Color fillFollowedColor = darkmood.isDarkmood ? kDarkThemeColor : Colors.white;

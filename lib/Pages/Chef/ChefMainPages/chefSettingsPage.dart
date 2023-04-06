@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/IconListTile.dart';
 import 'package:foodcon/Components/ProfileSettingListTile.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
+import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Services/darkmoodSharedPref.dart';
 import 'package:foodcon/Services/imagePicker.dart';
@@ -66,6 +67,13 @@ class chefSettingsPage extends StatelessWidget {
           iconData: Icons.info_outline,
           title: "عن فودكن",
           onTap: () {},
+        ),
+        IconListTile(
+          iconData: Iconsax.logout,
+          title: "الخروج من الحساب",
+          onTap: () {
+            Navigator.of(context).pushNamed(LoginPage().id);
+          },
         ),
         IconListTile(
           iconData: Iconsax.profile_delete,

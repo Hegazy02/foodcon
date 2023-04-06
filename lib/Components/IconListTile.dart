@@ -20,15 +20,12 @@ class IconListTile extends StatelessWidget {
         iconData,
         size: 30,
       ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
+      title: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
             title,
             style: listTileStyle,
-          )
-        ],
-      ),
+          )),
       onTap: onTap,
       leading: leading,
     );

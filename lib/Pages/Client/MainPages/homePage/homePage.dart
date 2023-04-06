@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:foodcon/Components/CustomSearchBar.dart';
 import 'package:foodcon/Components/MainPosters.dart';
 import 'package:foodcon/Components/Tricks.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
                   Expanded(
                     child: Consumer<FilterProv>(
                       builder: (context, valprov, child) {
-                        return TextField(
+                        return CustomSearchBar(
                           onTapOutside: (event) {
                             if (valprov.fil1.length == 1 &&
                                 event.position.dy > 15.h) {
@@ -76,34 +77,6 @@ class HomePage extends StatelessWidget {
                                 searchVal!.isEmpty ? [] : valprov.fil1;
                             print("********${valprov.fil1}");
                           },
-                          cursorColor: Colors.grey,
-                          decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 0),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide: BorderSide(
-                                    width: 1,
-                                    color: darkmood.isDarkmood == true
-                                        ? kDarksecondThemeColor
-                                        : KprimaryColor,
-                                  )),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide: BorderSide(
-                                    width: 1,
-                                    color: darkmood.isDarkmood == true
-                                        ? kDarksecondThemeColor
-                                        : KprimaryColor,
-                                  )),
-                              hintText: "Search",
-                              prefixIcon: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.search,
-                                    color: darkmood.isDarkmood == true
-                                        ? kDarksecondThemeColor
-                                        : KprimaryColor,
-                                  ))),
                         );
                       },
                     ),

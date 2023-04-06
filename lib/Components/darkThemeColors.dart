@@ -14,7 +14,6 @@ class Styles {
           backgroundColor: isDarkTheme ? kDarksecondThemeColor : KprimaryColor,
         ),
       ),
-      highlightColor: kDarkThemeColor,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedIconTheme: IconThemeData(
         color: isDarkTheme ? kDarksecondThemeColor : KprimaryColor,
@@ -32,7 +31,7 @@ class Styles {
           color: isDarkTheme ? kDarksecondThemeColor : KprimaryColor),
       primaryColorDark: kDarksecondThemeColor,
       textSelectionTheme: TextSelectionThemeData(
-          selectionColor: isDarkTheme ? Colors.white : Colors.black),
+          selectionColor: isDarkTheme ? Colors.white : Colors.grey),
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateColor.resolveWith((states) {
           return isDarkTheme ? kDarksecondThemeColor : Colors.white;

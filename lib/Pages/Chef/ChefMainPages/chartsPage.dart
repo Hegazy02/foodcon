@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:foodcon/Components/charts/CurvedChart.dart';
+
 import 'package:foodcon/Components/charts/PieChart.dart';
 import 'package:foodcon/Components/decoratedContainer.dart';
 import 'package:foodcon/Global/textStyle.dart';
@@ -23,7 +23,7 @@ class ChartsPage extends StatelessWidget {
           height: 3.5.h,
         ),
         SizedBox(
-          height: 19.h,
+          height: 22.h,
           width: double.infinity,
           child: decoratedContainer(
             child: Column(
@@ -42,7 +42,7 @@ class ChartsPage extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 38.h,
+          height: 32.h,
           width: double.infinity,
           child: decoratedContainer(
             child: CustomPieChart(

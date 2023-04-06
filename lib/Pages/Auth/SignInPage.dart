@@ -55,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       CostumTextField(
+                        isRtl: false,
                         label: "Email",
                         validator: (p0) {
                           if (p0!.isEmpty) {
@@ -65,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                       CostumTextField(
+                        isRtl: false,
                         label: "Password",
                         secured: isSecured,
                         icon: isSecured == false
