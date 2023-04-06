@@ -21,7 +21,8 @@ class MyOrder extends StatelessWidget {
       required this.onButtonPressed,
       this.onCancelButton,
       required this.price,
-      required this.onTap,required this.txtColor});
+      required this.onTap,
+      required this.txtColor});
 
   @override
   Widget build(BuildContext context) {
@@ -36,23 +37,11 @@ class MyOrder extends StatelessWidget {
             onTap: onTap,
             child: Row(
               children: [
-                SizedBox(
-                  width: 7,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: AssetImage("${recipe.image}"),
-                          fit: BoxFit.fill)),
-                ),
                 Spacer(
-                  flex: 1,
+                  flex: 7,
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       "${recipe.title}",
@@ -63,7 +52,7 @@ class MyOrder extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      "${items} items | ${recipe.chefName}",
+                      "الكمية ${items} | ${recipe.chefName}",
                       style: TextStyle(color: Colors.grey),
                     ),
                     SizedBox(
@@ -79,7 +68,19 @@ class MyOrder extends StatelessWidget {
                   ],
                 ),
                 Spacer(
-                  flex: 7,
+                  flex: 1,
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage("${recipe.image}"),
+                          fit: BoxFit.fill)),
+                ),
+                SizedBox(
+                  width: 7,
                 ),
               ],
             ),

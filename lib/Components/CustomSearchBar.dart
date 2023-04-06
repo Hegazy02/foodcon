@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
   Function(String)? onChanged;
-  CustomSearchBar({super.key, this.onChanged});
+  Function(PointerDownEvent)? onTapOutside;
+  CustomSearchBar({super.key, this.onChanged, this.onTapOutside});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: TextField(
+        onTapOutside: onTapOutside,
         onChanged: onChanged,
         cursorColor: Colors.grey,
         textDirection: TextDirection.rtl,

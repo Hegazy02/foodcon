@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:foodcon/Helpers/bottomSheet.dart';
-
-import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/EditProfilePage.dart';
+import 'package:foodcon/Components/IconListTile.dart';
+import 'package:foodcon/Components/ProfileSettingListTile.dart';
+import 'package:foodcon/Pages/Auth/SignInPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyFollowingPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/ReceivedOrdersPage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
+import 'package:foodcon/Services/darkmoodSharedPref.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class MyAccProfilePage extends StatelessWidget {
@@ -17,69 +21,69 @@ class MyAccProfilePage extends StatelessWidget {
         SizedBox(
           height: 3.5.h,
         ),
-        ListTile(
-            contentPadding: EdgeInsets.all(7),
-            leading: FutureBuilder(
-                future: BottomSheetHelpers.futureProfilePic,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return CircleAvatar(
-                      backgroundImage: NetworkImage(snapshot.data!),
-                      radius: 30,
-                    );
-                  } else {
-                    return CircleAvatar(
-                      child: Text("H"),
-                      radius: 30,
-                    );
-                  }
-                }),
-            title: Text("Hegazy"),
-            subtitle: Text("Abdelrhmanhegazy02@gmail.com"),
-            onTap: () => Navigator.of(context).pushNamed(EditprogilePage().id)),
-        ListTile(
-          contentPadding: EdgeInsets.all(10),
-          leading: Icon(
-            Icons.delivery_dining,
-            size: 40,
-          ),
-          title: Text("My orders"),
+        ProfileSettingsListTile(
+          child: Text("ع"),
+          txt: "علي علوكة",
+          email: "3aloka@gmail.com",
+        ),
+        IconListTile(
+          iconData: Icons.delivery_dining_outlined,
+          title: "طلباتي",
           onTap: () {
             Navigator.of(context).pushNamed(MyOrdersPage().id);
           },
         ),
-        ListTile(
-          contentPadding: EdgeInsets.all(10),
-          leading: Icon(
-            Icons.done,
-            size: 40,
-          ),
-          title: Text("Received orders"),
+        IconListTile(
+          iconData: Icons.done,
+          title: "الطلبات المكتملة",
           onTap: () {
             Navigator.of(context).pushNamed(ReceivedOrdersPage().id);
           },
         ),
-        ListTile(
-          contentPadding: EdgeInsets.all(10),
-          leading: SizedBox(
-            height: 4.h,
-            width: 10.w,
-            child: Image.asset(
-              "assets/images/following.png",
-            ),
-          ),
-          title: Text("Following"),
+        IconListTile(
+          iconData: Iconsax.like_1,
+          title: "من اتابعهم",
           onTap: () {
             Navigator.of(context).pushNamed(FollowingPage().id);
           },
         ),
-        ListTile(
-          contentPadding: EdgeInsets.all(10),
-          leading: Icon(
-            Icons.contact_support,
-            size: 40,
+        Consumer<DarkmoodProv>(
+          builder: (context, valprov, child) => IconListTile(
+            iconData: Iconsax.moon,
+            title: "الوضع الليلي",
+            onTap: () {
+              valprov.isDarkmood = !valprov.isDarkmood;
+              DarkmoodSharedPref.setmood(valprov.isDarkmood);
+            },
+            leading: Switch(
+              value: valprov.isDarkmood,
+              onChanged: (newvalue) {
+                valprov.isDarkmood = newvalue;
+                DarkmoodSharedPref.setmood(valprov.isDarkmood);
+              },
+            ),
           ),
-          title: Text("Contact us"),
+        ),
+        IconListTile(
+          iconData: Iconsax.call,
+          title: "تواصل معنا",
+          onTap: () {},
+        ),
+        IconListTile(
+          iconData: Icons.contact_support_outlined,
+          title: "عن فودكن",
+          onTap: () {},
+        ),
+        IconListTile(
+          iconData: Iconsax.logout,
+          title: "الخروج من الحساب",
+          onTap: () {
+            Navigator.of(context).pushNamed(LoginPage().id);
+          },
+        ),
+        IconListTile(
+          iconData: Iconsax.profile_delete,
+          title: "مسح الحساب",
           onTap: () {},
         ),
       ],

@@ -128,15 +128,16 @@ class _SearchPageState extends State<SearchPage> {
                                   chefAvatar: "${l[index].chefAvatar}",
                                   chefName: "${l[index].chefName}",
                                   isLiked: l[index].isLiked,
-                                  leading: SizedBox(
+                                  subtitle: SizedBox(
                                     width: 60,
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
+                                        Text("${l[index].star}"),
                                         Icon(
                                           Icons.star,
                                           color: Colors.orange,
                                         ),
-                                        Text("${l[index].star}")
                                       ],
                                     ),
                                   ),

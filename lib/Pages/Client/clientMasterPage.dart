@@ -5,6 +5,7 @@ import 'package:foodcon/Pages/Client/MainPages/explorePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/homePage/homePage.dart';
 import 'package:foodcon/Pages/Client/MainPages/searchPage.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 
 class ClientMasterPage extends StatefulWidget {
@@ -22,11 +23,11 @@ class _ClientMasterPageState extends State<ClientMasterPage> {
   int selectedpage = 0;
   Widget build(BuildContext context) {
     List body = [
-      HomePage(),
-      SearchPage(),
-      ExplorePage(),
-      FavoritePage(),
       MyAccProfilePage(),
+      FavoritePage(),
+      ExplorePage(),
+      SearchPage(),
+      HomePage(),
     ];
 
     return Scaffold(
@@ -45,15 +46,15 @@ class _ClientMasterPageState extends State<ClientMasterPage> {
                 },
                 items: [
                   BottomNavigationBarItem(
-                      label: "Home", icon: Icon(Icons.home)),
+                      label: "الاعدادات", icon: Icon(Iconsax.setting_3)),
                   BottomNavigationBarItem(
-                      label: "search", icon: Icon(Icons.search)),
+                      label: "المفضلة", icon: Icon(Iconsax.heart)),
                   BottomNavigationBarItem(
-                      label: "Explore", icon: Icon(Icons.explore)),
+                      label: "استكشف", icon: Icon(Iconsax.map)),
                   BottomNavigationBarItem(
-                      label: "Favorite", icon: Icon(Icons.favorite)),
+                      label: "search", icon: Icon(Iconsax.search_normal)),
                   BottomNavigationBarItem(
-                      label: "Profile", icon: Icon(Icons.person)),
+                      label: "Home", icon: Icon(Iconsax.home)),
                 ]);
           },
         ),

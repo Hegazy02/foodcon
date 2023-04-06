@@ -60,6 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       CostumTextField(
                         label: "Email",
+                        isRtl: false,
                         validator: (p0) {
                           if (p0!.isEmpty) {
                             return "Enter your email";
@@ -70,6 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       CostumTextField(
                         label: "Phone",
+                        isRtl: false,
                         validator: (p0) {
                           if (p0!.isEmpty) {
                             return "Enter your Phone number";
@@ -80,6 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       CostumTextField(
                         label: "Password",
+                        isRtl: false,
                         secured: isSecured,
                         icon: isSecured == false
                             ? Icon(Icons.visibility)
@@ -99,6 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       CostumTextField(
                         label: "Confirm Password",
+                        isRtl: false,
                         secured: isConfirmSecured,
                         icon: isConfirmSecured == false
                             ? Icon(Icons.visibility)
