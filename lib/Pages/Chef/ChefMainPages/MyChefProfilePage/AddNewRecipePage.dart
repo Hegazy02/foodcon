@@ -34,7 +34,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               children: [
                 Text(
                   "اسم الوصفة",
-                  style: mainTextStyle,
+                  style: black12Bold,
                 ),
               ],
             ),
@@ -47,7 +47,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               children: [
                 Text(
                   "صورة الوصفة",
-                  style: mainTextStyle,
+                  style: black12Bold,
                 ),
               ],
             ),
@@ -105,7 +105,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               children: [
                 Text(
                   "نبذه عنها",
-                  style: mainTextStyle,
+                  style: black12Bold,
                 ),
               ],
             ),
@@ -118,7 +118,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               children: [
                 Text(
                   "المقادير",
-                  style: mainTextStyle,
+                  style: black12Bold,
                 ),
               ],
             ),
@@ -182,7 +182,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               children: [
                 Text(
                   "طريقة التحضير",
-                  style: mainTextStyle,
+                  style: black12Bold,
                 ),
               ],
             ),
@@ -234,7 +234,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               children: [
                 Text(
                   "وقت التحضير ومستوى الصعوبة",
-                  style: mainTextStyle,
+                  style: black12Bold,
                 ),
               ],
             ),
@@ -242,7 +242,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  width: 29.w,
+                  width: 30.w,
                   child: CostumTextField(
                     keyboardType: TextInputType.number,
                     isRtl: true,
@@ -259,7 +259,7 @@ class _AddNewRecipePageState extends State<AddNewRecipePage> {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(
                 "انشاء الوصفة",
-                style: recipeTitleStyle,
+                style: black12Bold,
               ),
               onPressed: () {},
             ),

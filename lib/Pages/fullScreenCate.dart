@@ -154,15 +154,18 @@ class FullScreenCate extends StatelessWidget {
                   Selector<FilterProv, int?>(
                     selector: (p0, p1) => p1.ScreenIndex,
                     builder: (context, value, child) => Text(
+                        textDirection: TextDirection.rtl,
                         "${myList[value!].desc}",
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                   ),
                   SizedBox(
                     height: 5.h,
                   ),
                   Consumer<FilterProv>(
                     builder: (context, value, child) => BorderdButton(
-                      txt: "View Recipe",
+                      txt: "اعرض الوصفة",
                       borderColor: Colors.white,
                       circular: 10,
                       onPressed: () {
@@ -197,7 +200,7 @@ isAllFun({required isAll, required RecipeModel list, required cateType}) {
 
     print("**cateType ${cateType}*");
   } else {
-    cateType = "Explore";
+    cateType = "استكشف";
 
     print("**cateType ${cateType}");
   }

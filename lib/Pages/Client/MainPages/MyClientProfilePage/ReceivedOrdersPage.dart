@@ -37,8 +37,9 @@ class ReceivedOrdersPage extends StatelessWidget {
                       ),
                     )),
                 onButtonPressed: () {},
-                txtColor:
-                    dartmood.isDarkmood ? kDarksecondThemeColor : KprimaryColor,
+                txtColor: dartmood.isDarkmood!
+                    ? kDarksecondThemeColor
+                    : KprimaryColor,
               ),
             ),
           ),

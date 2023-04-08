@@ -16,6 +16,7 @@ class IconListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.only(right: 8),
       trailing: Icon(
         iconData,
         size: 30,
@@ -24,7 +25,7 @@ class IconListTile extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Text(
             title,
-            style: listTileStyle,
+            style: black12Bold,
           )),
       onTap: onTap,
       leading: leading,

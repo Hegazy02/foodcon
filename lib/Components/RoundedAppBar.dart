@@ -13,7 +13,7 @@ class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         title,
-        style: appBarStyle,
+        style: white14Bold,
       ),
     );
   }

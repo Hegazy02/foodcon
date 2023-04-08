@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:foodcon/Components/CustomExplore.dart';
 import 'package:foodcon/Components/ForYouCard.dart';
+import 'package:foodcon/Components/MainPosters.dart';
+import 'package:foodcon/Components/MyRecipe.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
+import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -11,6 +15,8 @@ class ExplorePage extends StatelessWidget {
   @override
   ScrollController controller = ScrollController();
   Widget build(BuildContext context) {
+    DarkmoodProv darkmood = DarkmoodProv();
+
     // try {
     //   Future.delayed(Duration(seconds: 1), () async {
     //     for (var i = 0; i < autoList.length; i++) {
@@ -24,104 +30,192 @@ class ExplorePage extends StatelessWidget {
     // } catch (e) {
     //   print(e);
     // }
-
-    return Padding(
-      padding: EdgeInsets.only(left: 10),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        SizedBox(height: 5.h),
-        Row(
-          children: [
-            Text(
-              'For You',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 2.h,
-        ),
-        Container(
-          child: SizedBox(
-            height: 40.h,
-            child: ListView.separated(
-              controller: controller,
-              separatorBuilder: (context, index) {
-                return SizedBox(
-                  width: 10,
-                );
-              },
-              scrollDirection: Axis.horizontal,
-              itemCount: autoList.length,
-              itemBuilder: (context, index) {
-                return ForYouCard(index: index);
-              },
-            ),
+///////////////////////
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 1,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 3.h,
           ),
-        ),
-        SizedBox(
-          height: 1.h,
-        ),
-        Row(
-          children: [
-            Text(
-              'Following',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        // SizedBox(
-        //   height: height! * 0.47,
-        //   child: ListView.builder(
-        //       scrollDirection: Axis.horizontal,
-        //       itemCount: autoList.length,
-        //       itemBuilder: (context, index) {
-        //         return Padding(
-        //             padding: EdgeInsets.only(left: 10),
-        //             child: CustomCard(
-        //               cardTitle: autoList[index]['title'],
-        //               cardCate: autoList[index]['category'],
-        //               cardDesc:
-        //                   "مكرونه ميه ميه والي عاملها راجل صح صح ومفيش احلى من كدا انا ذات نفسي مره جربت اعمل حاجه غيرها معرفتش عشان مليش غيرها",
-        //               cardImage: autoList[index]['image'],
-        //               cardMin: autoList[index]['min'],
-        //               cardStar: autoList[index]['star'],
-        //               width: width,
-        //               height: height,
-        //             ));
-        //       }),
-        // )
-        Expanded(
-          child: AnimationLimiter(
-              child: ListView.builder(
-                  padding: EdgeInsets.only(top: 5),
-                  itemCount: autoList.length,
-                  itemBuilder: (context, index) =>
-                      AnimationConfiguration.staggeredList(
-                        position: index,
-                        duration: const Duration(milliseconds: 375),
-                        child: SlideAnimation(
-                            child: FadeInAnimation(
-                                child: CustomExplore(
+          TabBar(
+            labelColor: mainthemeColor(darkmood),
+            indicatorColor: mainthemeColor(darkmood),
+            unselectedLabelColor: Colors.grey,
+            tabs: [
+              Tab(
+                child: Text("من اتابعهم"),
+              ),
+              Tab(
+                child: Text("اخترنالك"),
+              ),
+            ],
+          ),
+          Expanded(
+            child: TabBarView(children: [
+              ListView.separated(
+                padding: EdgeInsets.all(0),
+                separatorBuilder: (context, index) => SizedBox(
+                  height: 10,
+                ),
+                itemCount: foodList.length,
+                itemBuilder: (context, index) => MyRecipe(
+                  recipe: autoList[index],
+                  title: autoList[index].title,
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RecipePage(
+                          recipe: autoList[index],
+                        ),
+                      )),
+                ),
+              ),
+              ListView.separated(
+                  padding: EdgeInsets.all(0),
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: 10,
+                      ),
+                  itemCount: foodList.length,
+                  itemBuilder: (context, index) => SizedBox(
+                        height: 30.h,
+                        child: MainPostersCatergoies(
                           index: index,
-                          height: 20.h,
-                          width: 90.w,
-                          isGrid: true,
-                          myList: autoList,
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => RecipePage(
-                                  recipe: autoList[index],
-                                ),
-                              )),
-                        ))),
-                      ))),
-        ),
-      ]),
+                          mylist: autoList,
+                          fontSize: 22.sp,
+                        ),
+                      )),
+            ]),
+          ),
+        ],
+      ),
     );
+
+    // child: ListView.separated(
+    //     separatorBuilder: (context, index) => SizedBox(
+    //           height: 10,
+    //         ),
+    //     itemCount: foodList.length,
+    //     itemBuilder: (context, index) => SizedBox(
+    //           height: 30.h,
+    //           child: MainPostersCatergoies(
+    //             index: index,
+    //             mylist: autoList,
+    //             fontSize: 22.sp,
+    //           ),
+    //         )),
+
+    // Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+    //   SizedBox(height: 5.h),
+    //   Align(
+    //     alignment: Alignment.centerRight,
+    //     child: Text(
+    //       'اختارنالك',
+    //       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    //     ),
+    //   ),
+    //   SizedBox(
+    //     height: 2.h,
+    //   ),
+    //   SizedBox(
+    //     height: 30.h,
+    //     child: ListView.separated(
+    //       reverse: true,
+    //       controller: controller,
+    //       separatorBuilder: (context, index) {
+    //         return SizedBox(
+    //           width: 10,
+    //         );
+    //       },
+    //       scrollDirection: Axis.horizontal,
+    //       itemCount: autoList.length,
+    //       itemBuilder: (context, index) {
+    //         return ForYouCard(index: index);
+    //       },
+    //     ),
+    //   ),
+    //   SizedBox(
+    //     height: 1.h,
+    //   ),
+    //   Align(
+    //     alignment: Alignment.centerRight,
+    //     child: Text(
+    //       'من اتابعهم',
+    //       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    //     ),
+    //   ),
+    //   ////////////////
+    // SizedBox(
+    //   height: height! * 0.47,
+    //   child: ListView.builder(
+    //       scrollDirection: Axis.horizontal,
+    //       itemCount: autoList.length,
+    //       itemBuilder: (context, index) {
+    //         return Padding(
+    //             padding: EdgeInsets.only(left: 10),
+    //             child: CustomCard(
+    //               cardTitle: autoList[index]['title'],
+    //               cardCate: autoList[index]['category'],
+    //               cardDesc:
+    //                   "مكرونه ميه ميه والي عاملها راجل صح صح ومفيش احلى من كدا انا ذات نفسي مره جربت اعمل حاجه غيرها معرفتش عشان مليش غيرها",
+    //               cardImage: autoList[index]['image'],
+    //               cardMin: autoList[index]['min'],
+    //               cardStar: autoList[index]['star'],
+    //               width: width,
+    //               height: height,
+    //             ));
+    //       }),
+    // )
+
+    // Expanded(
+    //   child: ListView.separated(
+    //     reverse: true,
+    //     controller: controller,
+    //     separatorBuilder: (context, index) {
+    //       return SizedBox(
+    //         width: 10,
+    //       );
+    //     },
+    //     scrollDirection: Axis.horizontal,
+    //     itemCount: autoList.length,
+    //     itemBuilder: (context, index) {
+    //       return ForYouCard(index: index);
+    //     },
+    //   ),
+    // ),
+    ///////////////
+
+    // Expanded(
+    //   child: AnimationLimiter(
+    //       child: ListView.builder(
+    //           padding: EdgeInsets.only(top: 5),
+    //           itemCount: autoList.length,
+    //           itemBuilder: (context, index) =>
+    //               AnimationConfiguration.staggeredList(
+    //                 position: index,
+    //                 duration: const Duration(milliseconds: 375),
+    //                 child: SlideAnimation(
+    //                     child: FadeInAnimation(
+    //                         child: CustomExplore(
+    //                   index: index,
+    //                   height: 20.h,
+    //                   width: 90.w,
+    //                   isGrid: true,
+    //                   myList: autoList,
+    //                   onTap: () => Navigator.push(
+    //                       context,
+    //                       MaterialPageRoute(
+    //                         builder: (context) => RecipePage(
+    //                           recipe: autoList[index],
+    //                         ),
+    //                       )),
+    //                 ))),
+    //               ))),
+    // ),
+    // ]);
   }
 }
-
 
 // class CustomCard extends StatelessWidget {
 //   double? width;

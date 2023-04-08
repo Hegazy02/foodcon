@@ -50,7 +50,7 @@ class ForYouCard extends StatelessWidget {
                             colors: [Colors.white60, Colors.white10]),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      height: 14.h,
+                      height: 10.h,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

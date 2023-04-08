@@ -46,14 +46,14 @@ class chefSettingsPage extends StatelessWidget {
             iconData: Iconsax.moon,
             title: "الوضع الليلي",
             onTap: () {
-              valprov.isDarkmood = !valprov.isDarkmood;
-              DarkmoodSharedPref.setmood(valprov.isDarkmood);
+              valprov.isDarkmood = !valprov.isDarkmood!;
+              DarkmoodSharedPref.setmood(valprov.isDarkmood!);
             },
             leading: Switch(
-              value: valprov.isDarkmood,
+              value: valprov.isDarkmood!,
               onChanged: (newvalue) {
                 valprov.isDarkmood = newvalue;
-                DarkmoodSharedPref.setmood(valprov.isDarkmood);
+                DarkmoodSharedPref.setmood(valprov.isDarkmood!);
               },
             ),
           ),

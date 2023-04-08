@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Providers/FilterProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
@@ -9,6 +10,7 @@ class CategoryIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DarkmoodProv darkmood = DarkmoodProv();
     return SizedBox(
       height: 70,
       child: ListView.builder(
@@ -27,14 +29,14 @@ class CategoryIcons extends StatelessWidget {
                       .toList();
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  margin: EdgeInsets.only(left: 10),
                   padding: EdgeInsets.all(5),
                   height: 60,
                   width: 60,
                   decoration: BoxDecoration(
                       color: value.isCate == index
-                          ? mainthemeColor
-                          : fillFollowedColor,
+                          ? mainthemeColor(darkmood)
+                          : fillFollowedColor(darkmood),
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [

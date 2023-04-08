@@ -74,9 +74,7 @@ class _EditprogilePageState extends State<EditprogilePage> {
                   width: 80.w,
                   child: BorderdButton(
                     padding: 10,
-                    borderColor: darkmood.isDarkmood
-                        ? kDarksecondThemeColor
-                        : KprimaryColor,
+                    borderColor: mainthemeColor(darkmood),
                     txtColor: Colors.white,
                     circular: 20,
                     txt: buttontxt,
@@ -87,9 +85,7 @@ class _EditprogilePageState extends State<EditprogilePage> {
                         Navigator.of(context).pop();
                       });
                     },
-                    color: darkmood.isDarkmood
-                        ? kDarksecondThemeColor
-                        : KprimaryColor,
+                    color: mainthemeColor(darkmood),
                   ),
                 ),
               ],

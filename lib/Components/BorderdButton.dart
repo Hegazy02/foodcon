@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class BorderdButton extends StatelessWidget {
   String? txt;
   Color? txtColor;
+  TextStyle? txtStyle;
   Color? color;
 
   Color? borderColor;
@@ -16,6 +17,7 @@ class BorderdButton extends StatelessWidget {
       this.circular,
       this.borderColor,
       this.txtColor,
+      this.txtStyle,
       this.onPressed,
       this.color});
   @override
@@ -35,7 +37,10 @@ class BorderdButton extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: padding!),
                   child: Text(
                     txt!,
-                    style: TextStyle(color: txtColor ?? Colors.white),
+                    style: txtStyle ??
+                        TextStyle(
+                            color: txtColor ?? Colors.white,
+                            fontWeight: FontWeight.bold),
                   )),
             ),
           ),

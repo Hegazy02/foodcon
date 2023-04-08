@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/RoundedAppBar.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/constants.dart';
 
 import 'package:easy_stepper/easy_stepper.dart';
@@ -13,6 +14,7 @@ class StepperPage extends StatefulWidget {
 }
 
 class _StepperPageState extends State<StepperPage> {
+  DarkmoodProv darkmood = DarkmoodProv();
   @override
   Widget build(BuildContext context) {
     int activeStep = 3;
@@ -21,7 +23,7 @@ class _StepperPageState extends State<StepperPage> {
       body: EasyStepper(
         direction: Axis.vertical,
         defaultStepBorderType: BorderType.normal,
-        lineColor: KprimaryColor,
+        lineColor: mainthemeColor(darkmood),
         enableStepTapping: false,
         activeStep: activeStep,
         lineLength: 70,
@@ -30,10 +32,13 @@ class _StepperPageState extends State<StepperPage> {
         borderThickness: 2,
         padding: 20,
         stepRadius: 28,
-        finishedStepBorderColor: KprimaryColor,
-        finishedStepTextColor: KprimaryColor,
-        finishedStepBackgroundColor: KprimaryColor,
-        activeStepIconColor: KprimaryColor,
+        finishedStepBorderColor: mainthemeColor(darkmood),
+        finishedStepTextColor: mainthemeColor(darkmood),
+        finishedStepBackgroundColor: mainthemeColor(darkmood),
+        activeStepIconColor: mainthemeColor(darkmood),
+        activeStepBorderColor: mainthemeColor(darkmood),
+        activeStepTextColor: mainthemeColor(darkmood),
+
         // loadingAnimation: 'assets/loading_circle.json',
         steps: const [
           EasyStep(

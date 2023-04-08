@@ -20,9 +20,9 @@ class _ClientMasterPageState extends State<ClientMasterPage> {
   String searchVal = "";
   TextEditingController editingController = TextEditingController();
   @override
-  int selectedpage = 0;
+  int selectedpage = 4;
   Widget build(BuildContext context) {
-    List body = [
+    List<Widget> body = [
       MyAccProfilePage(),
       FavoritePage(),
       ExplorePage(),
@@ -50,11 +50,11 @@ class _ClientMasterPageState extends State<ClientMasterPage> {
                   BottomNavigationBarItem(
                       label: "المفضلة", icon: Icon(Iconsax.heart)),
                   BottomNavigationBarItem(
-                      label: "استكشف", icon: Icon(Iconsax.map)),
+                      label: "استكشاف", icon: Icon(Iconsax.map)),
                   BottomNavigationBarItem(
-                      label: "search", icon: Icon(Iconsax.search_normal)),
+                      label: "البحث", icon: Icon(Iconsax.search_normal)),
                   BottomNavigationBarItem(
-                      label: "Home", icon: Icon(Iconsax.home)),
+                      label: "الرئيسة", icon: Icon(Iconsax.home)),
                 ]);
           },
         ),

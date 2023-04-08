@@ -4,6 +4,7 @@ import 'package:foodcon/Models/RecipeModel.dart';
 class FilterProv extends ChangeNotifier {
   List<RecipeModel> _page1FilteredList = [];
   List<RecipeModel> _page2FilteredList = [];
+  List<RecipeModel> _chefFilteredList = [];
   int _isGridPressed = 1;
   int _isCatePressed = 0;
   int _fullScreenIndex = 0;
@@ -11,6 +12,7 @@ class FilterProv extends ChangeNotifier {
   //////////////////
   List<RecipeModel> get fil1 => _page1FilteredList;
   List<RecipeModel> get fil2 => _page2FilteredList;
+  List<RecipeModel> get chefFilteredList => _chefFilteredList;
   int get isGird => _isGridPressed;
   int get isCate => _isCatePressed;
   int get ScreenIndex => _fullScreenIndex;
@@ -23,6 +25,11 @@ class FilterProv extends ChangeNotifier {
 
   set fil2(List<RecipeModel> val) {
     _page2FilteredList = val;
+    notifyListeners();
+  }
+
+  set chefFilteredList(List<RecipeModel> val) {
+    _chefFilteredList = val;
     notifyListeners();
   }
 

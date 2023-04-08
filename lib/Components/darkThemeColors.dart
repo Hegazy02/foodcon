@@ -46,8 +46,27 @@ class Styles {
         }),
       ),
       tabBarTheme: TabBarTheme(
+        unselectedLabelStyle: TextStyle(
+          fontFamily: 'arabicmodern',
+        ),
         labelColor: isDarkTheme ? kDarksecondThemeColor : KprimaryColor,
         indicatorColor: isDarkTheme ? kDarksecondThemeColor : KprimaryColor,
+        labelStyle:
+            TextStyle(fontFamily: 'arabicmodern', fontWeight: FontWeight.bold),
+      ),
+      textTheme: TextTheme(
+        bodyMedium: TextStyle(
+          fontFamily: 'arabicmodern',
+        ),
+        titleLarge:
+            TextStyle(fontFamily: 'arabicmodern', fontWeight: FontWeight.bold),
+        labelLarge:
+            TextStyle(fontFamily: 'arabicmodern', fontWeight: FontWeight.bold),
+        headlineLarge:
+            TextStyle(fontFamily: 'arabicmodern', fontWeight: FontWeight.bold),
+        titleMedium: TextStyle(
+          fontFamily: 'arabicmodern',
+        ),
       ),
     );
   }

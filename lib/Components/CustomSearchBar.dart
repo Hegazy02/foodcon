@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomSearchBar extends StatelessWidget {
   Function(String)? onChanged;
   Function(PointerDownEvent)? onTapOutside;
-  CustomSearchBar({super.key, this.onChanged, this.onTapOutside});
+  double? top;
+  CustomSearchBar({super.key, this.onChanged, this.onTapOutside, this.top});
 
   @override
   Widget build(BuildContext context) {
+    DarkmoodProv darkmood = DarkmoodProv();
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.only(left: 10, top: top ?? 5.h),
       child: TextField(
         onTapOutside: onTapOutside,
         onChanged: onChanged,
@@ -31,7 +35,7 @@ class CustomSearchBar extends StatelessWidget {
                 onPressed: () {},
                 icon: Icon(
                   Icons.search,
-                  color: Colors.black,
+                  color: darkmood.isDarkmood! ? Colors.white : Colors.black,
                 ))),
       ),
     );

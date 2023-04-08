@@ -13,13 +13,13 @@ class decoratedContainer extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 10, top: 10),
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-            color: darkmood.isDarkmood ? kDarkThemeColor : Colors.white,
+            color: darkmood.isDarkmood! ? kDarkThemeColor : Colors.white,
             borderRadius: BorderRadius.circular(25),
             boxShadow: [
               BoxShadow(
                   blurRadius: 7,
                   spreadRadius: 0,
-                  color: darkmood.isDarkmood
+                  color: darkmood.isDarkmood!
                       ? kDarksecondThemeColor.withOpacity(0.8)
                       : Colors.grey.withOpacity(0.8),
                   offset: Offset(1, 3))

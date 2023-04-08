@@ -13,12 +13,13 @@ class ProfileSettingsListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+        contentPadding: EdgeInsets.all(0),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
               txt ?? "الشيف الشفشوفي",
-              style: pressedStyle,
+              style: black14Bold,
             )
           ],
         ),

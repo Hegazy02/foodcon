@@ -28,105 +28,99 @@ class _FavoritePageState extends State<FavoritePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        SizedBox(
-          height: 2.h,
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Text(
-            'My Favorites',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: EdgeInsets.only(right: 8),
+      child: ListView(
+        children: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'المفضلة',
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        SizedBox(
-          height: 2.h,
-        ),
-        Consumer<FavoriteProv>(
-          builder: (context, valprov, child) {
-            return CustomSearchBar(
-              onChanged: (value) async {
-                valprov.searchFav = valprov.favelistprov.where((element) {
-                  return element.title.toString().startsWith(value);
-                }).toList();
-                valprov.searchFav = value.isEmpty ? [] : valprov.searchFav;
-                print("********${valprov.searchFav}");
-              },
-            );
-          },
-        ),
-        Consumer<FavoriteProv>(
-          builder: (context, value, child) {
-            list = value.favelistprov;
-            print("=============");
+          Consumer<FavoriteProv>(
+            builder: (context, valprov, child) {
+              return CustomSearchBar(
+                top: 0,
+                onChanged: (value) async {
+                  valprov.searchFav = valprov.favelistprov.where((element) {
+                    return element.title.toString().startsWith(value);
+                  }).toList();
+                  valprov.searchFav = value.isEmpty ? [] : valprov.searchFav;
+                  print("********${valprov.searchFav}");
+                },
+              );
+            },
+          ),
+          Consumer<FavoriteProv>(
+            builder: (context, value, child) {
+              list = value.favelistprov;
+              print("=============");
 
-            List<RecipeModel>? ll =
-                value.searchFav.isEmpty ? list : value.searchFav;
-            print("@@@@@@@@@@@@@@@@@ my ll");
-            print(ll);
-            return ll!.length > 0
-                ? Column(
-                    children: [
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      AnimationLimiter(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: ClampingScrollPhysics(),
-                          itemCount: ll.length,
-                          padding: EdgeInsets.all(0),
-                          itemBuilder: (context, index) {
-                            return AnimationConfiguration.staggeredList(
-                              position: index,
-                              duration: const Duration(milliseconds: 375),
-                              child: SlideAnimation(
-                                verticalOffset: 50.0,
-                                child: FadeInAnimation(
-                                    child: CustomTile(
-                                  title: ll[index].title!,
-                                  category: ll[index].category!,
-                                  image: ll[index].image,
-                                  chefName: ll[index].chefName!,
-                                  chefAvatar: ll[index].chefAvatar,
-
-                                  // isLiked: list[index]['isLiked'],
-                                  onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => RecipePage(
-                                          recipe: ll[index],
-                                        ),
-                                      )),
-                                  subtitle: SizedBox(
-                                      width: 60,
-                                      child: IconButton(
-                                          onPressed: () {
-                                            sharepref().deleteFave(
-                                                item: ll[index],
-                                                context: context);
-                                            if (value.searchFav.isNotEmpty) {
-                                              value.removeSearchFave =
-                                                  ll[index];
-                                            }
-                                          },
-                                          icon: Icon(
-                                            Icons.favorite,
-                                            color: Colors.red,
-                                          ))),
-                                )),
-                              ),
-                            );
-                          },
+              List<RecipeModel>? ll =
+                  value.searchFav.isEmpty ? list : value.searchFav;
+              print("@@@@@@@@@@@@@@@@@ my ll");
+              print(ll);
+              return ll!.length > 0
+                  ? Column(
+                      children: [
+                        SizedBox(
+                          height: 2.h,
                         ),
-                      ),
-                    ],
-                  )
-                : NotFound();
-          },
-        )
-      ],
+                        AnimationLimiter(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            itemCount: ll.length,
+                            padding: EdgeInsets.all(0),
+                            itemBuilder: (context, index) {
+                              return AnimationConfiguration.staggeredList(
+                                position: index,
+                                duration: const Duration(milliseconds: 375),
+                                child: SlideAnimation(
+                                  verticalOffset: 50.0,
+                                  child: FadeInAnimation(
+                                      child: CustomTile(
+                                    recipe: ll[index],
+
+                                    // isLiked: list[index]['isLiked'],
+                                    onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => RecipePage(
+                                            recipe: ll[index],
+                                          ),
+                                        )),
+                                    subtitle: SizedBox(
+                                        width: 60,
+                                        child: IconButton(
+                                            onPressed: () {
+                                              sharepref().deleteFave(
+                                                  item: ll[index],
+                                                  context: context);
+                                              if (value.searchFav.isNotEmpty) {
+                                                value.removeSearchFave =
+                                                    ll[index];
+                                              }
+                                            },
+                                            icon: Icon(
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                            ))),
+                                  )),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : NotFound();
+            },
+          )
+        ],
+      ),
     );
   }
 }
