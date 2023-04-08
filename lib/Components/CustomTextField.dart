@@ -38,19 +38,16 @@ class CostumTextField extends StatelessWidget {
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(
-                    color: darkmood.isDarkmood == false
-                        ? KprimaryColor
-                        : kDarksecondThemeColor)),
-            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: mainthemeColor(darkmood))),
+            border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide(color: Colors.grey)),
             label: label != null ? Text(label!) : null,
-            labelStyle: TextStyle(
-                color: darkmood.isDarkmood == false
-                    ? KprimaryColor
-                    : kDarksecondThemeColor),
+            labelStyle:
+                TextStyle(color: Colors.grey, fontFamily: "arabicmodern"),
             hintText: hint,
+            hintStyle:
+                TextStyle(color: Colors.grey, fontFamily: "arabicmodern"),
             hintTextDirection: TextDirection.rtl,
             suffixIcon: icon == null
                 ? icon

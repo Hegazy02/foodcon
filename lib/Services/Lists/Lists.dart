@@ -5,7 +5,21 @@ import 'package:foodcon/Models/RecipeModel.dart';
 List<RecipeModel> autoList = [
   RecipeModel.fromJson({
     "title": "c",
-    "category": "Pasta",
+    "category": "مكرونة",
+    "image": "assets/images/home/recipes/recipe1.jpg",
+    "chefName": "Mano",
+    "chefAvatar": "${popularChefsPath}chef1.jpg",
+    "star": 4.6,
+    "min": 20,
+    "isLiked": false,
+    "desc":
+        "جربي طريقة الفرايد تشيكن الجديده بصوص الكاري والكورن فليكس على الطريقة الهندية",
+    "level": "Easy",
+    "posted": DateTime.now().year,
+  }),
+  RecipeModel.fromJson({
+    "title": "مكرونة بالصوص الاحمر",
+    "category": "مكرونة",
     "image": "assets/images/home/recipes/recipe1.jpg",
     "chefName": "Mano",
     "chefAvatar": "${popularChefsPath}chef1.jpg",
@@ -19,21 +33,7 @@ List<RecipeModel> autoList = [
   }),
   RecipeModel.fromJson({
     "title": "مكرونة بالصوص الاحمر",
-    "category": "Pasta",
-    "image": "assets/images/home/recipes/recipe1.jpg",
-    "chefName": "Mano",
-    "chefAvatar": "${popularChefsPath}chef1.jpg",
-    "star": 4.6,
-    "min": 20,
-    "isLiked": false,
-    "desc":
-        "hasog ihwaei oefhweh asodnvash sdfh sduhvo0 fh08arf hgsdfwey0gvah ewehrg sdfsd paobn sljghpa sodjna sldnasdf weggewr ewrg fhoi",
-    "level": "Easy",
-    "posted": DateTime.now().year,
-  }),
-  RecipeModel.fromJson({
-    "title": "مكرونة بالصوص الاحمر",
-    "category": "Pizza",
+    "category": "بيتزا",
     "image": "assets/images/home/recipes/recipe1.jpg",
     "chefName": "Mano",
     "chefAvatar": "${popularChefsPath}chef1.jpg",
@@ -47,7 +47,7 @@ List<RecipeModel> autoList = [
   }),
   RecipeModel.fromJson({
     "title": "فراخ",
-    "category": "Chickens",
+    "category": "فراخ",
     "image": "assets/images/home/recipes/recipe2.jpg",
     "chefName": "omer",
     "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
@@ -62,7 +62,7 @@ List<RecipeModel> autoList = [
   RecipeModel.fromJson(
     {
       "title": "فراخ",
-      "category": "Fried",
+      "category": "فرايد",
       "image": "assets/images/home/recipes/recipe2.jpg",
       "chefName": "omer",
       "chefAvatar": "assets/images/home/Chefs/chef3.jpg",
@@ -77,8 +77,8 @@ List<RecipeModel> autoList = [
   ),
   RecipeModel.fromJson(
     {
-      "title": "فراخ مقلية",
-      "category": "Chickens",
+      "title": "فراخ فرايدة",
+      "category": "فراخ",
       "image": "assets/images/home/recipes/recipe3.jpg",
       "chefName": "Hegazy",
       "chefAvatar": "${popularChefsPath}chef2.jpg",
@@ -94,7 +94,7 @@ List<RecipeModel> autoList = [
   RecipeModel.fromJson(
     {
       "title": "فطيرة توت",
-      "category": "Desserts",
+      "category": "تحلية",
       "image": "assets/images/home/recipes/recipe4.jpg",
       "chefName": "Sakr",
       "chefAvatar": "${popularChefsPath}chef3.jpg",
@@ -110,7 +110,7 @@ List<RecipeModel> autoList = [
   RecipeModel.fromJson(
     {
       "title": "برجر",
-      "category": "Burger",
+      "category": "برجر",
       "image": "assets/images/home/recipes/recipe5.jpg",
       "chefName": "Dude",
       "chefAvatar": "${popularChefsPath}chef4.jpg",
@@ -126,7 +126,7 @@ List<RecipeModel> autoList = [
   RecipeModel.fromJson(
     {
       "title": "beef",
-      "category": "Burger",
+      "category": "برجر",
       "image": "assets/images/home/recipes/recipe6.jpg",
       "chefName": "Dude",
       "chefAvatar": "${popularChefsPath}chef5.jpg",
@@ -142,7 +142,7 @@ List<RecipeModel> autoList = [
   RecipeModel.fromJson(
     {
       "title": "beef",
-      "category": "Shawrma",
+      "category": "شاورما",
       "image": "assets/images/home/recipes/recipe6.jpg",
       "chefName": "Dude",
       "chefAvatar": "${popularChefsPath}chef5.jpg",
@@ -237,55 +237,49 @@ List popularRecipesList = [
 ];
 List categoriesList = [
   {
-    "category": "Chickens",
+    "category": "فراخ",
     "color1": Color.fromARGB(255, 250, 221, 176),
     "color2": Color.fromARGB(255, 206, 165, 104),
     "color4": Colors.orange
   },
   {
-    "category": "Pizza",
+    "category": "بيتزا",
     "color1": Color.fromARGB(255, 235, 233, 153),
     "color2": Color.fromARGB(255, 214, 216, 113),
     "color4": Colors.yellow
   },
   {
-    "category": "Burger",
+    "category": "برجر",
     "color1": Color.fromARGB(255, 236, 154, 154),
     "color2": Color.fromARGB(255, 216, 130, 115),
     "color4": Colors.red
   },
   {
-    "category": "Fried",
+    "category": "فرايد",
     "color1": Color.fromARGB(255, 236, 154, 154),
     "color2": Color.fromARGB(255, 216, 130, 115),
     "color4": Colors.red
   },
   {
-    "category": "Chickens",
-    "color1": Color.fromARGB(255, 235, 153, 153),
-    "color2": Color.fromARGB(255, 223, 128, 112),
-    "color4": Colors.redAccent
-  },
-  {
-    "category": "Pasta",
+    "category": "مكرونة",
     "color1": Color.fromARGB(255, 153, 235, 157),
     "color2": Color.fromARGB(255, 110, 209, 119),
     "color4": Colors.green
   },
   {
-    "category": "Desserts",
+    "category": "تحلية",
     "color1": Color.fromARGB(255, 165, 129, 224),
     "color2": Color.fromARGB(255, 146, 119, 221),
     "color4": Colors.deepPurple
   },
   {
-    "category": "Shawrma",
+    "category": "شاورما",
     "color1": Color.fromARGB(255, 216, 218, 216),
     "color2": Color.fromARGB(255, 174, 175, 174),
     "color4": Colors.grey
   },
   {
-    "category": "Others",
+    "category": "اخرى",
     "color1": Color.fromARGB(255, 159, 175, 159),
     "color2": Color.fromARGB(255, 138, 146, 138),
     "color4": Color.fromARGB(255, 122, 121, 121)
@@ -293,37 +287,37 @@ List categoriesList = [
 ];
 List<CategoryModel> foodList = [
   CategoryModel.fromJson({
-    "category": "Explore",
+    "category": "استكشف",
     "icon": "assets/images/home/icons/all.png",
     "image": "${mainPAth}Grilled Chickens.jpg",
   }),
   CategoryModel.fromJson({
-    "category": "Pasta",
+    "category": "مكرونة",
     "icon": "assets/images/home/icons/spaguetti.png",
     "image": "${mainPAth}With Rice.jpg",
   }),
   CategoryModel.fromJson({
-    "category": "Burger",
+    "category": "برجر",
     "icon": "assets/images/home/icons/burger.png",
     "image": "${mainPAth}Burger.jpg",
   }),
   CategoryModel.fromJson({
-    "category": "Chickens",
+    "category": "فراخ",
     "icon": "assets/images/home/icons/chicken.png",
     "image": "${mainPAth}Grilled Chickens.jpg",
   }),
   CategoryModel.fromJson({
-    "category": "Pizza",
+    "category": "بيتزا",
     "icon": "assets/images/home/icons/pizza.png",
     "image": "${mainPAth}Pizza.jpg",
   }),
   CategoryModel.fromJson({
-    "category": "Fried",
+    "category": "فرايد",
     "icon": "assets/images/home/icons/fried chicken.png",
     "image": "${mainPAth}Fried Chickens.jpg",
   }),
   CategoryModel.fromJson({
-    "category": "Shawrma",
+    "category": "شاورما",
     "icon": "assets/images/home/icons/shawarma.png",
     "image": "${mainPAth}Shawrma.jpg",
   })

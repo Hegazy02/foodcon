@@ -57,7 +57,7 @@ class ChartsPage extends StatelessWidget {
             Text(
               quotes[myrandom]['quote'],
               textDirection: TextDirection.rtl,
-              style: pressedStyle,
+              style: black14Normal,
             ),
             SizedBox(
                 height: 16.h,
@@ -87,7 +87,7 @@ class salesBar extends StatelessWidget {
             children: [
               Text(
                 "الاكثر مبيعا",
-                style: pressedStyle,
+                style: black14Bold,
               ),
               Text(
                 bestSeller == null ? "لايوجد" : "${bestSeller}",
@@ -98,7 +98,7 @@ class salesBar extends StatelessWidget {
             children: [
               Text(
                 "المبيعات",
-                style: pressedStyle,
+                style: black14Bold,
               ),
               Text(
                 sales == null ? "0" : "${sales}\$",
@@ -144,6 +144,7 @@ class dateRow extends StatelessWidget {
                   .date(context: context, itemcount: itemCount!, type: type!),
               child: Text(
                 type!,
+                style: normal,
               )),
         ],
       ),

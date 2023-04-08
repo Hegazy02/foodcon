@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: Styles.themeData(
-              Provider.of<DarkmoodProv>(context).isDarkmood, context),
+              Provider.of<DarkmoodProv>(context).isDarkmood!, context),
 
           //  ThemeData(
           //     primarySwatch: mainC,

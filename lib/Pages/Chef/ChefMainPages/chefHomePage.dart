@@ -27,9 +27,9 @@ class ChefHomePage extends StatelessWidget {
           ),
           TabBar(
               labelColor:
-                  dark.isDarkmood ? kDarksecondThemeColor : KprimaryColor,
+                  dark.isDarkmood! ? kDarksecondThemeColor : KprimaryColor,
               indicatorColor:
-                  dark.isDarkmood ? kDarksecondThemeColor : KprimaryColor,
+                  dark.isDarkmood! ? kDarksecondThemeColor : KprimaryColor,
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(
@@ -39,7 +39,7 @@ class ChefHomePage extends StatelessWidget {
                   child: Text("جاري التحضير"),
                 ),
                 Tab(
-                  child: Text("الطلبات الواردة"),
+                  child: Text("الطلبات"),
                 ),
               ]),
           Expanded(
@@ -59,7 +59,7 @@ class ChefHomePage extends StatelessWidget {
                         onCancelButton: () {},
                         price: 70,
                         onTap: () {},
-                        txtColor: dark.isDarkmood
+                        txtColor: dark.isDarkmood!
                             ? kDarksecondThemeColor
                             : KprimaryColor,
                       ),
@@ -78,7 +78,7 @@ class ChefHomePage extends StatelessWidget {
                         onButtonPressed: () {},
                         price: 70,
                         onTap: () {},
-                        txtColor: dark.isDarkmood
+                        txtColor: dark.isDarkmood!
                             ? kDarksecondThemeColor
                             : KprimaryColor,
                       ),
@@ -98,7 +98,7 @@ class ChefHomePage extends StatelessWidget {
                         onCancelButton: () {},
                         price: 70,
                         onTap: () {},
-                        txtColor: dark.isDarkmood
+                        txtColor: dark.isDarkmood!
                             ? kDarksecondThemeColor
                             : KprimaryColor,
                       ),

@@ -44,17 +44,16 @@ class ProfilePage extends StatelessWidget {
                 height: 5.h,
                 width: 20.w,
                 child: BorderdButton(
-                  borderColor: darkmood.isDarkmood
-                      ? kDarksecondThemeColor
-                      : KprimaryColor,
+                  borderColor: mainthemeColor(darkmood),
                   txt: "ايام العمل",
+                  txtStyle: TextStyle(
+                    color: mainthemeColor(darkmood),
+                  ),
                   onPressed: () {
                     BottomSheetHelpers(isProfielPic: false)
                         .workingDays(context);
                   },
-                  txtColor: darkmood.isDarkmood
-                      ? kDarksecondThemeColor
-                      : KprimaryColor,
+                  txtColor: mainthemeColor(darkmood),
                   circular: 20,
                   padding: 0,
                 ),
@@ -68,9 +67,7 @@ class ProfilePage extends StatelessWidget {
                 },
                 icon: Icon(
                   Iconsax.search_normal,
-                  color: darkmood.isDarkmood
-                      ? kDarksecondThemeColor
-                      : KprimaryColor,
+                  color: mainthemeColor(darkmood),
                 ),
               ),
               SizedBox(
@@ -146,18 +143,14 @@ class ProfilePage extends StatelessWidget {
                 height: 5.h,
                 width: 60.w,
                 child: BorderdButton(
-                  borderColor: darkmood.isDarkmood
-                      ? kDarksecondThemeColor
-                      : KprimaryColor,
+                  borderColor: mainthemeColor(darkmood),
                   txt: "اضافة وصفة جديده",
                   onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => AddNewRecipePage(),
                       )),
-                  txtColor: darkmood.isDarkmood
-                      ? kDarksecondThemeColor
-                      : KprimaryColor,
+                  txtColor: mainthemeColor(darkmood),
                   circular: 20,
                   padding: 0,
                 ),

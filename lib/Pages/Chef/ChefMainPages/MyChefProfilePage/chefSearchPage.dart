@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CustomSearchBar.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
 import 'package:foodcon/Components/RoundedAppBar.dart';
-import 'package:foodcon/Global/textStyle.dart';
 import 'package:foodcon/Models/RecipeModel.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/chefProfileSearchProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
-import 'package:foodcon/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -22,11 +20,9 @@ class chefSearchPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 2.h,
-          ),
           Consumer<chefProfileSearchProv>(
             builder: (context, value, child) => CustomSearchBar(
+              top: 5,
               onChanged: (val) {
                 print(val);
                 value.searchList = autoList

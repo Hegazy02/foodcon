@@ -61,7 +61,7 @@ class MyRecipe extends StatelessWidget {
                               SizedBox(
                                 width: 3.w,
                               ),
-                              Text("${title}", style: recipeTitleStyle),
+                              Text("${title}", style: white14Bold),
                             ],
                           ),
                           Row(

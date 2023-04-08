@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Pages/Client/clientMasterPage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/constants.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -123,6 +124,7 @@ List slides = [
 ];
 
 Container buildDot(int index, BuildContext context) {
+  DarkmoodProv darkmood = DarkmoodProv();
   // Another Container returned
   return Container(
     height: 10,
@@ -130,7 +132,7 @@ Container buildDot(int index, BuildContext context) {
     margin: EdgeInsets.only(right: 5),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20),
-      color: mainthemeColor,
+      color: mainthemeColor(darkmood),
     ),
   );
 }

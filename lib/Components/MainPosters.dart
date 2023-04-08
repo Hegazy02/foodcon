@@ -14,7 +14,7 @@ class MainPosters extends StatelessWidget {
   double? sigmaX;
   double? sigmaY;
   Function()? onTap;
-
+  double? radius;
   Widget? child;
   MainPosters(
       {this.index,
@@ -23,7 +23,8 @@ class MainPosters extends StatelessWidget {
       this.sigmaX,
       this.sigmaY,
       this.child,
-      this.onTap});
+      this.onTap,
+      this.radius});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class MainPosters extends StatelessWidget {
           splashColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(radius ?? 5),
               image: DecorationImage(
                 image: AssetImage(image!),
                 fit: BoxFit.cover,
@@ -55,19 +56,22 @@ class MainPostersCatergoies extends StatelessWidget {
   int index;
   List<RecipeModel> mylist;
   double fontSize;
+  double? radius;
 
   MainPostersCatergoies(
       {super.key,
       required this.index,
       required this.mylist,
-      required this.fontSize});
+      required this.fontSize,
+      this.radius});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<FilterProv>(
       builder: (context, value, child) => MainPosters(
+        radius: radius,
         index: index,
-        width: 80,
+        width: 220,
         image: foodList[index].image,
         sigmaX: 1.5,
         sigmaY: 1,
@@ -95,11 +99,14 @@ class MainPostersCatergoies extends StatelessWidget {
                       myList: mylist, isAll: index == 0 ? true : false)));
         },
         child: Container(
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 58, 58, 58).withOpacity(0.3),
+                borderRadius: BorderRadius.circular(radius ?? 5)),
             alignment: Alignment.center,
-            color: Color.fromARGB(255, 75, 75, 75).withOpacity(0.1),
             child: Text(
               "${foodList[index].category}",
               style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: fontSize,
                   color: Colors.white,
                   shadows: [Shadow(offset: Offset(3, 3), blurRadius: 20)]),

@@ -18,27 +18,23 @@ class AllPopularRecipesPage extends StatelessWidget {
       appBar: RoundedAppBar(title: "اشهر الاكلات"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<FilterProv>(
-          builder: (context, value, child) => GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10),
-              itemCount: autoList.length,
-              itemBuilder: (context, index) => MyRecipe(
+        child: ListView.separated(
+          padding: EdgeInsets.all(0),
+          separatorBuilder: (context, index) => SizedBox(
+            height: 10,
+          ),
+          itemCount: foodList.length,
+          itemBuilder: (context, index) => MyRecipe(
+            recipe: autoList[index],
+            title: autoList[index].title,
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RecipePage(
                     recipe: autoList[index],
-                    title: autoList[index].title!.length > 14
-                        ? "..${autoList[index].title!.substring(0, 13)}"
-                        : autoList[index].title,
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RecipePage(
-                            recipe: autoList[index],
-                          ),
-                        )),
-                  )),
+                  ),
+                )),
+          ),
         ),
       ),
     );

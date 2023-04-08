@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodcon/Components/CiruledButton.dart';
+import 'package:foodcon/Components/CustomButton.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
 import 'package:foodcon/Pages/chefProfile.dart';
 import 'package:foodcon/Providers/DarkmoodProv.dart';
@@ -77,9 +78,11 @@ class RecipePage extends StatelessWidget {
                                       ? Colors.redAccent
                                       : kDarksecondThemeColor),
                               child: Text(
-                                "مكرونات",
+                                "${recipe.category}",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 8.sp),
+                                    fontFamily: "arabicmodern",
+                                    color: Colors.white,
+                                    fontSize: 8.sp),
                               )),
                           Spacer(),
                           Text(
@@ -176,6 +179,7 @@ class RecipePage extends StatelessWidget {
                     delegate: _SliverAppBarDelegate(
                   TabBar(
                     unselectedLabelColor: Colors.grey,
+                    indicatorColor: mainthemeColor(darkmood),
                     tabs: [
                       Tab(
                         child: Text(
@@ -199,67 +203,90 @@ class RecipePage extends StatelessWidget {
                   ),
                 ))
               ],
-              body: TabBarView(children: [
-                ListView.builder(
-                  padding: EdgeInsets.all(0),
-                  itemCount: recipeData.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(right: 5, bottom: 8),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Container(
-                          height: 7,
-                          width: 7,
-                          decoration: BoxDecoration(
-                              color: darkmood.isDarkmood == false
-                                  ? KprimaryColor
-                                  : kDarksecondThemeColor,
-                              borderRadius: BorderRadius.circular(100)),
-                        ),
-                        Text(
-                          recipeData[index],
-                          textDirection: TextDirection.rtl,
-                          style: SecondStyle,
-                        ),
-                      ],
-                    ),
+              body: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      CustomButton(
+                        onPressed: () {},
+                        child: Text("اطلب المكونات"),
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                      ),
+                      CustomButton(
+                        onPressed: () {},
+                        child: Text("اطلب الاكلة"),
+                        padding: EdgeInsets.symmetric(horizontal: 30),
+                      ),
+                    ],
                   ),
-                ),
-                ListView.builder(
-                  itemCount: ingredientsData.length,
-                  padding: EdgeInsets.all(0),
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(right: 5, bottom: 8),
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: [
-                        Container(
-                          height: 7,
-                          width: 7,
-                          decoration: BoxDecoration(
-                              color: darkmood.isDarkmood == false
-                                  ? KprimaryColor
-                                  : kDarksecondThemeColor,
-                              borderRadius: BorderRadius.circular(100)),
+                  Expanded(
+                    child: TabBarView(children: [
+                      ListView.builder(
+                        padding: EdgeInsets.all(0),
+                        itemCount: recipeData.length,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.only(
+                              right: 5, bottom: 3, top: 5),
+                          child: Row(
+                            textDirection: TextDirection.rtl,
+                            children: [
+                              Container(
+                                height: 7,
+                                width: 7,
+                                decoration: BoxDecoration(
+                                    color: darkmood.isDarkmood == false
+                                        ? KprimaryColor
+                                        : kDarksecondThemeColor,
+                                    borderRadius: BorderRadius.circular(100)),
+                              ),
+                              Text(
+                                recipeData[index],
+                                textDirection: TextDirection.rtl,
+                                style: SecondStyle,
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          ingredientsData[index],
-                          textDirection: TextDirection.rtl,
-                          style: SecondStyle,
+                      ),
+                      ListView.builder(
+                        itemCount: ingredientsData.length,
+                        padding: EdgeInsets.all(0),
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.only(
+                              right: 5, bottom: 3, top: 5),
+                          child: Row(
+                            textDirection: TextDirection.rtl,
+                            children: [
+                              Container(
+                                height: 7,
+                                width: 7,
+                                decoration: BoxDecoration(
+                                    color: darkmood.isDarkmood == false
+                                        ? KprimaryColor
+                                        : kDarksecondThemeColor,
+                                    borderRadius: BorderRadius.circular(100)),
+                              ),
+                              Text(
+                                ingredientsData[index],
+                                textDirection: TextDirection.rtl,
+                                style: SecondStyle,
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            style: SecondStyle,
+                            textDirection: TextDirection.rtl,
+                            "كبة اللحم بالبرغل ... تميزي دائماً بتقديم أطيب وصفات المقبلات الشامية الرائعة من وصفات الكبة على سفرتك، تعلمي خطوات العمل البسيطة وقدميها على سفرتك ساخنة"),
+                      ),
+                    ]),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      style: SecondStyle,
-                      textDirection: TextDirection.rtl,
-                      "كبة اللحم بالبرغل ... تميزي دائماً بتقديم أطيب وصفات المقبلات الشامية الرائعة من وصفات الكبة على سفرتك، تعلمي خطوات العمل البسيطة وقدميها على سفرتك ساخنة"),
-                ),
-              ]),
+                ],
+              ),
             )),
       ),
     );
@@ -281,9 +308,14 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return ClipRRect(
-      child: new Container(
-        color: darkmood.isDarkmood == false ? Colors.white : kDarkThemeColor,
-        child: _tabBar,
+      child: Column(
+        children: [
+          new Container(
+            color:
+                darkmood.isDarkmood == false ? Colors.white : kDarkThemeColor,
+            child: _tabBar,
+          ),
+        ],
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:foodcon/Components/CustomTextField.dart';
 import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Pages/Auth/BeforeOnbordingPage.dart';
 import 'package:foodcon/Pages/Auth/SignInPage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -28,6 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    DarkmoodProv darkmood = DarkmoodProv();
     return Scaffold(
       body: ListView(
         // shrinkWrap: true,
@@ -146,11 +148,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   width: 80.w,
                   child: BorderdButton(
                     padding: 10,
-                    borderColor: mainthemeColor,
+                    borderColor: mainthemeColor(darkmood),
                     circular: 20,
                     txt: "Sign up",
                     txtColor: Colors.white,
-                    color: mainthemeColor,
+                    color: mainthemeColor(darkmood),
                     onPressed: () {
                       // Validation();
                       Navigator.of(context)

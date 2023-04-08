@@ -5,6 +5,7 @@ import 'package:foodcon/Components/CustomTextField.dart';
 import 'package:foodcon/Helpers/bottomSheet.dart';
 import 'package:foodcon/Pages/Auth/OnboardingPage.dart';
 import 'package:foodcon/Pages/Chef/chefMasterPage.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Services/imagePicker.dart';
 import 'package:foodcon/constants.dart';
 import 'package:iconsax/iconsax.dart';
@@ -34,6 +35,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    DarkmoodProv darkmood = DarkmoodProv();
     return Scaffold(
       body: ListView(
         children: [
@@ -148,14 +150,15 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                       width: 30.w,
                       child: BorderdButton(
                         padding: 10,
-                        borderColor: mainthemeColor,
+                        borderColor: mainthemeColor(darkmood),
                         circular: 20,
                         txt: chef,
-                        txtColor:
-                            userType == client ? mainthemeColor : Colors.white,
+                        txtColor: userType == client
+                            ? mainthemeColor(darkmood)
+                            : Colors.white,
                         color: userType == client
-                            ? fillFollowedColor
-                            : mainthemeColor,
+                            ? fillFollowedColor(darkmood)
+                            : mainthemeColor(darkmood),
                         onPressed: () {
                           setState(() {
                             userType = chef;
@@ -168,9 +171,10 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                       width: 30.w,
                       child: BorderdButton(
                         padding: 10,
-                        borderColor: mainthemeColor,
-                        txtColor:
-                            userType == client ? Colors.white : mainthemeColor,
+                        borderColor: mainthemeColor(darkmood),
+                        txtColor: userType == client
+                            ? Colors.white
+                            : mainthemeColor(darkmood),
                         circular: 20,
                         txt: client,
                         // txtColor: KprimaryColor,
@@ -180,8 +184,8 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                           });
                         },
                         color: userType == client
-                            ? mainthemeColor
-                            : fillFollowedColor,
+                            ? mainthemeColor(darkmood)
+                            : fillFollowedColor(darkmood),
                       ),
                     ),
                   ],
@@ -194,7 +198,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                   width: 80.w,
                   child: BorderdButton(
                     padding: 10,
-                    borderColor: mainthemeColor,
+                    borderColor: mainthemeColor(darkmood),
                     txtColor: Colors.white,
                     circular: 20,
                     txt: "Continue",
@@ -210,7 +214,7 @@ class _BeforeOnboardingPageState extends State<BeforeOnboardingPage> {
                             .pushReplacementNamed(ChefMasterPage().id);
                       }
                     },
-                    color: mainthemeColor,
+                    color: mainthemeColor(darkmood),
                   ),
                 ),
               ],

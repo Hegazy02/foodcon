@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:foodcon/Global/textStyle.dart';
+import 'package:foodcon/Models/RecipeModel.dart';
+import 'package:foodcon/Providers/DarkmoodProv.dart';
 import 'package:foodcon/Services/Lists/Lists.dart';
 import 'package:foodcon/constants.dart';
 
 class CustomTile extends StatelessWidget {
-  String title;
-  String? image;
-  String category;
-  String? chefName;
-  String? chefAvatar;
-  bool? isLiked;
+  RecipeModel recipe;
   Widget? subtitle;
   double? padding;
   Function()? onTap;
 
-  CustomTile(
-      {required this.title,
-      this.image,
-      required this.category,
-      this.chefAvatar,
-      this.chefName,
-      this.isLiked,
-      this.subtitle,
-      this.padding,
-      this.onTap});
+  CustomTile({required this.recipe, this.subtitle, this.padding, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    Map item =
-        categoriesList.firstWhere((element) => element['category'] == category);
+    DarkmoodProv darkmood = DarkmoodProv();
+    Map item = categoriesList
+        .firstWhere((element) => element['category'] == recipe.category);
 
     return ListTile(
-      contentPadding: EdgeInsets.all(padding ?? 10),
+      contentPadding: EdgeInsets.only(
+        left: 10,
+        top: 10,
+      ),
       leading: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-            color: mainthemeColor, borderRadius: BorderRadius.circular(20)),
+            color: mainthemeColor(darkmood),
+            borderRadius: BorderRadius.circular(20)),
         child: Text(
           "${item['category']}",
           style: TextStyle(fontSize: 11, color: Colors.white),
@@ -42,10 +36,7 @@ class CustomTile extends StatelessWidget {
       ),
       title: Align(
         alignment: Alignment.centerRight,
-        child: Text(title,
-            style: TextStyle(
-              fontSize: 16,
-            )),
+        child: Text("${recipe.title}", style: black12Bold),
       ),
       subtitle: Align(alignment: Alignment.centerRight, child: subtitle),
       trailing: Container(
@@ -56,7 +47,7 @@ class CustomTile extends StatelessWidget {
             image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage(
-                  image != "" ? image! : Klogo,
+                  recipe.image != "" ? recipe.image! : Klogo,
                 ))),
       ),
       onTap: onTap,

@@ -4,7 +4,6 @@ import 'package:foodcon/Components/CustomSearchBar.dart';
 import 'package:foodcon/Components/MainPosters.dart';
 import 'package:foodcon/Components/Tricks.dart';
 import 'package:foodcon/Components/popularChefsIcons.dart';
-import 'package:foodcon/Pages/AllCategoriesPage.dart';
 import 'package:foodcon/Pages/AllChefsPage.dart';
 import 'package:foodcon/Pages/AllPopularRecipesPage.dart.dart';
 import 'package:foodcon/Pages/Client/MainPages/MyClientProfilePage/MyOrdersPage.dart';
@@ -27,96 +26,122 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10),
+      padding: EdgeInsets.only(right: 8),
       child: Stack(
         children: [
           SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: Consumer<FilterProv>(
+              //         builder: (context, valprov, child) {
+              //           return CustomSearchBar(
+              //             onTapOutside: (event) {
+              //               if (valprov.fil1.length == 1 &&
+              //                   event.position.dy > 15.h) {
+              //                 valprov.fil1 = [];
+              //               } else if (valprov.fil1.length == 2 &&
+              //                   event.position.dy > 20.h) {
+              //                 valprov.fil1 = [];
+              //               }
+              //               if (valprov.fil1.length == 3 &&
+              //                   event.position.dy > 24.3.h) {
+              //                 valprov.fil1 = [];
+              //               } else if (valprov.fil1.length == 4 &&
+              //                   event.position.dy > 29.h) {
+              //                 valprov.fil1 = [];
+              //               } else if (valprov.fil1.length == 5 &&
+              //                   event.position.dy > 34.h) {
+              //                 valprov.fil1 = [];
+              //               } else if (valprov.fil1.length > 5 &&
+              //                   event.position.dy > 39.02.h) {
+              //                 valprov.fil1 = [];
+              //               }
+
+              //               print(event.position.dy);
+              //             },
+              //             onChanged: (value) {
+              //               searchVal = value;
+
+              //               valprov.fil1 = autoList.where((element) {
+              //                 return element.title
+              //                     .toString()
+              //                     .startsWith(searchVal.toString());
+              //               }).toList();
+              //               valprov.fil1 =
+              //                   searchVal!.isEmpty ? [] : valprov.fil1;
+              //               print("********${valprov.fil1}");
+              //             },
+              //           );
+              //         },
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: const EdgeInsets.only(top: 40),
+              //       child: IconButton(
+              //         onPressed: () {
+              //           Navigator.of(context).pushNamed(MyOrdersPage().id);
+              //         },
+              //         icon: Icon(Icons.delivery_dining),
+              //         iconSize: 30,
+              //       ),
+              //     )
+              //   ],
+              // ),
               SizedBox(
-                height: 4.h,
+                height: 5.h,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Consumer<FilterProv>(
-                      builder: (context, valprov, child) {
-                        return CustomSearchBar(
-                          onTapOutside: (event) {
-                            if (valprov.fil1.length == 1 &&
-                                event.position.dy > 15.h) {
-                              valprov.fil1 = [];
-                            } else if (valprov.fil1.length == 2 &&
-                                event.position.dy > 20.h) {
-                              valprov.fil1 = [];
-                            }
-                            if (valprov.fil1.length == 3 &&
-                                event.position.dy > 24.3.h) {
-                              valprov.fil1 = [];
-                            } else if (valprov.fil1.length == 4 &&
-                                event.position.dy > 29.h) {
-                              valprov.fil1 = [];
-                            } else if (valprov.fil1.length == 5 &&
-                                event.position.dy > 34.h) {
-                              valprov.fil1 = [];
-                            } else if (valprov.fil1.length > 5 &&
-                                event.position.dy > 39.02.h) {
-                              valprov.fil1 = [];
-                            }
-
-                            print(event.position.dy);
-                          },
-                          onChanged: (value) {
-                            searchVal = value;
-
-                            valprov.fil1 = autoList.where((element) {
-                              return element.title
-                                  .toString()
-                                  .startsWith(searchVal.toString());
-                            }).toList();
-                            valprov.fil1 =
-                                searchVal!.isEmpty ? [] : valprov.fil1;
-                            print("********${valprov.fil1}");
-                          },
-                        );
-                      },
-                    ),
+              // CustomRows(
+              //     RightText: "الأصناف",
+              //     onTap: () =>
+              //         Navigator.of(context).pushNamed(AllCategoriesPage().id)),
+              // SizedBox(
+              //   height: 8.h,
+              //   child: ListView.separated(
+              //     separatorBuilder: (context, index) {
+              //       return SizedBox(
+              //         width: 10,
+              //       );
+              //     },
+              //     reverse: true,
+              //     scrollDirection: Axis.horizontal,
+              //     itemCount: foodList.length,
+              //     itemBuilder: (context, index) {
+              //       return Consumer<FilterProv>(
+              //         builder: (context, value, child) {
+              //           return MainPostersCatergoies(
+              //             index: index,
+              //             mylist: value.fil1,
+              //             fontSize: 16,
+              //           );
+              //         },
+              //       );
+              //     },
+              //   ),
+              // ),
+              Padding(
+                padding: EdgeInsets.only(left: 8),
+                child: SizedBox(
+                  height: 22.h,
+                  width: double.infinity,
+                  child: PageView.builder(
+                    reverse: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: foodList.length,
+                    itemBuilder: (context, index) {
+                      return Consumer<FilterProv>(
+                        builder: (context, value, child) {
+                          return MainPostersCatergoies(
+                            index: index,
+                            mylist: value.fil1,
+                            fontSize: 22.sp,
+                            radius: 20,
+                          );
+                        },
+                      );
+                    },
                   ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(MyOrdersPage().id);
-                      },
-                      icon: Icon(Icons.delivery_dining))
-                ],
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              CustomRows(
-                  RightText: "الأصناف",
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(AllCategoriesPage().id)),
-              SizedBox(
-                height: 8.h,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) {
-                    return SizedBox(
-                      width: 10,
-                    );
-                  },
-                  reverse: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: foodList.length,
-                  itemBuilder: (context, index) {
-                    return Consumer<FilterProv>(
-                      builder: (context, value, child) {
-                        return MainPostersCatergoies(
-                          index: index,
-                          mylist: value.fil1,
-                          fontSize: 16,
-                        );
-                      },
-                    );
-                  },
                 ),
               ),
               SizedBox(
@@ -172,7 +197,7 @@ class HomePage extends StatelessWidget {
                   itemCount: popularRecipesList.length,
                   itemBuilder: (context, index) {
                     return popularRecipes(
-                      popularRecipeshomeList: autoList,
+                      popularRecipeshomeList: autoList[index],
                       index: index,
                       onTap: () => Navigator.push(
                           context,
@@ -248,7 +273,7 @@ class HomePage extends StatelessWidget {
 }
 
 class popularRecipes extends StatelessWidget {
-  List<RecipeModel> popularRecipeshomeList;
+  RecipeModel popularRecipeshomeList;
   int? index;
   Function()? onTap;
   Function()? onTapchefAvatar;
@@ -261,7 +286,7 @@ class popularRecipes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
             width: 180,
@@ -273,8 +298,7 @@ class popularRecipes extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image:
-                        AssetImage("${popularRecipeshomeList[index!].image}"),
+                    image: AssetImage("${popularRecipeshomeList.image}"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -297,12 +321,12 @@ class popularRecipes extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            "${popularRecipeshomeList[index!].star}",
+                            "${popularRecipeshomeList.star}",
                             style: TextStyle(color: Colors.white),
                           ),
                           Spacer(),
                           Text(
-                            "${popularRecipeshomeList[index!].min} min",
+                            "${popularRecipeshomeList.min} min",
                             style: TextStyle(color: Colors.white),
                           ),
                           SizedBox(
@@ -319,24 +343,23 @@ class popularRecipes extends StatelessWidget {
           height: 1.h,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Text("${popularRecipeshomeList.chefName}"),
+            SizedBox(
+              width: 5,
+            ),
             Container(
               width: 30,
               child: GestureDetector(
                 onTap: onTapchefAvatar,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage(
-                      "${popularRecipeshomeList[index!].chefAvatar}"),
+                  backgroundImage:
+                      AssetImage("${popularRecipeshomeList.chefAvatar}"),
                   child: Text(""),
                   radius: 18.sp,
                 ),
               ),
             ),
-            SizedBox(
-              width: 5,
-            ),
-            Text("${popularRecipeshomeList[index!].chefName}"),
           ],
         ),
         // SizedBox(
@@ -357,6 +380,9 @@ class CustomRows extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        SizedBox(
+          width: 8,
+        ),
         GestureDetector(
           onTap: onTap,
           child: SizedBox(

@@ -12,9 +12,10 @@ import '../../../../constants.dart';
 class MyOrdersPage extends StatelessWidget {
   String id = "myOrders";
   MyOrdersPage({super.key});
-  DarkmoodProv dartmood = DarkmoodProv();
+
   @override
   Widget build(BuildContext context) {
+    DarkmoodProv darkmood = DarkmoodProv();
     return Scaffold(
       appBar: RoundedAppBar(title: "طلباتي"),
       body: Column(
@@ -30,8 +31,7 @@ class MyOrdersPage extends StatelessWidget {
                 recipe: autoList[index],
                 items: 2,
                 price: 60,
-                txtColor:
-                    dartmood.isDarkmood ? kDarksecondThemeColor : KprimaryColor,
+                txtColor: mainthemeColor(darkmood),
                 ButtonTxt: "تتبع",
                 onTap: () => Navigator.push(
                     context,

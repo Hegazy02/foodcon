@@ -3,6 +3,7 @@ import 'package:foodcon/Components/BorderdButton.dart';
 import 'package:foodcon/Components/MyRecipe.dart';
 import 'package:foodcon/Components/RoundedAppBar.dart';
 import 'package:foodcon/Components/decoratedContainer.dart';
+import 'package:foodcon/Global/textStyle.dart';
 import 'package:foodcon/Pages/Chef/ChefMainPages/MyChefProfilePage/chefSearchPage.dart';
 import 'package:foodcon/Pages/RecipePage.dart';
 import 'package:foodcon/Providers/DarkmoodProv.dart';
@@ -29,6 +30,7 @@ class ChefProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DarkmoodProv darkmood = DarkmoodProv();
     return Scaffold(
       appBar: RoundedAppBar(title: "صفحة الشيف"),
       body: DefaultTabController(
@@ -63,9 +65,7 @@ class ChefProfile extends StatelessWidget {
                   },
                   icon: Icon(
                     Iconsax.search_normal,
-                    color: darkmood.isDarkmood
-                        ? kDarksecondThemeColor
-                        : KprimaryColor,
+                    color: mainthemeColor(darkmood),
                   ),
                 ),
                 SizedBox(
@@ -73,7 +73,7 @@ class ChefProfile extends StatelessWidget {
                   height: 5.h,
                   child: Consumer<PressedProv>(
                     builder: (context, val, child) => BorderdButton(
-                      borderColor: fillFollowColor,
+                      borderColor: mainthemeColor(darkmood),
                       txt: val.follow,
                       onPressed: () {
                         val.changeFollow();
@@ -82,10 +82,10 @@ class ChefProfile extends StatelessWidget {
                       padding: 0,
                       txtColor: val.follow == 'متابعة'
                           ? Colors.white
-                          : mainthemeColor,
+                          : mainthemeColor(darkmood),
                       color: val.follow == 'متابعة'
-                          ? fillFollowColor
-                          : fillFollowedColor,
+                          ? mainthemeColor(darkmood)
+                          : fillFollowedColor(darkmood),
                     ),
                   ),
                 ),
@@ -160,8 +160,12 @@ class ChefProfile extends StatelessWidget {
                 ),
                 itemCount: week.length,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) =>
-                    decoratedContainer(child: Center(child: Text(week[index]))),
+                itemBuilder: (context, index) => decoratedContainer(
+                    child: Center(
+                        child: Text(
+                  week[index],
+                  style: darkmood.isDarkmood! ? white10Bold : black12Bold,
+                ))),
               ),
             ),
             Divider(),
